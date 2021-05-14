@@ -31,9 +31,14 @@
         <a href="#"><i class="fab fa-linkedin mx-2"style="color: #212529"></i></a>
         <a href="#"><i class="fab fa-pinterest mx-2"style="color: #212529"></i></a>
     </div>
+    <%if user_signed_in?%>
+        <%= link_to 'Edit Profile', edit_user_registration_path, class: "login-panel ml-5", style: "color: #212529" %>
+        <%= link_to 'logout', destroy_user_session_path,method: :delete, class: "login-panel ml-5 ", style: "color: #212529"%>
+
+    <%else%>    
         <a href="#" class="login-panel mx-5"style="color: #212529"><i class="fa fa-user"></i>Login</a>
-     <%= link_to 'logout', destroy_user_session_path,
-                      method: :delete, class: "btn bg-light" %>
+    <%end%>
+
     </div>
 </div>
 
