@@ -228,7 +228,7 @@ hr:after {
       position: static;
     background-color: transparent;
     border: 1px solid #f1f1f1;
-    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+    perspective: 1000px; 
   }
   
   /* This container is needed to position the front and back side */
@@ -264,6 +264,7 @@ hr:after {
   /* Style the back side */
   .flip-card-back {
     padding-top:40px;
-    color: #e7ab3c;;
+    background-color:#212529;
+    color: #e7ab3c;
     transform: rotateY(180deg);
   }
