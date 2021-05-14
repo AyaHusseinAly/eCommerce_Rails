@@ -19,3 +19,251 @@
      overflow-x: hidden; 
 
  }
+ .dropbtn {
+    background-color: #e7ab3c;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+      background-color: #f1f1f1;
+      text-decoration: none;
+}
+  
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+  
+.dropdown:hover .dropbtn {
+    background-color: transparent;
+    border:2px solid #e7ab3c;
+    border-radius:10px 10px;
+}
+.nav-item{
+    margin: 0px;
+    border-right:1px solid rgba(255, 255, 255, .3);
+
+}
+
+.sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index:2; 
+}
+.tales {
+    width: 100%;
+  }
+  .carousel-inner{
+    background-color: #EBE4DE;
+    width:100%;
+    max-height: 600px !important;
+  }
+
+ img{
+    width:100%;
+    max-height: 600px !important;
+    object-fit: contain;
+ }
+
+ .footer
+ {
+ overflow: hidden;
+ background-color:#212529;
+ width:100%;
+ height: 400px;
+ }
+ 
+ .footer_content1{
+     float: left;
+     width: 31%;
+     height:95%;
+     margin: 12px;
+     /* border:1px solid lawngreen; */
+ }
+ 
+ .footer_content2{
+     float: left;
+     width: 31%;
+     height:95%;
+     margin: 12px;
+     /* border:1px solid lawngreen; */
+ }
+ 
+ .footer_content3{
+     float: left;
+     width: 31%;
+     height:95%;
+     margin: 12px;
+     /* border:1px solid lawngreen; */
+ }
+ 
+ .footer_content1 h2{
+     font-size: 40px;
+     margin: 60px;
+     margin-bottom: 40px;
+     color:white;
+     
+ }
+ 
+ .footer_content1 p{
+     margin: 40px;
+     color:rgb(167, 162, 162);
+ }
+ 
+ .footer_content2 h3{
+     font-size: 40px;
+     margin: 60px;
+     margin-bottom: 40px;
+     color:white;
+     
+ }
+ 
+ .footer_content2 p{
+     margin: 25px;
+     color:rgb(167, 162, 162);
+ }
+ 
+ .footer_content3 h3{
+     font-size: 20px;
+     margin: 60px;
+     margin-bottom: 30px;
+     color:white;
+     
+ }
+ 
+ .footer_content3 p{
+     font-size: 17px;
+     margin: 10px;
+     color:rgb(167, 162, 162);
+     margin-left: 100px;
+ }
+ .footer_content3 b{
+     font-size: 15px;
+     color:white;
+     margin-left: 100px;
+ }
+ hr {
+    background-color:rgb(192, 192, 192);
+    border: none;
+    display: block;
+    height: 1.5px;
+    overflow: visible;
+    position: relative;
+    width: 100%;
+}
+
+hr:before {
+    background-color: #e7ab3c;
+    content: '';
+    display: block;
+    height: 3.5px;
+    left: 0;
+    position: absolute;
+    top: -2px;
+    width: 24%;
+    z-index: 1;
+}
+hr:after {
+    background-color: #ffff;
+    content: '';
+    display: block;
+    height: 3.5px;
+    right: 0;
+    position: absolute;
+    top: -2px;
+    width: 35%;
+    z-index: 1;
+}
+.transCard{
+    overflow: hidden;
+
+}
+.transImg{
+    transition: all 300ms ease;
+
+}
+.transImg:hover {
+    transform: scale(2,2)
+}
+.hide {
+    display: none;
+  }
+.transImg:hover +.hide{
+    display: block;
+    stroke-width: 1px solid black;
+  }
+
+  h6 a{
+      color:grey;
+  }
+
+  /**************************************************** Flip Card ********************************************************/
+
+  .flip-card {
+      position: static;
+    background-color: transparent;
+    border: 1px solid #f1f1f1;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  }
+  
+  /* This container is needed to position the front and back side */
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  
+  /* Do an horizontal flip when you move the mouse over the flip box container */
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  /* Position the front and back side */
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+  }
+  
+  /* Style the front side (fallback if image is missing) */
+  .flip-card-front {
+    background-color: #bbb;
+    color: black;
+  }
+  
+  /* Style the back side */
+  .flip-card-back {
+    padding-top:40px;
+    color: #e7ab3c;;
+    transform: rotateY(180deg);
+  }

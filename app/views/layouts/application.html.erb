@@ -13,7 +13,145 @@
   </head>
 
   <body>
+
+<div class="d-flex justify-content-between border px-2"width="100%">
+    <div class="my-2 mx-4 ">
+            <i class=" fa fa-envelope"></i>
+            hello.ecommerce@gmail.com
+    
+            <i class=" fa fa-phone ml-4"></i>
+            +65 11.188.888
+    </div>
+
+    <div ></div>
+    <div class="d-flex px-5 align-items-center">
+    <div class="border-right">
+        <a href="#"><i class="fab fa-facebook-f mx-2"style="color: #212529"></i></a>
+        <a href="#"><i class="fab fa-twitter mx-2"style="color: #212529"></i></a>
+        <a href="#"><i class="fab fa-linkedin mx-2"style="color: #212529"></i></a>
+        <a href="#"><i class="fab fa-pinterest mx-2"style="color: #212529"></i></a>
+    </div>
+        <a href="#" class="login-panel mx-5"style="color: #212529"><i class="fa fa-user"></i>Login</a>
+    </div>
+</div>
+
+<div class="row"style="height:150px">
+    <div class="col-lg-4"></div>
+
+    <div class="col-lg-6 advanced-search d-flex align-items-center ">
+            <div class="dropdown" >
+                <button class="bg-transparent border mx-2"style="width:10rem;height:2.5rem;border-radius:5px 5px;">All Categories<i class="fas fa-caret-down" style="color:grey;margin-left:1rem"></i></button>
+                <div class="dropdown-content"style="position:fixed;z-index:3">
+                <a href="#">Electronics</a>
+                <a href="#">Sports</a>
+                <a href="#">Toys</a>
+                </div>
+            </div>
+            
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn my-2 my-sm-0" type="submit"style="border:1px solid #e7ab3c"><i class="fa fa-search"style="color: #e7ab3c"></i></button>
+            </form>
+    </div>
+    <div class="col-lg-1 d-flex align-items-center justify-content-around">
+        <div class="heart-icon">
+            <a href="#">
+            <i class="fa fa-heart fa-lg"style="color: #e7ab3c"></i>
+            </a>
+        </div>
+        <div class="cart-icon">
+            <a href="#">
+            <i class="fas fa-shopping-cart fa-lg"style="color: #e7ab3c"></i>
+            </a>
+        </div>
+        
+    </div>
+
+
+</div>
+  
+  
+    <nav class="d-flex justify-content-around align-items-center sticky" style="background-color: #212529">
+        <button class="navbar-toggler"type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"><i class="fas fa-align-justify"style="color:white"></i></span>
+        </button>
+
+
+        <div class="dropdown">
+            <button class="dropbtn">All Categories</button>
+            <div class="dropdown-content">
+            <a href="#">Electronics</a>
+            <a href="#">Sports</a>
+            <a href="#">Toys</a>
+            </div>
+        </div>
+
+
+        <div class="nav-item active">
+            <a class="nav-link text-white text-center" href="#">HOME <span class="sr-only">(current)</span></a>
+        </div>
+        <div class="nav-item ">
+            <a class="nav-link text-white text-center" href="#">SHOP</a>
+        </div>
+        <div class="nav-item ">
+            <a class="nav-link text-white text-center" href="#">COLLECTION</a>
+        </div>
+        <div class="nav-item ">
+            <a class="nav-link text-white text-center" href="#">CONTACT</a>
+        </div>        
+
+      </div>
+    </nav>
+    <div class="pos-f-t">
+    <div class="collapse" id="navbarToggleExternalContent">
+        <div class="bg-dark p-4">
+        <h4 class="text-white">Collapsed content</h4>
+        <span class="text-muted">Toggleable via the navbar brand.</span>
+        </div>
+    </div>
+
+    </div>
+
+  <!------------------------------------------------------------------------------------------------------------------>
+  <!------------------------------------------------------------------------------------------------------------------>
     <%= yield %>
+  <!------------------------------------------------------------------------------------------------------------------>
+  <!------------------------------------------------------------------------------------------------------------------>
+
+       <!-------------------------- Footer ------------------------>
+        <div class="footer">
+            <div class="footer_content1">
+                <h2>Our Mission</h2>
+                <p>So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved us lan Gathering thing us land years living.
+
+                    So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved</p>
+            </div>
+            <div class="footer_content2">
+                <h3>About Us</h3>
+                <p>So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved us lan Gathering thing us land years living.
+
+                    So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved</p>
+            </div>
+            <div class="footer_content3">
+                <h3>Contact Us</h3>
+                <b>Head Office</b>
+
+                <p>123, Main Street, Your City</p>
+                
+                <b>Phone Number</b> 
+                
+                <p>+123 456 7890 <br> +123 456 7890</p>
+                
+                
+                <b>Email</b> 
+                
+               <p>free@infoexample.com <br>
+                www.infoexample.com</p> 
+            </div>
+
+        </div>
+
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
