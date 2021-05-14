@@ -30,12 +30,13 @@
     <h4 class="mt-3"style="width:15rem">Latest Products</h4>
     <hr>
     <div class="row">
+    <% @products.each do |product| %>
         <div class="col-lg-3 col-md-6 col-xs-12 mt-3">
           <div class="transCard">
-                <img class=" w-100 h-80 transImg"src="1.jpg">
+                <img class=" w-100 h-80 transImg"src="<%=product.img %>">
           </div>      
                 <div class="product__item__text">
-                    <h6><a href="#">Water resistant backpack</a></h6>
+                    <h6><a href="#"><%=product.title%></a></h6>
                     <div class="rating">
                     <i class="fa fa-star" style="color:#e7ab3c"></i>
                     <i class="fa fa-star"style="color:#e7ab3c"></i>
@@ -43,11 +44,12 @@
                     <i class="fa fa-star"style="color:#e7ab3c"></i>
                     <i class="fa fa-star"style="color:#e7ab3c"></i>
                     </div>
-                    <div class="product__price"><span>$ 59.0</span></div>
+                    <div class="product__price"><span>$<%=product.price%></span></div>
                 </div>
         </div>
+        <%end%>
 
-        <div class="col-lg-3 col-md-6 col-xs-12 mt-3">
+        <%# <div class="col-lg-3 col-md-6 col-xs-12 mt-3">
             <div class="transCard">
             <img class="w-100 h-80 transImg" src="2.jpg">
            </div> 
@@ -242,7 +244,7 @@
                     </div>
                     <div class="product__price"><span>$ 59.0</span></div>
             </div>
-        </div>
+        </div> %>
 
         
     </div>

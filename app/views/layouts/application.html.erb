@@ -42,9 +42,11 @@
             <div class="dropdown" >
                 <button class="bg-transparent border mx-2"style="width:10rem;height:2.5rem;border-radius:5px 5px;">All Categories<i class="fas fa-caret-down" style="color:grey;margin-left:1rem"></i></button>
                 <div class="dropdown-content"style="position:fixed;z-index:3">
-                <a href="#">Electronics</a>
-                <a href="#">Sports</a>
-                <a href="#">Toys</a>
+                <%@categories.each do |category|%>
+                <a href="<%=category_path(category)%>"><%=category.name%></a>
+                <%# <a href="#">Sports</a>
+                <a href="#">Toys</a> %>
+                <%end%>
                 </div>
             </div>
             
@@ -80,9 +82,11 @@
         <div class="dropdown">
             <button class="dropbtn">All Categories</button>
             <div class="dropdown-content">
-            <a href="#">Electronics</a>
-            <a href="#">Sports</a>
-            <a href="#">Toys</a>
+            <%@categories.each do |category|%>
+                <a href="<%=category_path(category)%>"><%=category.name%></a>
+                <%# <a href="#">Sports</a>
+                <a href="#">Toys</a> %>
+            <%end%>
             </div>
         </div>
 
