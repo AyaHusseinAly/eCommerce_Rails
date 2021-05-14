@@ -7,6 +7,10 @@ ruby '2.7.3'
 gem 'rails', '~> 5.2.6'
 # Use postgres as the database for Active Record
 gem 'pg'
+#add devise
+gem 'devise'
+#add cancancan
+gem 'cancancan'
 #use serializer for API
 gem "active_model_serializers", "~> 0.8.0"
 # Use Puma as the app server
