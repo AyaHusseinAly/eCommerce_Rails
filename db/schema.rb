@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_13_233223) do
+ActiveRecord::Schema.define(version: 2021_05_14_193029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,12 +37,25 @@ ActiveRecord::Schema.define(version: 2021_05_13_233223) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "order_details", force: :cascade do |t|
+    t.integer "amount"
+    t.integer "paid_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "order_id"
+    t.bigint "product_id"
+    t.index ["order_id"], name: "index_order_details_on_order_id"
+    t.index ["product_id"], name: "index_order_details_on_product_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "coupon_id"
+    t.bigint "user_id"
     t.index ["coupon_id"], name: "index_orders_on_coupon_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -61,6 +74,25 @@ ActiveRecord::Schema.define(version: 2021_05_13_233223) do
     t.index ["store_id"], name: "index_products_on_store_id"
   end
 
+  create_table "rate_reviews", force: :cascade do |t|
+    t.string "rating"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "product_id"
+    t.index ["product_id"], name: "index_rate_reviews_on_product_id"
+  end
+
+  create_table "shopping_card_items", force: :cascade do |t|
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "product_id"
+    t.bigint "user_id"
+    t.index ["product_id"], name: "index_shopping_card_items_on_product_id"
+    t.index ["user_id"], name: "index_shopping_card_items_on_user_id"
+  end
+
   create_table "stores", force: :cascade do |t|
     t.string "name"
     t.text "summary"
@@ -73,10 +105,29 @@ ActiveRecord::Schema.define(version: 2021_05_13_233223) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "role", default: "buyer"
+    t.text "address"
   end
 
+  create_table "wishing_list_items", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "product_id"
+    t.index ["product_id"], name: "index_wishing_list_items_on_product_id"
+    t.index ["user_id"], name: "index_wishing_list_items_on_user_id"
+  end
+
+  add_foreign_key "order_details", "orders"
+  add_foreign_key "order_details", "products"
   add_foreign_key "orders", "coupons"
+  add_foreign_key "orders", "users"
   add_foreign_key "products", "brands"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "stores"
+  add_foreign_key "rate_reviews", "products"
+  add_foreign_key "shopping_card_items", "products"
+  add_foreign_key "shopping_card_items", "users"
+  add_foreign_key "wishing_list_items", "products"
+  add_foreign_key "wishing_list_items", "users"
 end
