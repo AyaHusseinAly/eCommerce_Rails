@@ -11,6 +11,8 @@ gem 'pg'
 gem 'devise'
 #add cancancan
 gem 'cancancan'
+#will_paginate for pagination
+gem 'will_paginate', '~> 3.3.0'
 #use serializer for API
 gem "active_model_serializers", "~> 0.8.0"
 # Use Puma as the app server

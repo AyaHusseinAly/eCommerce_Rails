@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row">
+
+    <% @products.each do |product| %>
+
+        <div class="col-lg-3 col-md-6 col-xs-12 mt-3">
+                <div class="transCard">
+                        <img class=" w-100 h-80 transImg"src="img/products/<%=product.img%>">
+                </div>      
+                <div class="product__item__text">
+                    <h6><%= link_to product.title, product_path(product)%></h6>                 
+                    <div class="rating">
+                        <i class="fa fa-star" style="color:#e7ab3c"></i>
+                        <i class="fa fa-star"style="color:#e7ab3c"></i>
+                        <i class="fa fa-star"style="color:#e7ab3c"></i>
+                        <i class="fa fa-star"style="color:#e7ab3c"></i>
+                        <i class="fa fa-star"style="color:#e7ab3c"></i>
+                    </div>
+                    <div class="product__price"><span>$<%=product.price%></span></div>
+                </div>
+        </div>
+    <%end%>
+
+    </div>
+
+    <div class="row m-5">
+        <div class="col-4"></div>
+        <div class="digg_pagination">
+            <%
+=begin%>
+ <div class="page_info">
+            <%= page_entries_info @products %>
+            </div> 
+<%
+=end%>
+                <%= will_paginate @products%>
+            </div>
+        </div>
+    </div>
+    
+    
