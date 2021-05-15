@@ -22,7 +22,6 @@
   </a>
 </div>
 
-
 <!----------------------------------------------latest products----------------------------------------------------------------------->
 
  
@@ -31,157 +30,26 @@
     <hr>
     <div class="row">
 
-<% @products.each do |product| %>
+    <% @products.each do |product| %>
 
         <div class="col-lg-3 col-md-6 col-xs-12 mt-3">
-          <div class="transCard">
-                <img class=" w-100 h-80 transImg"src="img/products/<%=product.img%>">
-          </div>      
+                <div class="transCard">
+                        <img class=" w-100 h-80 transImg"src="img/products/<%=product.img%>">
+                </div>      
                 <div class="product__item__text">
-                    <h6><a href="#">Water resistant backpack</a></h6>
+                    <h6><%= link_to product.title, product_path(product)%></h6>                 
                     <div class="rating">
-                    <i class="fa fa-star" style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
+                        <i class="fa fa-star" style="color:#e7ab3c"></i>
+                        <i class="fa fa-star"style="color:#e7ab3c"></i>
+                        <i class="fa fa-star"style="color:#e7ab3c"></i>
+                        <i class="fa fa-star"style="color:#e7ab3c"></i>
+                        <i class="fa fa-star"style="color:#e7ab3c"></i>
                     </div>
-                    <div class="product__price"><span>$ 59.0</span></div>
+                    <div class="product__price"><span>$<%=product.price%></span></div>
                 </div>
         </div>
-<%end%>
-
-
-                <div class="col-lg-3 col-md-6 col-xs-12 mt-3 ">
-            <div class="transCard">
-                <img class="w-100 h-80 transImg" src="6.jpg">
-            </div>
-             <div class="product__item__text">
-                    <h6><a href="#">Water resistant backpack</a></h6>
-                    <div class="rating">
-                    <i class="fa fa-star" style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    </div>
-                    <div class="product__price"><span>$ 59.0</span></div>
-            </div>
-        </div>
-
-
-                <div class="col-lg-3 col-md-6 col-xs-12 mt-3 ">
-            <div class="transCard">
-                <img class="w-100 h-80 transImg" src="7.jpg">
-            </div>
-             <div class="product__item__text">
-                    <h6><a href="#">Water resistant backpack</a></h6>
-                    <div class="rating">
-                    <i class="fa fa-star" style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    </div>
-                    <div class="product__price"><span>$ 59.0</span></div>
-            </div>
-        </div>
-
-
-                <div class="col-lg-3 col-md-6 col-xs-12 mt-3 ">
-            <div class="transCard">
-                <img class="w-100 h-80 transImg" src="8.jpg">
-            </div>
-             <div class="product__item__text">
-                    <h6><a href="#">Water resistant backpack</a></h6>
-                    <div class="rating">
-                    <i class="fa fa-star" style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    </div>
-                    <div class="product__price"><span>$ 59.0</span></div>
-            </div>
-        </div>
-
-
-
-
-        <div class="col-lg-3 col-md-6 col-xs-12 mt-3 ">
-            <div class="transCard">
-                <img class="w-100 h-80 transImg" src="11.jpg">
-            </div>
-             <div class="product__item__text">
-                    <h6><a href="#">Water resistant backpack</a></h6>
-                    <div class="rating">
-                    <i class="fa fa-star" style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    </div>
-                    <div class="product__price"><span>$ 59.0</span></div>
-            </div>
-        </div>
-
-                <div class="col-lg-3 col-md-6 col-xs-12 mt-3 ">
-            <div class="transCard">
-                <img class="w-100 h-80 transImg" src="10.jpg">
-            </div>
-             <div class="product__item__text">
-                    <h6><a href="#">Water resistant backpack</a></h6>
-                    <div class="rating">
-                    <i class="fa fa-star" style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    </div>
-                    <div class="product__price"><span>$ 59.0</span></div>
-            </div>
-        </div>
-
-
-                <div class="col-lg-3 col-md-6 col-xs-12 mt-3 ">
-            <div class="transCard">
-                <img class="w-100 h-80 transImg" src="11.jpg">
-            </div>
-             <div class="product__item__text">
-                    <h6><a href="#">Water resistant backpack</a></h6>
-                    <div class="rating">
-                    <i class="fa fa-star" style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    </div>
-                    <div class="product__price"><span>$ 59.0</span></div>
-            </div>
-        </div>
-
-
-                <div class="col-lg-3 col-md-6 col-xs-12 mt-3 ">
-            <div class="transCard">
-                <img class="w-100 h-80 transImg" src="12.jpg">
-            </div>
-             <div class="product__item__text">
-                    <h6><a href="#">Water resistant backpack</a></h6>
-                    <div class="rating">
-                    <i class="fa fa-star" style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                    </div>
-                    <div class="product__price"><span>$ 59.0</span></div>
-            </div>
-        </div>
-
-        
+    <%end%>
     </div>
-</div>
-
 <!------------------------------------------------------------------------------------------------------------------>
 <div class="container">
     <h4 class="mt-3"style="width:15rem">Popular Categories</h4>
@@ -189,6 +57,7 @@
 </div>
 
 <div class="row mb-2 mx-2"style="height:30rem;overflow:hidden">
+
     <div  class="col-6 "style="padding:2px">
        <div class="flip-card">
             <div class="flip-card-inner">
@@ -200,34 +69,35 @@
                 <p>Women new collections for winter 2021 </p>
                 </div>
             </div>
-            </div>
+        </div>
     </div>
 
     <div  class="col-3 d-flex flex-column "style="padding:2px">
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                        <img class="d-block w-100" src="img/products/herbs.jpg" alt="Second slide">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                            <img class="d-block w-100" src="img/products/herbs.jpg" alt="Second slide">
+                    </div>
+                    <div class="flip-card-back">
+                        <h1>Herbs</h1>
+                        <p>All kinds of skin care herbs are available</p>
+                    </div>
                 </div>
-                <div class="flip-card-back">
-                <h1>Herbs</h1>
-                <p>All kinds of skin care herbs are available</p>
-                </div>
-            </div>
-            </div>
+            </div> 
+            
 
-<div style="height:245px"></div>
+            <div style="height:245px"></div>
 
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                     <img class="d-block w-100" src="img/products/download.jpg" alt="Second slide">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img class="d-block w-100" src="img/products/download.jpg" alt="Second slide">
+                    </div>
+                    <div class="flip-card-back">
+                    <h1>Shoes and Bags</h1>
+                    <p>Classic Shoes and bags for wommen</p>
+                    </div>
                 </div>
-                <div class="flip-card-back">
-                <h1>Shoes and Bags</h1>
-                <p>Classic Shoes and bags for wommen</p>
-                </div>
-            </div>
             </div>
 
 
@@ -235,36 +105,34 @@
 
     <div  class="col-3 d-flex flex-column"style="padding:2px">
 
-            <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                     <img class="d-block w-100" src="img/products/photo-1542291026-7eec264c27ff.jpg" alt="Second slide">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img class="d-block w-100" src="img/products/photo-1542291026-7eec264c27ff.jpg" alt="Second slide">
+                        </div>
+                        <div class="flip-card-back">
+                            <h1>Sports</h1>
+                            <p>all kinds of sportive wears for men and women are available</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="flip-card-back">
-                <h1>Sports</h1>
-                <p>all kinds of sportive wears for men and women are available</p>
-                </div>
-            </div>
-            </div>
 
-<div style="height:245px"></div>
+                <div style="height:245px"></div>
 
-            <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img class="d-block w-100" src="img/blog-01.jpg.webp" alt="Second slide">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img class="d-block w-100" src="img/blog-01.jpg.webp" alt="Second slide">
+                        </div>
+                        <div class="flip-card-back">
+                            <h1>Backbags</h1>
+                            <p>all kinds of back-bags for women and men casual and sportive</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="flip-card-back">
-                <h1>Backbags</h1>
-                <p>all kinds of back-bags for women and men casual and sportive</p>
-                </div>
-            </div>
-            </div>
+
+        </div>
+
 
     </div>
-
-
 </div>
-
-
-

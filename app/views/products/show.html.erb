@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row">
+
+        <div class="col-xs-8 mycard">
+            <img class=" w-100 h-80 transImg"src="../img/products/<%=@product.img%>">
+        </div>
+
+        <div class="col-xs-4">
+  <div class="card border rounded m-3">
+            <div class="card-header">
+              Product Details
+            </div>
+            <div class="card-body">
+              <h2 class="card-title d-inline text-danger"id="prodprice">$<%=@product.price%> </h2><span class="text-secondary"> only</span> 
+              
+              <div class=" m-2 line">
+                <div class="rating3 rating2"><!--
+                --><a href="#5" title="Give 5 stars">★</a><!--
+                --><a href="#4" title="Give 4 stars">★</a><!--
+                --><a href="#3" title="Give 3 stars">★</a><!--
+                --><a href="#2" title="Give 2 stars">★</a><!--
+                --><a href="#1" title="Give 1 star">★</a>
+              </div>
+                <div class="d-inline " style="color:teal;float:right">
+                    <i class="fas fa-pencil-alt fa-xs" ></i>
+                    <strong style="font-size: 13px"><%=@product.rate_reviews.first%></strong>
+                </div>
+             </div>
+              <div class="m-2 p-2 line text-secondary">
+                  <strong>Date Posted:</strong><span> <%=@product.created_at%></span> <br/>
+                  <strong >Quantity:</strong><span id="prodquantity"> <%=@product.quantity%></span>
+              </div>
+              
+              <a href="#" class="btn d-block m-1 shadow" style="background-color:#e7ab3c;color:white"><i class="fas fa-shopping-cart fa-xs mr-2" style="color: white;"></i>Add to Cart</a>
+              <a href="#" class="btn d-block m-1" style="background-color:rgb(99, 96, 96);color:white"><i class="fas fa-heart fa-xs mr-2" style="color: white;"></i>Add to wishinglist</a>
+            </div>
+          </div>
+
+               
+
+        </div>
+
+    </div>
+
+</div>
