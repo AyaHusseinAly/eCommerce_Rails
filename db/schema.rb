@@ -10,10 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_14_225215) do
+ActiveRecord::Schema.define(version: 2021_05_16_182450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string "namespace"
+    t.text "body"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.string "author_type"
+    t.bigint "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  end
+
+  create_table "admins", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
 
   create_table "brands", force: :cascade do |t|
     t.string "name"
@@ -80,7 +106,9 @@ ActiveRecord::Schema.define(version: 2021_05_14_225215) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "product_id"
+    t.bigint "user_id"
     t.index ["product_id"], name: "index_rate_reviews_on_product_id"
+    t.index ["user_id"], name: "index_rate_reviews_on_user_id"
   end
 
   create_table "shopping_card_items", force: :cascade do |t|
@@ -98,6 +126,8 @@ ActiveRecord::Schema.define(version: 2021_05_14_225215) do
     t.text "summary"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_stores_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -132,8 +162,10 @@ ActiveRecord::Schema.define(version: 2021_05_14_225215) do
   add_foreign_key "products", "categories"
   add_foreign_key "products", "stores"
   add_foreign_key "rate_reviews", "products"
+  add_foreign_key "rate_reviews", "users"
   add_foreign_key "shopping_card_items", "products"
   add_foreign_key "shopping_card_items", "users"
+  add_foreign_key "stores", "users"
   add_foreign_key "wishing_list_items", "products"
   add_foreign_key "wishing_list_items", "users"
 end
