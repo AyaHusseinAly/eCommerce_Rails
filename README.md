@@ -1,24 +1,10 @@
-# README
+# eCommerce Ruby on Rails Project Preview
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Database Structure (ERD)
+![](preview/WhatsApp Image 2021-05-13 at 4.06.55 AM.jpeg)
 
-Things you may want to cover:
+## Home Page
+![](preview/homePage.png)
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Product Page
+![](preview/productShow.png)
