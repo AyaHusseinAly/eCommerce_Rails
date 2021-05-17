@@ -1,0 +1,44 @@
+<% if @products.count > 0 %>
+    <div class="container">
+        <h3 class="mt-3"style="width:20rem"><%=@products.count%> results for “<%=params[:q]%>”</h3>
+        <hr>
+        <div class="row">
+
+            <% @products.each do |product| %>
+                <div class="col-lg-3 col-md-6 col-xs-12 mt-3">
+                        <div class="transCard">
+                                <img class=" w-100 h-80 transImg"src="img/products/<%=product.img%>">
+                        </div> 
+
+                        <div class="product__item__text">
+                            <h6><%= link_to product.title, product_path(product)%></h6>                 
+                            <div class="rating">
+                                <i class="fa fa-star" style="color:#e7ab3c"></i>
+                                <i class="fa fa-star"style="color:#e7ab3c"></i>
+                                <i class="fa fa-star"style="color:#e7ab3c"></i>
+                                <i class="fa fa-star"style="color:#e7ab3c"></i>
+                                <i class="fa fa-star"style="color:#e7ab3c"></i>
+                            </div>
+                            <div class="product__price"><span>$<%=product.price%></span></div>
+                        </div>
+                </div>
+            <%end%>
+        </div>
+    </div>
+    <br><br>
+
+<% else %>
+<br><br>
+<span class="border border-light mh-700 d-inline-block">
+<div style="padding-left: 100px;padding-right: 250px;">
+    <h3 class="mt-3"style="width:220rem">Sorry, we couldn't find any results for your search</h3>
+    <h4>Try adjusting your search. Here are some ideas:</h4>
+    <ul>
+        <li>Make sure all words are spelled correctly</li>
+        <li>Try different search terms</li>
+        <li>Try more general search terms</li>
+    </ul>
+</div>
+</span>
+<br><br>
+<% end %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  get 'search', to:'home#searchInProduct'
   get 'api/products', to: "api#index"
   get 'api/products/:id', to: "api#show"
   get '/products/:id/:rating' => 'products#rate', as: :rate_product
