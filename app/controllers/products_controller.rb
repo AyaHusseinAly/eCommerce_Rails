@@ -8,10 +8,16 @@ class ProductsController < ApplicationController
       def show
         @product = Product.find(params[:id])
         number = @product.rate_reviews.count
-        rating=0
-        @product.rate_reviews.each { |n| rating+=n.rating.to_i }
-        @avg=(rating/number)
-        @avg_rate=@avg.round
+        if number!=0
+          rating=0
+          @product.rate_reviews.each { |n| rating+=n.rating.to_i }
+          @avg=(rating/number)
+          @avg_rate=@avg.round
+          
+        else
+          @avg_rate=0          
+        end  
+   
       end
 
       def rate
