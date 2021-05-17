@@ -7,15 +7,9 @@ class HomeController < ApplicationController
     end
 
     def searchInProduct
-        #if params[:q] == ""
             @products = Product.where("title LIKE ?","%"+ params[:q] +"%").or(
                 Product.where("description LIKE ?","%"+ params[:q] +"%")
             )
-            @categories=Category.all
-        #else
-           # return RedirectToAction("index", "home");
-          #  return RedirectToAction("index", "home")
-        #end
-        
+            @categories=Category.all  
     end
 end 
