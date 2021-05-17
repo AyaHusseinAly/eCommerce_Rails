@@ -56,11 +56,13 @@
                 <%end%>
                 </div>
             </div>
-            
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn my-2 my-sm-0" type="submit"style="border:1px solid #e7ab3c"><i class="fa fa-search"style="color: #e7ab3c"></i></button>
+
+            <form class="form-inline my-2 my-lg-0" action="/search" method="get" accept-charset="UTF-8" >
+                <input class="form-control mr-sm-2" id="q" name="q" placeholder="Search" aria-label="Search" type="text"  required/>
+                <button class="btn my-2 my-sm-0" type="submit" style="border:1px solid #e7ab3c"><i class="fa fa-search"style="color: #e7ab3c"></i></button>
             </form>
+           
+
     </div>
     <div class="col-lg-1 d-flex align-items-center justify-content-around">
         <div class="heart-icon">
