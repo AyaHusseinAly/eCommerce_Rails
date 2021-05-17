@@ -27,7 +27,8 @@ Category.create!([{
 ])
 Store.create!([{
     name: "Sample Store",
-    summary: "This is a sample summary for a store"
+    summary: "This is a sample summary for a store",
+    user: User.first
 }])
 Product.create!([{
     title:'Hoodie',
