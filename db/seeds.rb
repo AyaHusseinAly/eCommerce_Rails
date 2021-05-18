@@ -5,12 +5,20 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.delete_all
-Brand.delete_all
-Category.delete_all
-Store.delete_all
-Product.delete_all
-AdminUser.delete_all
+
+#delete all previous records and reset pk
+Product.destroy_all
+Store.destroy_all
+User.destroy_all
+Brand.destroy_all
+Category.destroy_all
+AdminUser.destroy_all
+ActiveRecord::Base.connection.reset_pk_sequence!(Product.table_name)
+ActiveRecord::Base.connection.reset_pk_sequence!(Store.table_name)
+ActiveRecord::Base.connection.reset_pk_sequence!(Brand.table_name)
+ActiveRecord::Base.connection.reset_pk_sequence!(Category.table_name)
+ActiveRecord::Base.connection.reset_pk_sequence!(User.table_name)
+ActiveRecord::Base.connection.reset_pk_sequence!(AdminUser.table_name)
 
 
 
