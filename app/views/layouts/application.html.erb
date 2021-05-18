@@ -112,7 +112,12 @@
             <a class="nav-link text-white text-center" href="#">COLLECTION</a>
         </div>
         <div class="nav-item ">
-            <a class="nav-link text-white text-center" href="#">CONTACT</a>
+        <%if current_user.orders == []%>
+            <a class="nav-link text-white text-center" href="/orders/">MY ORDERS</a>
+        <%else%>
+            <a class="nav-link text-white text-center" href="/orders/<%=current_user.orders.last.id%>">MY ORDERS</a>
+
+        <%end%>    
         </div>        
 
       </div>

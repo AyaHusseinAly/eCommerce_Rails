@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   get 'search', to:'home#searchInProduct'
   get 'api/products', to: "api#index"
   get 'api/products/:id', to: "api#show"
-  get '/products/:id/:rating' => 'products#rate', as: :rate_product
+  get '/orders/:id', to:"orders#index"
+  get '/orders',to: "orders#index"
+  #get '/products/:id/:rating' => 'products#rate', as: :rate_product
 
   resources :categories
   resources :products do
