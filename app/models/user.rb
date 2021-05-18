@@ -8,5 +8,8 @@ class User < ApplicationRecord
     has_many :wishing_list_items
     has_many :rate_reviews
     has_many :shopping_card_items
-    has_many :stores    
+    has_many :stores 
+
+  scope :seller, ->{where(role:"seller")}
+  scope :buyer, ->{where(role:"buyer")}      
 end
