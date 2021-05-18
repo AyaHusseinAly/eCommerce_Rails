@@ -5,10 +5,10 @@
     <% @products.each do |product| %>
         <div class="col-lg-3 col-md-6 col-xs-12 mt-3">
           <div class="transCard">
-                <img class=" w-100 h-80 transImg" src="..\<%=product.img %>">
+                <img class=" w-100 h-80 transImg" src="..\img\<%=product.img %>">
           </div>      
                 <div class="product__item__text">
-                    <h6><a href="#"><%=product.title%></a></h6>
+                    <h6><a href="<%=product_path(product)%>"><%=product.title%></a></h6>
                     <div class="rating">
                     <i class="fa fa-star" style="color:#e7ab3c"></i>
                     <i class="fa fa-star"style="color:#e7ab3c"></i>

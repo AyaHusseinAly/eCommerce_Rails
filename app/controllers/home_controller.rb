@@ -1,15 +1,16 @@
 class HomeController < ApplicationController
-    before_action :authenticate_user!
     before_action do
         @categories=Category.all 
         @products=Product.all
         @brands=Brand.all
-    
+        
     end
+    
+    before_action :authenticate_user!
 
     def index
         @products=Product.all.order("created_at desc").limit(12)
-        @categories=Category.all 
+
     end
 
 
@@ -192,5 +193,6 @@ class HomeController < ApplicationController
         @categories=Category.all 
         @brands=Brand.all   
          
+
     end
 end 

@@ -22,14 +22,14 @@
                             </div>
                         </div>
                         <div class="carousel-item ">
-                            <img src="../img/products/<%=@product.img%>" id="prodimg2" class="d-block w-100 imgContainer" alt="...">
+                            <img src="../img/products/<%=@product.img1%>" id="prodimg2" class="d-block w-100 imgContainer" alt="...">
                             <div class="carousel-caption d-none d-md-block align-middle">
                                 <h6 class="text-center m-2">2/3</h6>
 
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <img src="../img/products/<%=@product.img%>" id="prodimg3" class="d-block w-100 imgContainer" alt="...">
+                            <img src="../img/products/<%=@product.img2%>" id="prodimg3" class="d-block w-100 imgContainer" alt="...">
                             <div class="carousel-caption d-none d-md-block align-middle">
                                 <h6 class="text-center m-2">3/3</h6>
 
@@ -98,13 +98,21 @@
                     <div class="active-star"></div>
                     <div class="clip-star"></div>
                   </div>
-                <%else @avg_rate==5%>
+                <%elsif @avg_rate==5%>
                      <div class="star_container ">
                     <div class="active-star"></div>
                     <div class="active-star"></div>
                     <div class="active-star"></div>
                     <div class="active-star"></div>
                     <div class="active-star"></div>
+                  </div>
+                 <%else%>
+                  <div class="star_container">
+                    <div class="clip-star"></div>
+                    <div class="clip-star"></div>
+                    <div class="clip-star"></div>
+                    <div class="clip-star"></div>
+                    <div class="clip-star"></div>
                   </div>
                 <%end%>
 
@@ -195,6 +203,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <% if @can_review%>
                         <%= form_with(model: [ @product, @product.rate_reviews.build ], local: true) do |form| %>
                         <p>
                             <%= form.collection_radio_buttons :rating, [[1], [2], [3], [4], [5]], :first, :last, item_wrapper_tag: false, boolean_style: :inline do |b| %>
@@ -212,6 +221,21 @@
 
                         </p>
                         <% end %>
+                        <%else%>
+                        <div class="d-flex">
+                            <i class="fas fa-info-circle fa-5x mt-3"style="color:#e7ab3c"></i>
+                            <h4 style="color:#696969; margin-left:1rem">Sorry you can't review this product, you don't have a verified 
+                            purchase for this product from our store</h4>
+                        </div>
+                        <p>
+                        <div class="modal-footer">
+
+                            <button type="button"  class="close">OK</button>
+                        </div>
+
+                        </p>
+
+                        <%end%>
                     </div>
 
                 </div>
@@ -230,6 +254,7 @@
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
+    var span1= document.getElementsByClassName("close")[1];
 
     // When the user clicks the button, open the modal 
     btn.onclick = function() {
@@ -240,7 +265,9 @@
     span.onclick = function() {
         modal.style.display = "none";
     }
-
+    span1.onclick = function() {
+        modal.style.display = "none";
+    }
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == modal) {
