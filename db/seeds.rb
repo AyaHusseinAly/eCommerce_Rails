@@ -5,6 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.delete_all
+Brand.delete_all
+Category.delete_all
+Store.delete_all
+Product.delete_all
+AdminUser.delete_all
+
+
+
+
 
 Brand.create([{
     name: "Sample Brand"
@@ -25,19 +35,27 @@ Category.create!([{
     name: "Women's Clothes"
 }
 ])
+User.create!(
+    name:"User",
+    email:"user@example.com",
+    password:"password",
+    password_confirmation: 'password'
+)
 Store.create!([{
     name: "Sample Store",
-    summary: "This is a sample summary for a store"
-}])
+    summary: "This is a sample summary for a store",
+    user: User.find_by(name:"User")
+}
+])
 Product.create!([{
     title:'Hoodie',
     description: 'This is a hoodie.',
     img: '1.jpg',
     price: 500,
     quantity: 5,
-    brand: Brand.find(1),
-    category: Category.find(3),
-    store: Store.find(1)
+    brand: Brand.find_by(name:"Sample Brand"),
+    category: Category.find_by(name:"Sports"),
+    store: Store.find_by(name:'Sample Store')
 
 },
 {
@@ -46,9 +64,9 @@ Product.create!([{
     img: '2.jpg',
     price: 100,
     quantity: 3,
-    brand: Brand.find(1),
-    category: Category.find(1),
-    store: Store.find(1)
+    brand: Brand.find_by(name:"Sample Brand"),
+    category: Category.find_by(name:"Herbs"),
+    store: Store.find_by(name:'Sample Store')
 },
 {
     title:'Cactus 2',
@@ -56,9 +74,9 @@ Product.create!([{
     img: '5.jpg',
     price: 200,
     quantity: 10,
-    brand: Brand.find(1),
-    category: Category.find(1),
-    store: Store.find(1)
+    brand: Brand.find_by(name:"Sample Brand"),
+    category: Category.find_by(name:"Herbs"),
+    store: Store.find_by(name:'Sample Store')
 },
 {
     title:'Clock',
@@ -66,9 +84,9 @@ Product.create!([{
     img: '6.jpg',
     price: 1000,
     quantity: 5,
-    brand: Brand.find(1),
-    category: Category.find(2),
-    store: Store.find(1)
+    brand: Brand.find_by(name:"Sample Brand"),
+    category: Category.find_by(name:'Electronics'),
+    store: Store.find_by(name:'Sample Store')
 },
 {
     title:'Camera',
@@ -76,9 +94,9 @@ Product.create!([{
     img: '7.jpg',
     price: 1200,
     quantity: 22,
-    brand: Brand.find(1),
-    category: Category.find(2),
-    store: Store.find(1)
+    brand: Brand.find_by(name:"Sample Brand"),
+    category: Category.find_by(name:'Electronics'),
+    store: Store.find_by(name:'Sample Store')
 },
 {
     title:'Robot',
@@ -86,9 +104,9 @@ Product.create!([{
     img: '8.jpg',
     price: 1,
     quantity: 10000,
-    brand: Brand.find(1),
-    category: Category.find(2),
-    store: Store.find(1)
+    brand: Brand.find_by(name:"Sample Brand"),
+    category: Category.find_by(name:'Electronics'),
+    store: Store.find_by(name:'Sample Store')
 },
 {
     title:'Methylene',
@@ -96,9 +114,9 @@ Product.create!([{
     img: '9.jpg',
     price: 1000,
     quantity: 5,
-    brand: Brand.find(1),
-    category: Category.find(1),
-    store: Store.find(1)
+    brand: Brand.find_by(name:"Sample Brand"),
+    category: Category.find_by(name:"Herbs"),
+    store: Store.find_by(name:'Sample Store')
 },
 {
     title:'Cubes!',
@@ -106,9 +124,9 @@ Product.create!([{
     img: '10.jpg',
     price: 50,
     quantity: 3,
-    brand: Brand.find(1),
-    category: Category.find(4),
-    store: Store.find(1)
+    brand: Brand.find_by(name:"Sample Brand"),
+    category: Category.find_by(name:"Backpacks"),
+    store: Store.find_by(name:'Sample Store')
 },
 {
     title:'Pencil',
@@ -116,9 +134,9 @@ Product.create!([{
     img: '11.jpg',
     price: 5,
     quantity: 100,
-    brand: Brand.find(1),
-    category: Category.find(5),
-    store: Store.find(1)
+    brand: Brand.find_by(name:"Sample Brand"),
+    category: Category.find_by(name:"Women's Clothes"),
+    store: Store.find_by(name:'Sample Store')
 },
 {
     title:'Building',
@@ -126,9 +144,9 @@ Product.create!([{
     img: '12.jpg',
     price: 10000,
     quantity: 1,
-    brand: Brand.find(1),
-    category: Category.find(5),
-    store: Store.find(1)
+    brand: Brand.find_by(name:"Sample Brand"),
+    category: Category.find_by(name:"Women's Clothes"),
+    store: Store.find_by(name:'Sample Store')
 }])
 p "Created #{Category.count} categories and #{Product.count} products"
 
@@ -142,3 +160,4 @@ p "Created #{Category.count} categories and #{Product.count} products"
 #     end
    
 # end
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
