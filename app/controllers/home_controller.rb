@@ -19,64 +19,70 @@ class HomeController < ApplicationController
             ## first probably ##
             if params[:cat] == "All"
                 if params[:brand] == "All" 
-                    if params[:price] == "All" and params[:seller] != "All"
-                        @products1 = Product.where(store_id: params[:seller])
-                    elsif params[:price] != "All" and params[:seller] == "All"
-                        @products1 = Product.where(price: params[:price])
-                    elsif params[:price] != "All" and params[:seller] != "All"
-                        @products1 = Product.where(store_id: params[:seller], price: params[:price])
+                    if params[:price] == "All"
+                        if  params[:seller] != "All"
+                            @products1 = Product.where(store_id: params[:seller])
+                        end
+                    elsif params[:price] != "All"
+                        if params[:seller] == "All"
+                            @products1 = Product.where(price: params[:price])
+                        elsif params[:seller] != "All"
+                            @products1 = Product.where(store_id: params[:seller], price: params[:price])
+                        end
                     end
+
             ## second probably ##
-                elsif  params[:brand] != "All" 
-                    if params[:price] == "All" and params[:seller] == "All"
-                        @products1 = Product.where(brand_id: params[:brand])
-                    elsif params[:price] == "All" and params[:seller] != "All"
-                        @products1 = Product.where(store_id: params[:seller] ,brand_id: params[:brand] )
-                    elsif params[:price] != "All" and params[:seller] == "All"
-                        @products1 = Product.where(brand_id: params[:brand], price: params[:price])
-                    elsif params[:price] != "All" and params[:seller] != "All"
-                        @products1 = Product.where(brand_id: params[:brand], price: params[:price],store_id: params[:seller])
+                elsif  params[:brand] != "All"
+                    if  params[:price] == "All"
+                        if params[:seller] == "All"
+                            @products1 = Product.where(brand_id: params[:brand])
+                        elsif params[:seller] != "All"
+                            @products1 = Product.where(store_id: params[:seller] ,brand_id: params[:brand] )
+                        end
+                    elsif params[:price] != "All"   
+                        if params[:seller] == "All"
+                            @products1 = Product.where(brand_id: params[:brand], price: params[:price])
+                        elsif params[:seller] != "All"
+                            @products1 = Product.where(brand_id: params[:brand], price: params[:price],store_id: params[:seller])
+                        end
                     end
                 end #end of brand exist or not and category not exist
             
             ############!!!!!!!!!!!!!!!!!!!!################
             elsif params[:cat] != "All"
                 if  params[:brand] == "All" 
-                    if params[:price] == "All" and params[:seller] == "All"
-                        @products1 = Product.where(category: params[:cat])
-                    elsif params[:price] == "All" and params[:seller] != "All"
-                        @products1 = Product.where(store_id: params[:seller] ,category: params[:cat] )
-                    elsif params[:price] != "All" and params[:seller] == "All"
-                        @products1 = Product.where(category: params[:cat], price: params[:price])
-                    elsif params[:price] != "All" and params[:seller] != "All"
-                        @products1 = Product.where(category: params[:cat], price: params[:price],store_id: params[:seller])
+                    if  params[:price] == "All"
+                        if params[:seller] == "All"
+                            @products1 = Product.where(category: params[:cat])
+                        elsif params[:seller] != "All"
+                            @products1 = Product.where(store_id: params[:seller] ,category: params[:cat] )
+                        end
+                    elsif params[:price] != "All" 
+                        if params[:seller] == "All"
+                            @products1 = Product.where(category: params[:cat], price: params[:price])
+                        elsif  params[:seller] != "All"
+                            @products1 = Product.where(category: params[:cat], price: params[:price],store_id: params[:seller])
+                        end
                     end
 
-                elsif  params[:brand] != "All" 
-                    if params[:price] == "All" and params[:seller] == "All"
-                        @products1 = Product.where(category: params[:cat], brand_id: params[:brand])
-                    elsif params[:price] == "All" and params[:seller] != "All"
-                        @products1 = Product.where(store_id: params[:seller] ,category: params[:cat],brand_id: params[:brand] )
-                    elsif params[:price] != "All" and params[:seller] == "All"
-                        @products1 = Product.where(category: params[:cat], price: params[:price],brand_id: params[:brand])
-                    elsif params[:price] != "All" and params[:seller] != "All"
-                        @products1 = Product.where(category: params[:cat], price: params[:price],store_id: params[:seller],brand_id: params[:brand])
-                    end 
+                elsif  params[:brand] != "All"
+                    if params[:price] == "All"
+                        if params[:seller] == "All"
+                            @products1 = Product.where(category: params[:cat], brand_id: params[:brand])
+                        elsif params[:seller] != "All"
+                            @products1 = Product.where(store_id: params[:seller] ,category: params[:cat],brand_id: params[:brand] )
+                        end
+                    elsif params[:price] != "All"  
+                        if  params[:seller] == "All"
+                            @products1 = Product.where(category: params[:cat], price: params[:price],brand_id: params[:brand])
+                        elsif  params[:seller] != "All"
+                            @products1 = Product.where(category: params[:cat], price: params[:price],store_id: params[:seller],brand_id: params[:brand])
+                        end 
+                    end
 
                 end #end of brand exist or not and category is exit 
             end #end of if category not exit 
         end #end of if name not exit 
-#################################################################
-        # elsif params[:cat] != "All" and params[:price] != "All" and params[:price] != "All"and params[:q] ==""
-        #     @products = Product.where(category: params[:cat], price: params[:price])
-
-        # elsif  params[:price] != "All" and params[:q] ==""
-        #     @products = Product.where(price: params[:price])
-
-        # elsif  params[:cat] != "All" and params[:q] ==""
-        #     @products = Product.where(category: params[:cat])
-           
-            # end
 ##################################################################
         @products=Product.all
         @categories=Category.all 
