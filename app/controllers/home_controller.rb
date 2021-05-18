@@ -15,45 +15,45 @@ class HomeController < ApplicationController
             end
 
         else
-            if params[:cat] == "All" and params[:brand] == "All" and params[:q] == ""
+            if params[:cat] == "All" and params[:brand] == "All" 
                 if params[:price] == "All" and params[:seller] != "All"
                     @products1 = Product.where(store_id: params[:seller])
                 elsif params[:price] != "All" and params[:seller] == "All"
                     @products1 = Product.where(price: params[:price])
-                else
+                elsif params[:price] != "All" and params[:seller] != "All"
                     @products1 = Product.where(store_id: params[:seller], price: params[:price])
                 end
 
-            elsif params[:cat] == "All" and params[:brand] != "All" and params[:q] == ""
+            elsif params[:cat] == "All" and params[:brand] != "All" 
                 if params[:price] == "All" and params[:seller] == "All"
                     @products1 = Product.where(brand_id: params[:brand])
                 elsif params[:price] == "All" and params[:seller] != "All"
                     @products1 = Product.where(store_id: params[:seller] ,brand_id: params[:brand] )
                 elsif params[:price] != "All" and params[:seller] == "All"
                     @products1 = Product.where(brand_id: params[:brand], price: params[:price])
-                else
+                elsif params[:price] != "All" and params[:seller] != "All"
                     @products1 = Product.where(brand_id: params[:brand], price: params[:price],store_id: params[:seller])
                 end
         
-            elsif params[:cat] != "All" and params[:brand] == "All" and params[:q] == ""
+            elsif params[:cat] != "All" and params[:brand] == "All" 
                 if params[:price] == "All" and params[:seller] == "All"
                     @products1 = Product.where(category: params[:cat])
                 elsif params[:price] == "All" and params[:seller] != "All"
                     @products1 = Product.where(store_id: params[:seller] ,category: params[:cat] )
                 elsif params[:price] != "All" and params[:seller] == "All"
                     @products1 = Product.where(category: params[:cat], price: params[:price])
-                else
+                elsif params[:price] != "All" and params[:seller] != "All"
                     @products1 = Product.where(category: params[:cat], price: params[:price],store_id: params[:seller])
                 end
 
-            elsif params[:cat] == "All" and params[:brand] == "All" and params[:q] == ""
+            elsif params[:cat] != "All" and params[:brand] != "All" 
                 if params[:price] == "All" and params[:seller] == "All"
                     @products1 = Product.where(category: params[:cat], brand_id: params[:brand])
                 elsif params[:price] == "All" and params[:seller] != "All"
                     @products1 = Product.where(store_id: params[:seller] ,category: params[:cat],brand_id: params[:brand] )
                 elsif params[:price] != "All" and params[:seller] == "All"
                     @products1 = Product.where(category: params[:cat], price: params[:price],brand_id: params[:brand])
-                else
+                elsif params[:price] != "All" and params[:seller] != "All"
                     @products1 = Product.where(category: params[:cat], price: params[:price],store_id: params[:seller],brand_id: params[:brand])
                 end
             end
@@ -70,7 +70,6 @@ class HomeController < ApplicationController
            
             # end
 ##################################################################
-        #end
         @products=Product.all
         @categories=Category.all 
         @brands=Brand.all
