@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   get '/orders/:id', to:"orders#index"
   get '/orders',to: "orders#index"
   #get '/products/:id/:rating' => 'products#rate', as: :rate_product
-
+  resources :users, only: [:show], param: :username, path: ""
+  
   resources :categories
   resources :products do
     resources :rate_reviews

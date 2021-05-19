@@ -43,16 +43,19 @@
     </div>
 </div>
 
-<div class="row mb-4"style="height:150px">
-    <div class="col-lg-4"></div>
+
+<div class="row mb-4" style="height:150px ;margin-right:50px;">
+    <div class="col-lg-3 mr-5"></div>
+
 
     <div class="col-lg-6 advanced-search mt-5 ">
         <form class="form-inline my-2 my-lg-0 d-flex" action="/search" method="get" accept-charset="UTF-8" >
+
             <div class="d-flex align-items-center ">
             <input class="form-control mr-sm-2" id="q" style="width:500px;" name="q" placeholder="Search" aria-label="Search" type="text"/>
             <button class="btn my-2 my-sm-0" type="submit" style="border:1px solid #e7ab3c"><i class="fa fa-search"style="color: #e7ab3c"></i></button>
             </div>
-        <div class="d-flex align-items-center mt-2 ml-5">    
+        <div class="d-flex align-items-center mt-2">    
             <div>
                 <select class="custom-select" style="width:140px;" name="cat" id="cat">
                 <option value="All">All categories</option>
@@ -61,23 +64,24 @@
                 <%end%>
                 </select>
             </div>
-            <div>
-                <select class="custom-select" style="width:90px;" name="brand" id="brand">
+            <div style="margin-left:10px;">
+                <select class="custom-select" style="width:140px;" name="brand" id="brand">
                 <option value="All">brands</option>
                 <%@brands.each do |brand|%>
                     <option value=<%=brand.id%>><%=brand.name%></option>
                 <%end%>
                 </select> 
             </div>
-            <div>
-                <select class="custom-select" style="width:90px;" name="price" id="price">
+            <div style="margin-left:10px;">
+                <select class="custom-select" style="width:150px;" name="price" id="price">
                 <option value="All">Price</option>
-                <%@products.each do |product|%>
-                    <option value=<%=product.price%>><%=product.price%></option>
-                <%end%>
+                    <option value="0..499">less than 500</option>
+                    <option value="500..1000">500 to 1000</option>
+                    <option value="1000..5000">1000 to 5000</option>
+                    <option value="5000">more than 5000</option>
                 </select>
             </div>
-            <div>
+            <div style="margin-left:10px;">
                 <select class="custom-select" style="width:90px;" name="seller" id="seller">
                 <option value="All">sellers</option>
                 <%@categories.each do |category|%>
@@ -93,7 +97,7 @@
            
 
     </div>
-    
+    <div class="col-1"></div>
     <div class="col-lg-1 d-flex align-items-center justify-content-around">
         <div class="heart-icon">
             <a href="#">
@@ -153,8 +157,13 @@
     <div class="pos-f-t">
     <div class="collapse" id="navbarToggleExternalContent">
         <div class="bg-dark p-4">
-        <h4 class="text-white">Collapsed content</h4>
-        <span class="text-muted">Toggleable via the navbar brand.</span>
+          <% if user_signed_in? %>
+            <img  src='<%= url_for(current_user.avatar)%>' class="ml-5  ml-2rounded-circle "style="width:5rem;height:5rem"/> 
+            <strong style="color:#FFF">  <%= current_user.name %></strong>
+
+            <a href="<%=user_path(current_user)%>">Visit Profile</a>
+
+         <%end%>    
         </div>
     </div>
 

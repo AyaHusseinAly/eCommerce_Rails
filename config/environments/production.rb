@@ -95,5 +95,8 @@ Rails.application.configure do
   config.action_controller.perform_caching = true
   config.action_controller.page_cache_directory = Rails.root.join("public", "cached_pages")
 
+  config.active_storage.service = :amazon
+
+
 
 end

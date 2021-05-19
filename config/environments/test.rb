@@ -45,6 +45,8 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   config.action_controller.perform_caching = true
   config.action_controller.page_cache_directory = Rails.root.join("public", "cached_pages")
+  config.active_storage.service = :local
+
 
 
 end

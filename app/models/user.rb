@@ -9,4 +9,9 @@ class User < ApplicationRecord
     has_many :rate_reviews
     has_many :shopping_card_items
     has_many :stores    
+    has_one_attached :avatar
+
+#    attr_accessible :avatar
+
+
 end

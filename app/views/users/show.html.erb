@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="">
+         <% if user_signed_in? %>
+            <img  src='<%= url_for(current_user.avatar)%>' class="ml-5  ml-2 rounded-circle "style="width:5rem;height:5rem"/> 
+            <strong style="color:#000">  <%= current_user.name %></strong>
+
+
+         <%end%>    
+    </div>
+   
+  </div>
