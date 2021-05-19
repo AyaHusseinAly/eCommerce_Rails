@@ -32,13 +32,37 @@ class HomeController < ApplicationController
                             end
                         elsif params[:price] != "All"
                             if params[:seller] == "All"
-                                @products1 = Product.where("title LIKE ?","%"+ params[:q] +"%").or(
-                                    Product.where("description LIKE ?","%"+ params[:q] +"%")
-                                    ).where(price: params[:price])
+                                if params[:price] == "0..499"
+                                    @products1 = Product.where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")).where(price: 0..499 ) 
+                                 elsif params[:price] == "500..1000"
+                                    @products1 = Product.where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")).where(price: 500..1000 )
+                                 elsif params[:price] == "1000..5000"
+                                    @products1 = Product.where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")).where(price: 1000..5000 )
+                                 elsif params[:price] == "5000"
+                                    @products1 = Product.where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")).where("price > ?", params[:price])
+                                 end
                             elsif params[:seller] != "All"
-                                @products1 = Product.where("title LIKE ?","%"+ params[:q] +"%").or(
-                                    Product.where("description LIKE ?","%"+ params[:q] +"%")
-                                    ).where(store_id: params[:seller], price: params[:price])
+                                if params[:price] == "0..499"
+                                    @products1 = Product.where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(store_id: params[:seller]).where(price: 0..499 )  
+                                 elsif params[:price] == "500..1000"
+                                    @products1 = Product.where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(store_id: params[:seller]).where(price: 500..1000 ) 
+                                 elsif params[:price] == "1000..5000"
+                                    @products1 = Product.where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(store_id: params[:seller]).where(price: 1000..5000 )
+                                 elsif params[:price] == "5000"
+                                    @products1 = Product.where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(store_id: params[:seller]).where("price > ?", params[:price])
+                                 end
                             end
                         end
 
@@ -56,13 +80,41 @@ class HomeController < ApplicationController
                             end
                         elsif params[:price] != "All"   
                             if params[:seller] == "All"
-                                @products1 = Product.where("title LIKE ?","%"+ params[:q] +"%").or(
-                                    Product.where("description LIKE ?","%"+ params[:q] +"%")
-                                    ).where(brand_id: params[:brand], price: params[:price])
+                                if params[:price] == "0..499"
+                                    @products1 = Product.where(price: 0..499 ).where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(brand_id: params[:brand]) 
+                                 elsif params[:price] == "500..1000"
+                                    @products1 = Product.where(price: 500..1000 ).where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(brand_id: params[:brand]) 
+                                 elsif params[:price] == "1000..5000"
+                                    @products1 = Product.where(price: 1000..5000 ).where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(brand_id: params[:brand]) 
+                                 elsif params[:price] == "5000"
+                                    @products1 = Product.where("price > ?", params[:price]).where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(brand_id: params[:brand]) 
+                                 end
                             elsif params[:seller] != "All"
-                                @products1 = Product.where("title LIKE ?","%"+ params[:q] +"%").or(
-                                    Product.where("description LIKE ?","%"+ params[:q] +"%")
-                                    ).where(brand_id: params[:brand], price: params[:price],store_id: params[:seller])
+                                if params[:price] == "0..499"
+                                    @products1 = Product.where(price: 0..499 ).where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(brand_id: params[:brand], store_id: params[:seller]) 
+                                 elsif params[:price] == "500..1000"
+                                    @products1 = Product.where(price: 500..1000 ).where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(brand_id: params[:brand], store_id: params[:seller])
+                                 elsif params[:price] == "1000..5000"
+                                    @products1 = Product.where(price: 1000..5000 ).where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(brand_id: params[:brand], store_id: params[:seller])
+                                 elsif params[:price] == "5000"
+                                    @products1 = Product.where("price > ?", params[:price]).where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(brand_id: params[:brand], store_id: params[:seller])
+                                 end
                             end
                         end
                     end #end of brand if exist or not 
@@ -82,16 +134,44 @@ class HomeController < ApplicationController
                             end
                         elsif params[:price] != "All" 
                             if params[:seller] == "All"
-                                @products1 = Product.where("title LIKE ?","%"+ params[:q] +"%").or(
-                                    Product.where("description LIKE ?","%"+ params[:q] +"%")
-                                    ).where(category: params[:cat], price: params[:price])
+                                if params[:price] == "0..499"
+                                    @products1 = Product.where(price: 0..499 ).where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(category: params[:cat]) 
+                                 elsif params[:price] == "500..1000"
+                                    @products1 = Product.where(price: 500..1000 ).where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(category: params[:cat])
+                                 elsif params[:price] == "1000..5000"
+                                    @products1 = Product.where(price: 1000..5000 ).where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(category: params[:cat])
+                                 elsif params[:price] == "5000"
+                                    @products1 = Product.where("price > ?", params[:price]).where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(category: params[:cat])
+                                 end
                             elsif  params[:seller] != "All"
-                                @products1 = Product.where("title LIKE ?","%"+ params[:q] +"%").or(
-                                    Product.where("description LIKE ?","%"+ params[:q] +"%")
-                                    ).where(category: params[:cat], price: params[:price],store_id: params[:seller])
+                                if params[:price] == "0..499"
+                                    @products1 = Product.where(price: 0..499 ).where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(category: params[:cat],store_id: params[:seller]) 
+                                 elsif params[:price] == "500..1000"
+                                    @products1 = Product.where(price: 500..1000 ).where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(category: params[:cat],store_id: params[:seller])
+                                 elsif params[:price] == "1000..5000"
+                                    @products1 = Product.where(price: 1000..5000 ).where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(category: params[:cat],store_id: params[:seller])
+                                 elsif params[:price] == "5000"
+                                    @products1 = Product.where("price > ?", params[:price]).where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(category: params[:cat],store_id: params[:seller])
+                                 end
                             end
                         end
-                    
+                    ## fourth probaply ####
                     elsif  params[:brand] != "All"
                         if params[:price] == "All"
                             if params[:seller] == "All"
@@ -105,13 +185,41 @@ class HomeController < ApplicationController
                             end
                         elsif params[:price] != "All"  
                             if  params[:seller] == "All"
-                                @products1 = Product.where("title LIKE ?","%"+ params[:q] +"%").or(
-                                    Product.where("description LIKE ?","%"+ params[:q] +"%")
-                                    ).where(category: params[:cat], price: params[:price],brand_id: params[:brand])
+                                if params[:price] == "0..499"
+                                    @products1 = Product.where(price: 0..499 ).where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(category: params[:cat],brand_id: params[:brand])
+                                 elsif params[:price] == "500..1000"
+                                    @products1 = Product.where(price: 500..1000 ).where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(category: params[:cat],brand_id: params[:brand])
+                                 elsif params[:price] == "1000..5000"
+                                    @products1 = Product.where(price: 1000..5000 ).where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(category: params[:cat],brand_id: params[:brand])
+                                 elsif params[:price] == "5000"
+                                    @products1 = Product.where("price > ?", params[:price]).where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(category: params[:cat],brand_id: params[:brand])
+                                 end
                             elsif  params[:seller] != "All"
-                                @products1 = Product.where("title LIKE ?","%"+ params[:q] +"%").or(
-                                    Product.where("description LIKE ?","%"+ params[:q] +"%")
-                                    ).where(category: params[:cat], price: params[:price],store_id: params[:seller],brand_id: params[:brand])
+                                if params[:price] == "0..499"
+                                    @products1 = Product.where(price: 0..499 ).where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(category: params[:cat],store_id: params[:seller],brand_id: params[:brand])
+                                 elsif params[:price] == "500..1000"
+                                    @products1 = Product.where(price: 500..1000 ).where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(category: params[:cat],store_id: params[:seller],brand_id: params[:brand])
+                                 elsif params[:price] == "1000..5000"
+                                    @products1 = Product.where(price: 1000..5000 ).where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(category: params[:cat],store_id: params[:seller],brand_id: params[:brand])
+                                 elsif params[:price] == "5000"
+                                    @products1 = Product.where("price > ?", params[:price]).where("title LIKE ?","%"+ params[:q] +"%").or(
+                                        Product.where("description LIKE ?","%"+ params[:q] +"%")
+                                        ).where(category: params[:cat],store_id: params[:seller],brand_id: params[:brand])
+                                 end
                             end 
                         end
                     end
