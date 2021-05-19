@@ -15,6 +15,8 @@ gem 'cancancan'
 gem 'will_paginate', '~> 3.3.0'
 #use serializer for API
 gem "active_model_serializers", "~> 0.8.0"
+#page caching
+gem "actionpack-page_caching"
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
