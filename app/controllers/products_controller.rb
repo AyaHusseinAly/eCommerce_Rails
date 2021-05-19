@@ -6,8 +6,14 @@ class ProductsController < ApplicationController
       end
 
       def show
-        ##user can review only purchased products
+        ##user can review only purchased products and only once
         @can_review= false
+        @no_prev_review
+
+        if current_user.rate_reviews.where(product_id:params[:id]) == [] #he didn't reviewed it before
+          @no_prev_review=true
+        end  
+
         current_user.orders.where(status:"delivered").each { |o|  
           if o.order_details.where(product_id:params[:id]) != []
               @can_review=true
@@ -30,17 +36,4 @@ class ProductsController < ApplicationController
    
       end
 
-      def rate
-        @product = Product.find(params[:id])
-        @rate_review = @product.rate_reviews.new
-        @rate_review.content="whatever for test"
-        @rate_review.rating=params[:rating]
-        if user_signed_in?
-            @rate_review.user=current_user
-        end
-        @rate_review.save()
-
-        redirect_to product_path(@product)
-        
-      end
 end

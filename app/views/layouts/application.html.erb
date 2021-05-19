@@ -36,7 +36,8 @@
         <%= link_to 'logout', destroy_user_session_path,method: :delete, class: "login-panel ml-5 ", style: "color: #212529"%>
 
     <%else%>    
-        <a href="#" class="login-panel mx-5"style="color: #212529"><i class="fa fa-user"></i>Login</a>
+            <%= link_to 'login', new_user_session_path,method: :get, class: "login-panel ml-5 ", style: "color: #212529"%>
+
     <%end%>
 
     </div>
@@ -109,7 +110,7 @@
             <a class="nav-link text-white text-center" href="/products">SHOP</a>
         </div>
         <div class="nav-item ">
-            <a class="nav-link text-white text-center" href="#">COLLECTION</a>
+            <a class="nav-link text-white text-center" href="#">STORES</a>
         </div>
         <div class="nav-item ">
         <%if current_user.orders == []%>
