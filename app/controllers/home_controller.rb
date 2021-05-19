@@ -118,7 +118,7 @@ class HomeController < ApplicationController
 
                 end #end if cat is exist or not 
             end
-        ################### select without name ################# 
+############################ select without name ##################################  
         else
             ############!!!!!!!!!!!!!!!!!!!!################
             ## first probably ##
@@ -130,13 +130,29 @@ class HomeController < ApplicationController
                         end
                     elsif params[:price] != "All"
                         if params[:seller] == "All"
-                            @products1 = Product.where(price: params[:price])
+                            if params[:price] == "0..499"
+                                @products1 = Product.where(price: 0..499 ) 
+                            elsif params[:price] == "500..1000"
+                                @products1 = Product.where(price: 500..1000 )
+                            elsif params[:price] == "1000..5000"
+                                @products1 = Product.where(price: 1000..5000 )
+                            elsif params[:price] == "5000"
+                                @products1 = Product.where("price > ?", params[:price])
+                            end
                         elsif params[:seller] != "All"
-                            @products1 = Product.where(store_id: params[:seller], price: params[:price])
+                            if params[:price] == "0..499"
+                                @products1 = Product.where(store_id: params[:seller], price: 0..499 ) 
+                            elsif params[:price] == "500..1000"
+                                @products1 = Product.where(store_id: params[:seller], price: 500..1000 )
+                            elsif params[:price] == "1000..5000"
+                                @products1 = Product.where(store_id: params[:seller], price: 1000..5000 )
+                            elsif params[:price] == "5000"
+                                @products1 = Product.where(store_id: params[:seller]).Product.where("price > ?", params[:price])
+                            end
                         end
                     end
 
-            ## second probably ##
+                ## second probably ##
                 elsif  params[:brand] != "All"
                     if  params[:price] == "All"
                         if params[:seller] == "All"
@@ -146,14 +162,30 @@ class HomeController < ApplicationController
                         end
                     elsif params[:price] != "All"   
                         if params[:seller] == "All"
-                            @products1 = Product.where(brand_id: params[:brand], price: params[:price])
+                            if params[:price] == "0..499"
+                                @products1 = Product.where(brand_id: params[:brand],price: 0..499 ) 
+                            elsif params[:price] == "500..1000"
+                                @products1 = Product.where(brand_id: params[:brand], price: 500..1000 )
+                            elsif params[:price] == "1000..5000"
+                                @products1 = Product.where(brand_id: params[:brand], price: 1000..5000 )
+                            elsif params[:price] == "5000"
+                                @products1 = Product.where("price > ?", params[:price]).where(brand_id: params[:brand])
+                            end
                         elsif params[:seller] != "All"
-                            @products1 = Product.where(brand_id: params[:brand], price: params[:price],store_id: params[:seller])
+                            if params[:price] == "0..499"
+                                @products1 = Product.where(price: 0..499 ).where(brand_id: params[:brand],store_id: params[:seller])
+                            elsif params[:price] == "500..1000"
+                                @products1 = Product.where(price: 500..1000 ).where(brand_id: params[:brand],store_id: params[:seller])
+                            elsif params[:price] == "1000..5000"
+                                @products1 = Product.where(price: 1000..5000 ).where(brand_id: params[:brand],store_id: params[:seller])
+                            elsif params[:price] == "5000"
+                                @products1 = Product.where("price > ?", params[:price]).where(brand_id: params[:brand],store_id: params[:seller])
+                            end
                         end
                     end
                 end #end of brand exist or not and category not exist
             
-            ############!!!!!!!!!!!!!!!!!!!!################
+            ############  Third probably ################
             elsif params[:cat] != "All"
                 if  params[:brand] == "All" 
                     if  params[:price] == "All"
@@ -164,12 +196,28 @@ class HomeController < ApplicationController
                         end
                     elsif params[:price] != "All" 
                         if params[:seller] == "All"
-                            @products1 = Product.where(category: params[:cat], price: params[:price])
+                            if params[:price] == "0..499"
+                                @products1 = Product.where(price: 0..499).where(category: params[:cat])
+                            elsif params[:price] == "500..1000"
+                                @products1 = Product.where(price: 500..1000 ).where(category: params[:cat])
+                            elsif params[:price] == "1000..5000"
+                                @products1 = Product.where(price: 1000..5000 ).where(category: params[:cat])
+                            elsif params[:price] == "5000"
+                                @products1 = Product.where("price > ?", params[:price]).where(category: params[:cat])
+                            end
                         elsif  params[:seller] != "All"
-                            @products1 = Product.where(category: params[:cat], price: params[:price],store_id: params[:seller])
+                            if params[:price] == "0..499"
+                                @products1 = Product.where(price: 0..499).where(category: params[:cat],store_id: params[:seller])
+                             elsif params[:price] == "500..1000"
+                                @products1 = Product.where(price: 500..1000 ).where(category: params[:cat],store_id: params[:seller])
+                             elsif params[:price] == "1000..5000"
+                                @products1 = Product.where(price: 1000..5000 ).where(category: params[:cat],store_id: params[:seller])
+                             elsif params[:price] == "5000"
+                                @products1 = Product.where("price > ?", params[:price]).where(category: params[:cat],store_id: params[:seller])
+                             end
                         end
                     end
-
+                ############  Forth probably ################
                 elsif  params[:brand] != "All"
                     if params[:price] == "All"
                         if params[:seller] == "All"
@@ -179,12 +227,27 @@ class HomeController < ApplicationController
                         end
                     elsif params[:price] != "All"  
                         if  params[:seller] == "All"
-                            @products1 = Product.where(category: params[:cat], price: params[:price],brand_id: params[:brand])
+                            if params[:price] == "0..499"
+                                @products1 = Product.where(price: 0..499 ).where(category: params[:cat],brand_id: params[:brand]) 
+                             elsif params[:price] == "500..1000"
+                                @products1 = Product.where(price: 500..1000 ).where(category: params[:cat],brand_id: params[:brand]) 
+                             elsif params[:price] == "1000..5000"
+                                @products1 = Product.where(price: 1000..5000 ).where(category: params[:cat],brand_id: params[:brand]) 
+                             elsif params[:price] == "5000"
+                                @products1 = Product.where("price > ?", params[:price]).where(category: params[:cat],brand_id: params[:brand]) 
+                             end
                         elsif  params[:seller] != "All"
-                            @products1 = Product.where(category: params[:cat], price: params[:price],store_id: params[:seller],brand_id: params[:brand])
+                            if params[:price] == "0..499"
+                                @products1 = Product.where(price: 0..499 ).where(category: params[:cat],store_id: params[:seller],brand_id: params[:brand])
+                             elsif params[:price] == "500..1000"
+                                @products1 = Product.where(price: 500..1000 ).where(category: params[:cat],store_id: params[:seller],brand_id: params[:brand])
+                             elsif params[:price] == "1000..5000"
+                                @products1 = Product.where(price: 1000..5000 ).where(category: params[:cat],store_id: params[:seller],brand_id: params[:brand])
+                             elsif params[:price] == "5000"
+                                @products1 = Product.where("price > ?", params[:price]).where(category: params[:cat],store_id: params[:seller],brand_id: params[:brand])
+                             end
                         end 
                     end
-
                 end #end of brand exist or not and category is exit 
             end #end of if category not exit 
         end #end of if name not exit 
@@ -192,7 +255,5 @@ class HomeController < ApplicationController
         @products=Product.all
         @categories=Category.all 
         @brands=Brand.all   
-         
-
     end
 end 

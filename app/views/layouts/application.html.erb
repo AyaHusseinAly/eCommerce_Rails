@@ -73,6 +73,10 @@
                 <option value="All">Price</option>
                 <%@products.each do |product|%>
                     <option value=<%=product.price%>><%=product.price%></option>
+                    <option value="0..499">less than 500</option>
+                    <option value="500..1000">500 to 1000</option>
+                    <option value="1000..5000">1000 to 5000</option>
+                    <option value="5000">more than 5000</option>
                 <%end%>
                 </select>
             </div>
