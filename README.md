@@ -8,3 +8,14 @@
 
 ## Product Page
 ![](preview/productShow.png)
+
+### only buyer who purchased the product can review it
+![](preview/no_purchase_no_review.PNG)
+
+## My Orders
+![](preview/my_orders.png)
+
+### in case of no orders yet
+![](preview/no_orders_yet.png)
+
+
