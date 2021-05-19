@@ -15,6 +15,9 @@ class HomeController < ApplicationController
 
 
     def searchInProduct
+        if params[:q] == "" and params[:cat] == "All" and params[:cat] == "All" and params[:price] == "All" and params[:seller] == "All"
+            redirect_to :controller => 'home', :action => 'index'
+        end 
         if params[:q] != ""
             if params[:cat] == "All" and params[:cat] == "All" and params[:price] == "All" and params[:seller] == "All" and params[:q] !=""
                 @products1 = Product.where("title LIKE ?","%"+ params[:q] +"%").or(
