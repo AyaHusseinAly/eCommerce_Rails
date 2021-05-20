@@ -49,10 +49,13 @@ User.create!(
     password:"password",
     password_confirmation: 'password'
 )
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+AdminUser.create!(email: 'seller@example.com', password: 'password', password_confirmation: 'password',role: 'seller') if Rails.env.development?
+
 Store.create!([{
     name: "Sample Store",
     summary: "This is a sample summary for a store",
-    user: User.find_by(name:"User")
+    admin_user: AdminUser.find_by(role:"seller")
 }
 ])
 Product.create!([{
@@ -168,4 +171,4 @@ p "Created #{Category.count} categories and #{Product.count} products"
 #     end
    
 # end
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+# AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

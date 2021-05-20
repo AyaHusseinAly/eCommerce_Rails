@@ -1,4 +1,6 @@
 ActiveAdmin.register User do
+  menu if: proc{ current_admin_user.role=="admin" }  
+
   scope :all
   scope :seller
   scope :buyer
@@ -6,17 +8,20 @@ ActiveAdmin.register User do
   action_item :make_seller, only: :show do
     link_to "Make This User A Seller",make_seller_admin_user_path(user),method: :put if user.role!="seller"
   end
-  action_item :make_buyer, only: :show do
-    link_to "Make This Seller A Buyer",make_buyer_admin_user_path(user),method: :put if user.role!="buyer"
+  action_item :remove_seller, only: :show do
+    link_to "Delete this Seller",make_buyer_admin_user_path(user),method: :put if user.role!="buyer"
   end
 
   member_action :make_seller, method: :put do
     user=User.find(params[:id])
+    AdminUser.create!(name:user.name , email:user.email , password:user.password , password_confirmation:user.password_confirmation, role:"seller")
     user.update(role:"seller")
     redirect_to admin_user_path(user)
   end
-  member_action :make_buyer, method: :put do
+  member_action :remove_seller, method: :put do
     user=User.find(params[:id])
+    seller=AdminUser.find_by(email:user.email)
+    seller.delete
     user.update(role:"buyer")
     redirect_to admin_user_path(user)
   end
