@@ -25,7 +25,17 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
-
+  <br />
+  <div class="field">
+    <%= f.label :avatar %> 
+    <% if resource.avatar.attached?  %>
+      <%= image_tag(resource.avatar_thumbnail) %>
+    <% else %>
+      <%# <%= image_tag("/default_profile.jpg") %> 
+       <%= f.file_field :avatar %> 
+    <% end %>
+  </div>
+ <br />
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="d-flex justify-content-around py-5">
+
+        <div class="col-md-5 ">
+
+            <div class="d-flex justify-content-start align-items-center my-3  bg-light py-3 shadow-sm "style="width: 17.5rem;">
+                <i class=" fas fa-user fa-3x col-3 "style="color:#e7ab3c"></i>
+                <div class=" col-3 "style="font-size: 0.70rem;">
+                    <h6 class="m-0 p-0" id="user"><%=current_user.name%></h6> 
+                    <span id="email"><%=current_user.email%></span>
+                </div>
+            </div>
+
+
+            <div class="card my-3 text-center" style="width: 17.5rem;">
+                <ul class="list-group list-group-flush">
+                <%if @orders != nil %>
+                  <% @orders.each do |order| %>
+                  <li class="list-group-item"><a href="/orders/<%=order.id%>"class="text-dark">Order #<%=order.id%></a></li>
+
+                <%end%>
+                <%end%>
+                </ul>
+              </div>
+
+
+        </div>
+
+<div class="col-md-7 border d-flex flex-column">
+<%if @order != nil %>
+<h4>Order Status: <span style="color:#e7ab3c"><%=@order.status%><span> </h4>
+
+<% @order.order_details.each do |o_d| %>
+        
+            <div class="d-flex justify-content-start align-items-center my-3  bg-light py-3 shadow-sm">
+                <div class="d-flex flex-column col-4 mr-2">
+                    <img class=" " src="../img/products/<%=o_d.product.img%>">
+                    <div class=""style="width:200px;font-size: 0.9rem;">  
+                        <a href="<%=product_path(o_d.product)%>" style=""><%=o_d.product.title%> - product #<%=o_d.product.id%></a>
+                    </div>
+                </div>
+                <div class=" col-6 ">
+                
+                 <div class="star_container ">
+                                <div class="active-star"></div>
+                                <div class="active-star"></div>
+                                <div class="active-star"></div>
+                                <div class="active-star"></div>
+                                <div class="clip-star"></div>
+                            </div>
+                    <div class="m-2 p-2 line text-secondary"style="font-size: 0.9rem;">
+                        <ins>Order Date</ins><span>: <%=@order.created_at%> </span> <br>
+                      <ins>Paid Price</ins><span>:  $<%=o_d.paid_price%></span><br>
+                    <ins>Quantity</ins><span>:  <%=o_d.amount%></span>
+
+                    </div>
+
+                     
+                        <div class="d-inline " style="color:#212529;">
+                            <i class="fas fa-pencil-alt fa-xs ml-3" ></i>
+                            <strong style="font-size: 0.7rem"> Write a Review</strong>
+                        </div>
+                    
+
+                </div>
+
+            </div>
+
+<%end%>
+<%else%>
+<h1 style="color:grey;margin-top:5rem;margin-bottom:5rem"> you don't have any orders yet :(</h1>
+<%end%>
+
+</div>
+</div>
+</div>

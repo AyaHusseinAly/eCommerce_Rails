@@ -16,24 +16,25 @@
 
 <div class="d-flex justify-content-between border px-2"width="100%">
     <div class="my-2 mx-4 ">
+    <div style="width:80px;display:inline-block;margin-right:20px;border:2px solid #e7ab3c;"><%=  image_tag(current_user.avatar_thumbnail)  %></div>
             <i class=" fa fa-envelope"></i>
-            hello.ecommerce@gmail.com
+           <span style="font-size:20px;"> <%= current_user.email %> </span>
     
-            <i class=" fa fa-phone ml-4"></i>
-            +65 11.188.888
+            <%# <i class=" fa fa-phone ml-4"></i> %>
+            
     </div>
 
     <div ></div>
     <div class="d-flex px-5 align-items-center">
     <div class="border-right">
-        <a href="#"><i class="fab fa-facebook-f mx-2"style="color: #212529"></i></a>
-        <a href="#"><i class="fab fa-twitter mx-2"style="color: #212529"></i></a>
-        <a href="#"><i class="fab fa-linkedin mx-2"style="color: #212529"></i></a>
-        <a href="#"><i class="fab fa-pinterest mx-2"style="color: #212529"></i></a>
+        <a href="#"><i class="fab fa-facebook-f mx-2"style="color: #212529;font-size:20px"></i></a>
+        <a href="#"><i class="fab fa-twitter mx-2"style="color: #212529;font-size:20px"></i></a>
+        <a href="#"><i class="fab fa-linkedin mx-2"style="color: #212529;font-size:20px"></i></a>
+        <a href="#"><i class="fab fa-pinterest mx-2"style="color: #212529;font-size:20px"></i></a>
     </div>
     <%if user_signed_in?%>
-        <%= link_to 'Edit Profile', edit_user_registration_path, class: "login-panel ml-5", style: "color: #212529" %>
-        <%= link_to 'logout', destroy_user_session_path,method: :delete, class: "login-panel ml-5 ", style: "color: #212529"%>
+        <%= link_to 'Edit Profile', edit_user_registration_path, class: "login-panel ml-5", style: "color: #212529;font-size:20px" %>
+        <%= link_to 'logout', destroy_user_session_path,method: :delete, class: "login-panel ml-5 ", style: "color: #212529;font-size:20px"%>
 
     <%else%>    
         <a href="#" class="login-panel mx-5"style="color: #212529"><i class="fa fa-user"></i>Login</a>
@@ -42,26 +43,58 @@
     </div>
 </div>
 
-<div class="row"style="height:150px">
-    <div class="col-lg-4"></div>
+<div class="row" style="height:150px ;margin-right:50px;">
+    <div class="col-lg-3"></div>
 
     <div class="col-lg-6 advanced-search d-flex align-items-center ">
-            <div class="dropdown" >
-                <button class="bg-transparent border mx-2"style="width:10rem;height:2.5rem;border-radius:5px 5px;">All Categories<i class="fas fa-caret-down" style="color:grey;margin-left:1rem"></i></button>
-                <div class="dropdown-content"style="position:fixed;z-index:3">
+        <form class="form-inline my-2 my-lg-0 d-flex" action="/search" method="get" accept-charset="UTF-8" >
+            <div>
+            <input class="form-control mr-sm-2" id="q" style="width:550px;" name="q" placeholder="Search" aria-label="Search" type="text"/>
+            <button class="btn my-2 my-sm-0" type="submit" style="border:1px solid #e7ab3c"><i class="fa fa-search"style="color: #e7ab3c"></i></button>
+            </div>
+            <br><br>
+            <div>
+                <select class="custom-select" style="width:140px;" name="cat" id="cat">
+                <option value="All">All categories</option>
                 <%@categories.each do |category|%>
-                <a href="<%=category_path(category)%>"><%=category.name%></a>
-                <%# <a href="#">Sports</a>
-                <a href="#">Toys</a> %>
+                    <option value=<%=category.id%>><%=category.name%></option>
                 <%end%>
-                </div>
+                </select>
+            </div>
+            <div style="margin-left:10px;">
+                <select class="custom-select" style="width:140px;" name="brand" id="brand">
+                <option value="All">brands</option>
+                <%@brands.each do |brand|%>
+                    <option value=<%=brand.id%>><%=brand.name%></option>
+                <%end%>
+                </select> 
+            </div>
+            <div style="margin-left:10px;">
+                <select class="custom-select" style="width:150px;" name="price" id="price">
+                <option value="All">Price</option>
+                    <option value="0..499">less than 500</option>
+                    <option value="500..1000">500 to 1000</option>
+                    <option value="1000..5000">1000 to 5000</option>
+                    <option value="5000">more than 5000</option>
+                </select>
+            </div>
+            <div style="margin-left:10px;">
+                <select class="custom-select" style="width:90px;" name="seller" id="seller">
+                <option value="All">sellers</option>
+                <%@categories.each do |category|%>
+                    <option value=<%=category.name%>><%=category.name%></option>
+                <%end%>
+                </select>
             </div>
             
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn my-2 my-sm-0" type="submit"style="border:1px solid #e7ab3c"><i class="fa fa-search"style="color: #e7ab3c"></i></button>
-            </form>
+
+
+            
+        </form>
+           
+
     </div>
+    
     <div class="col-lg-1 d-flex align-items-center justify-content-around">
         <div class="heart-icon">
             <a href="#">
@@ -108,7 +141,12 @@
             <a class="nav-link text-white text-center" href="#">COLLECTION</a>
         </div>
         <div class="nav-item ">
-            <a class="nav-link text-white text-center" href="#">CONTACT</a>
+        <%if current_user.orders == []%>
+            <a class="nav-link text-white text-center" href="/orders/">MY ORDERS</a>
+        <%else%>
+            <a class="nav-link text-white text-center" href="/orders/<%=current_user.orders.last.id%>">MY ORDERS</a>
+
+        <%end%>    
         </div>        
 
       </div>

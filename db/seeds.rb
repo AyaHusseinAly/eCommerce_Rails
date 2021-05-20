@@ -55,9 +55,14 @@ AdminUser.create!(email: 'seller@example.com', password: 'password', password_co
 Store.create!([{
     name: "Sample Store",
     summary: "This is a sample summary for a store",
+<<<<<<< HEAD
     admin_user: AdminUser.find_by(role:"seller")
 }
 ])
+=======
+    user: User.first
+}])
+>>>>>>> 129dda3758cfed95fc4cf38b837adf7b280be58b
 Product.create!([{
     title:'Hoodie',
     description: 'This is a hoodie.',
