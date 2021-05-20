@@ -11,6 +11,7 @@
      <%= f.label :name %><br />
      <%= f.text_field :name, autofocus: true %>
 </div>
+
  
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -34,7 +35,29 @@
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
+  
+  
+  <%# <div class="field">
+  <% if !@user.avatar.attached? %>
+    <%# <%= f.label :avatar %><br /> 
+    <%# <%= f.file_field :avatar %> 
+    <%# <% end %> 
+  <%# </div> %>
+ <%# <br /> %> 
+ 
+<div class="field" style="width:200px">
+  
+    <%= image_tag(resource.avatar_thumbnail)  if resource.avatar.attached?  %><br />
+ 
+  </div>
+ <br />
+ 
+<div class="field">
+<%= f.label :avatar %>
+<%= f.file_field :avatar %>
+</div>
 
+<br />
   <div class="actions">
     <%= f.submit "Update" %>
   </div>

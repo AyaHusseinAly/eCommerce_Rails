@@ -16,24 +16,25 @@
 
 <div class="d-flex justify-content-between border px-2"width="100%">
     <div class="my-2 mx-4 ">
+    <div style="width:80px;display:inline-block;margin-right:20px;border:2px solid #e7ab3c;"><%=  image_tag(current_user.avatar_thumbnail)  %></div>
             <i class=" fa fa-envelope"></i>
-            hello.ecommerce@gmail.com
+           <span style="font-size:20px;"> <%= current_user.email %> </span>
     
-            <i class=" fa fa-phone ml-4"></i>
-            +65 11.188.888
+            <%# <i class=" fa fa-phone ml-4"></i> %>
+            
     </div>
 
     <div ></div>
     <div class="d-flex px-5 align-items-center">
     <div class="border-right">
-        <a href="#"><i class="fab fa-facebook-f mx-2"style="color: #212529"></i></a>
-        <a href="#"><i class="fab fa-twitter mx-2"style="color: #212529"></i></a>
-        <a href="#"><i class="fab fa-linkedin mx-2"style="color: #212529"></i></a>
-        <a href="#"><i class="fab fa-pinterest mx-2"style="color: #212529"></i></a>
+        <a href="#"><i class="fab fa-facebook-f mx-2"style="color: #212529;font-size:20px"></i></a>
+        <a href="#"><i class="fab fa-twitter mx-2"style="color: #212529;font-size:20px"></i></a>
+        <a href="#"><i class="fab fa-linkedin mx-2"style="color: #212529;font-size:20px"></i></a>
+        <a href="#"><i class="fab fa-pinterest mx-2"style="color: #212529;font-size:20px"></i></a>
     </div>
     <%if user_signed_in?%>
-        <%= link_to 'Edit Profile', edit_user_registration_path, class: "login-panel ml-5", style: "color: #212529" %>
-        <%= link_to 'logout', destroy_user_session_path,method: :delete, class: "login-panel ml-5 ", style: "color: #212529"%>
+        <%= link_to 'Edit Profile', edit_user_registration_path, class: "login-panel ml-5", style: "color: #212529;font-size:20px" %>
+        <%= link_to 'logout', destroy_user_session_path,method: :delete, class: "login-panel ml-5 ", style: "color: #212529;font-size:20px"%>
 
     <%else%>    
         <a href="#" class="login-panel mx-5"style="color: #212529"><i class="fa fa-user"></i>Login</a>
