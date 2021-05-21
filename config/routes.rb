@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   devise_for :users
   get 'search', to:'home#searchInProduct'
   get 'api/products', to: "api#index"
@@ -9,8 +10,13 @@ Rails.application.routes.draw do
   # resources :users, only: [:show], param: :username, path: ""
   
   resources :categories
+
+  root to: 'home#index'
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
   resources :products do
     resources :rate_reviews
   end
-  root 'home#index'
+  
 end

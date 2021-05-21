@@ -11,6 +11,8 @@ gem 'pg'
 gem 'devise'
 #add cancancan
 gem 'cancancan'
+#activeadmin for admin dashboard
+gem 'activeadmin'
 #will_paginate for pagination
 gem 'will_paginate', '~> 3.3.0'
 #use serializer for API
@@ -19,8 +21,8 @@ gem "active_model_serializers", "~> 0.8.0"
 gem "actionpack-page_caching"
 #for devise
 gem 'devise-bootstrapped'
-#for img resize
-gem 'image_processing'
+# #for img resize
+# gem 'image_processing'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -41,8 +43,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
-
+ gem 'mini_magick', '~> 4.8'
+ gem 'image_processing', '~> 1.2'
+#  gem 'rmagick'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
