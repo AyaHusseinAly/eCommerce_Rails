@@ -11,6 +11,7 @@ class Ability
     if user.role == 'admin'
       can :read, :all
       can :crud, [AdminUser,User,Brand,Category,Coupon,Store]
+      can :read, Category, :name=>"Others"
     elsif user.role == 'seller'
       can :crud, Product, Product.all do |product|
         product.store.in?(user.stores)

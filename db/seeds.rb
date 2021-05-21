@@ -24,7 +24,7 @@ ActiveRecord::Base.connection.reset_pk_sequence!(AdminUser.table_name)
 
 
 
-Brand.create([{
+Brand.create!([{
     name: "Sample Brand"
 }])
 Category.create!([{
@@ -41,6 +41,8 @@ Category.create!([{
 },
 {
     name: "Women's Clothes"
+},{
+    name:"Others"
 }
 ])
 User.create!(
@@ -51,18 +53,16 @@ User.create!(
 )
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 AdminUser.create!(email: 'seller@example.com', password: 'password', password_confirmation: 'password',role: 'seller') if Rails.env.development?
+User.create!(email: 'seller@example.com', password: 'password', password_confirmation: 'password',role: 'seller') 
 
 Store.create!([{
     name: "Sample Store",
     summary: "This is a sample summary for a store",
-<<<<<<< HEAD
     admin_user: AdminUser.find_by(role:"seller")
 }
 ])
-=======
-    user: User.first
-}])
->>>>>>> 129dda3758cfed95fc4cf38b837adf7b280be58b
+
+    
 Product.create!([{
     title:'Hoodie',
     description: 'This is a hoodie.',
