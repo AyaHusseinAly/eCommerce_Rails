@@ -1,35 +1,34 @@
-   
-<!------------------------------------------------------------------------------------------------------------------------->
-<!-------------------------------------------------- Carousel ------------------------------------------------------------->
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100 responsive" src="img/home_carousel1.jpg" alt="First slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100 responsive" src="img/fashion Ecommerce.jpg" alt="Second slide">
-    </div>
+   <!------------------------------------------------------------------------------------------------------------------------->
+   <!-------------------------------------------------- Carousel ------------------------------------------------------------->
+   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+       <div class="carousel-inner">
+           <div class="carousel-item active">
+               <img class="d-block w-100 responsive" src="img/home_carousel1.jpg" alt="First slide">
+           </div>
+           <div class="carousel-item">
+               <img class="d-block w-100 responsive" src="img/fashion Ecommerce.jpg" alt="Second slide">
+           </div>
 
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
+       </div>
+       <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+           <span class="sr-only">Previous</span>
+       </a>
+       <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+           <span class="carousel-control-next-icon" aria-hidden="true"></span>
+           <span class="sr-only">Next</span>
+       </a>
+   </div>
 
-<!----------------------------------------------latest products----------------------------------------------------------------------->
+   <!----------------------------------------------latest products----------------------------------------------------------------------->
 
- 
-<div class="container">
-    <h4 class="mt-3"style="width:15rem">Latest Products</h4>
-    <hr>
-    <div class="row">
 
-    <% @products.each do |product| 
+   <div class="container">
+       <h4 class="mt-3" style="width:15rem">Latest Products</h4>
+       <hr>
+       <div class="row">
+
+           <% @products.each do |product| 
         number = product.rate_reviews.count
         if number!=0
           rating=0
@@ -44,152 +43,181 @@
     
     %>
 
-        <div class="col-lg-3 col-md-6 col-xs-12 mt-3">
-                <div class="transCard">
-                        <img class=" w-100 h-80 transImg"src="img/products/<%=product.img%>">
-                </div>      
-                <div class="product__item__text">
-                    <h6><%= link_to product.title, product_path(product)%></h6>  
-                                   
-                  <%if avg_rate==1%>
-                  <div class="rating">
-                    <div class="active-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                  </div>
-                <%elsif avg_rate==2%>
+           <div class="col-lg-3 col-md-6 col-xs-12 mt-3">
+               <div class="transCard">
+                   <img class=" w-100 h-80 transImg" src="img/products/<%=product.img%>">
+               </div>
+               <div class="product__item__text">
+                   <h6><%= link_to product.title, product_path(product)%></h6>
+
+                   <%if avg_rate==1%>
                    <div class="rating">
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                  </div>
-                <%elsif avg_rate==3%>
-                     <div class="rating ">
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                  </div>
-                <%elsif avg_rate==4%>
-                     <div class="star_container ">
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="clip-star"></div>
-                  </div>
-                <%elsif avg_rate==5%>
-                     <div class="rating ">
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                  </div>
-                 <%else%>
-                  <div class="rating">
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                  </div>
-                <%end%>
+                       <div class="active-star"></div>
+                       <div class="clip-star"></div>
+                       <div class="clip-star"></div>
+                       <div class="clip-star"></div>
+                       <div class="clip-star"></div>
+                   </div>
+                   <%elsif avg_rate==2%>
+                   <div class="rating">
+                       <div class="active-star"></div>
+                       <div class="active-star"></div>
+                       <div class="clip-star"></div>
+                       <div class="clip-star"></div>
+                       <div class="clip-star"></div>
+                   </div>
+                   <%elsif avg_rate==3%>
+                   <div class="rating ">
+                       <div class="active-star"></div>
+                       <div class="active-star"></div>
+                       <div class="active-star"></div>
+                       <div class="clip-star"></div>
+                       <div class="clip-star"></div>
+                   </div>
+                   <%elsif avg_rate==4%>
+                   <div class="star_container ">
+                       <div class="active-star"></div>
+                       <div class="active-star"></div>
+                       <div class="active-star"></div>
+                       <div class="active-star"></div>
+                       <div class="clip-star"></div>
+                   </div>
+                   <%elsif avg_rate==5%>
+                   <div class="rating ">
+                       <div class="active-star"></div>
+                       <div class="active-star"></div>
+                       <div class="active-star"></div>
+                       <div class="active-star"></div>
+                       <div class="active-star"></div>
+                   </div>
+                   <%else%>
+                   <div class="rating">
+                       <div class="clip-star"></div>
+                       <div class="clip-star"></div>
+                       <div class="clip-star"></div>
+                       <div class="clip-star"></div>
+                       <div class="clip-star"></div>
+                   </div>
+                   <%end%>
 
-                    <div class="product__price"><span>$<%=product.price%></span></div>
-                </div>
-        </div>
-    <%end%>
-    </div>
-</div>    
-    
-<!------------------------------------------------------------------------------------------------------------------>
-<div class="container">
-    <h4 class="mt-3"style="width:15rem">Popular Categories</h4>
-    <hr>
-</div>
+                   <div class="product__price d-flex justify-content-between">
+                       <span>$<%=product.price%></span>
+                       <span>
+                           <%@wishlist.each do |wishlistitem| %>
+                           <%if product ==wishlistitem.product %>
+                           <%@wish_found_flag=true%>
+                           <%end%>
+                           <%end%>
+                           <%if @wish_found_flag==false%>
 
-<div class="row mb-2 mx-2"style="height:30rem;overflow:hidden;margin-right:2px">
-
-    <div  class="col-6 "style="padding:2px">
-       <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                      <img class="d-block w-100" src="img/products/myprod1.jpg" alt="Second slide">
-                </div>
-                <div class="flip-card-back ">
-                <h1 class="pt-5 mt-5">Women Clothes</h1>
-                <p>Women new collections for winter 2021 </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div  class="col-3 d-flex flex-column "style="padding:2px">
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                            <img class="d-block w-100" src="img/products/herbs.jpg" alt="Second slide">
-                    </div>
-                    <div class="flip-card-back">
-                        <h1>Herbs</h1>
-                        <p>All kinds of skin care herbs are available</p>
-                    </div>
-                </div>
-            </div> 
-            
-
-            <div style="height:245px"></div>
-
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <img class="d-block w-100" src="img/products/download.jpg" alt="Second slide">
-                    </div>
-                    <div class="flip-card-back">
-                    <h1>Shoes and Bags</h1>
-                    <p>Classic Shoes and bags for wommen</p>
-                    </div>
-                </div>
-            </div>
+                           <%= link_to '',addToWishingList_path(product.id), class: "fa fa-heart fa-lg", style:"color:#e7ab3c;cursor:pointer"%>
 
 
-    </div>
-
-    <div  class="col-3 d-flex flex-column"style="padding:2px">
-
-                <div class="flip-card">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <img class="d-block w-100" src="img/products/photo-1542291026-7eec264c27ff.jpg" alt="Second slide">
-                        </div>
-                        <div class="flip-card-back">
-                            <h1>Sports</h1>
-                            <p>all kinds of sportive wears for men and women are available</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="height:245px"></div>
-
-                <div class="flip-card">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <img class="d-block w-100" src="img/blog-01.jpg.webp" alt="Second slide">
-                        </div>
-                        <div class="flip-card-back">
-                            <h1>Backbags</h1>
-                            <p>all kinds of back-bags for women and men casual and sportive</p>
-                        </div>
-                    </div>
-                </div>
-
-        </div>
+                           <%end%>
+                           <%@wish_found_flag=false%>
+                           <%if product.quantity >0%>
+                           <%= link_to '',addToCart_path(product.id), class: "bi bi-cart-plus-fill", style:"color:#e7ab3c;cursor:pointer;font-size: 1.25rem;"%>
+                           <%end%>
+                       </span>
+                   </div>
+                   <%@wishlist.each do |wishlistitem| %>
+                   <%if product ==wishlistitem.product %>
+                   <div class="alert alert-warning d-flex justify-content-center mb-0" role="alert">added to wishing list</div>
+                   <%end%>
+                   <%end%>
+                   <%if product.quantity == 0%>
+                   <div class="alert alert-danger d-flex justify-content-center mt-0" role="alert">out of stock</div>
+                   <%end%>
 
 
-    </div>
+               </div>
+           </div>
+           <%end%>
+       </div>
+   </div>
+
+   <!------------------------------------------------------------------------------------------------------------------>
+   <div class="container">
+       <h4 class="mt-3" style="width:15rem">Popular Categories</h4>
+       <hr>
+   </div>
+
+   <div class="row mb-2 mx-2" style="height:30rem;overflow:hidden;margin-right:2px">
+
+       <div class="col-6 " style="padding:2px">
+           <div class="flip-card">
+               <div class="flip-card-inner">
+                   <div class="flip-card-front">
+                       <img class="d-block w-100" src="img/products/myprod1.jpg" alt="Second slide">
+                   </div>
+                   <div class="flip-card-back ">
+                       <h1 class="pt-5 mt-5">Women Clothes</h1>
+                       <p>Women new collections for winter 2021 </p>
+                   </div>
+               </div>
+           </div>
+       </div>
+
+       <div class="col-3 d-flex flex-column " style="padding:2px">
+           <div class="flip-card">
+               <div class="flip-card-inner">
+                   <div class="flip-card-front">
+                       <img class="d-block w-100" src="img/products/herbs.jpg" alt="Second slide">
+                   </div>
+                   <div class="flip-card-back">
+                       <h1>Herbs</h1>
+                       <p>All kinds of skin care herbs are available</p>
+                   </div>
+               </div>
+           </div>
+
+
+           <div style="height:245px"></div>
+
+           <div class="flip-card">
+               <div class="flip-card-inner">
+                   <div class="flip-card-front">
+                       <img class="d-block w-100" src="img/products/download.jpg" alt="Second slide">
+                   </div>
+                   <div class="flip-card-back">
+                       <h1>Shoes and Bags</h1>
+                       <p>Classic Shoes and bags for wommen</p>
+                   </div>
+               </div>
+           </div>
+
+
+       </div>
+
+       <div class="col-3 d-flex flex-column" style="padding:2px">
+
+           <div class="flip-card">
+               <div class="flip-card-inner">
+                   <div class="flip-card-front">
+                       <img class="d-block w-100" src="img/products/photo-1542291026-7eec264c27ff.jpg" alt="Second slide">
+                   </div>
+                   <div class="flip-card-back">
+                       <h1>Sports</h1>
+                       <p>all kinds of sportive wears for men and women are available</p>
+                   </div>
+               </div>
+           </div>
+
+           <div style="height:245px"></div>
+
+           <div class="flip-card">
+               <div class="flip-card-inner">
+                   <div class="flip-card-front">
+                       <img class="d-block w-100" src="img/blog-01.jpg.webp" alt="Second slide">
+                   </div>
+                   <div class="flip-card-back">
+                       <h1>Backbags</h1>
+                       <p>all kinds of back-bags for women and men casual and sportive</p>
+                   </div>
+               </div>
+           </div>
+
+       </div>
+
+
+   </div>
