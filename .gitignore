@@ -29,3 +29,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+/ImageMagick-7.0.11-Q16-HDRI/*
+!/ImageMagick-7.0.11-Q16-HDRI/.keep
+

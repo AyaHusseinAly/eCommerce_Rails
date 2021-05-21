@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_21_170045) do
+ActiveRecord::Schema.define(version: 2021_05_19_192026) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -144,7 +148,6 @@ ActiveRecord::Schema.define(version: 2021_05_21_170045) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "role", default: "buyer"
     t.text "address"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -165,4 +168,17 @@ ActiveRecord::Schema.define(version: 2021_05_21_170045) do
     t.index ["user_id"], name: "index_wishing_list_items_on_user_id"
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "order_details", "orders"
+  add_foreign_key "order_details", "products"
+  add_foreign_key "products", "brands"
+  add_foreign_key "products", "categories"
+  add_foreign_key "products", "stores"
+  add_foreign_key "rate_reviews", "products"
+  add_foreign_key "rate_reviews", "users"
+  add_foreign_key "shopping_card_items", "products"
+  add_foreign_key "shopping_card_items", "users"
+  add_foreign_key "stores", "users"
+  add_foreign_key "wishing_list_items", "products"
+  add_foreign_key "wishing_list_items", "users"
 end
