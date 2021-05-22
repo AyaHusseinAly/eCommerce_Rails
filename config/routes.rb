@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'addToCartFromWishingList/:id', to: 'shopping_card_items#addToCartFromWishingList', as: 'addToCartFromWishingList'
   patch 'changeQuantity', to: 'shopping_card_items#changeQuantity', as: 'changeQuantity'
   get 'checkout', to: 'shopping_card_items#checkout', as: 'checkout'
+  post 'checkoutForm' ,to: 'shopping_card_items#checkoutForm' , as:'checkoutForm'
   patch 'cancleShoppingCard',to:'shopping_card_items#cancleShoppingCartItem',as:'cancleShoppingCartItem'
 
 
