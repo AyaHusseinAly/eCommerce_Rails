@@ -12,7 +12,7 @@ default: &default
   host: localhost  
   #host: 127.0.0.1
   #username: samar
- # password: 147258
+  #password: 147258
 
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000

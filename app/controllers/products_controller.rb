@@ -1,4 +1,10 @@
 class ProductsController < ApplicationController
+    before_action do
+      @categories=Category.all 
+      @products=Product.all
+      @brands=Brand.all
+      @seller = AdminUser.where(role: "seller")      
+    end
     caches_page :show
     
     def index

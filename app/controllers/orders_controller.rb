@@ -1,5 +1,10 @@
 class OrdersController < ApplicationController
-    before_action do @categories=Category.all end
+    before_action do
+        @categories=Category.all 
+        @products=Product.all
+        @brands=Brand.all
+        @seller = AdminUser.where(role: "seller")      
+    end
 
     def index
         if params[:id]
