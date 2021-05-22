@@ -109,22 +109,51 @@
                            <%end%>
                            <%end%>
                            <%if @wish_found_flag==false%>
-
-                           <%= link_to '',addToWishingList_path(product.id), class: "fa fa-heart fa-lg", style:"color:#e7ab3c;cursor:pointer"%>
-
+                           <div style="display:inline-block">
+                               <%= form_tag :controller=>'wishing_list_items', :action => 'addToWishingListForm' do %>
+                               <input type="hidden" name="id" value=<%=product.id%>>
+                               <input type="hidden" name="path" value=<%=root_path%>>
+                               <%= button_tag(type: "submit", class: "btn btn-default") do %>
+                               <i class="bi bi-heart" style="color:#e7ab3c;cursor:pointer"></i>
+                               <% end %>
+                               <%end%>
+                           </div>
+                           <%elsif @wish_found_flag==true%>
+                           <div style="display:inline-block">
+                               <%= form_tag :controller=>'wishing_list_items', :action => 'destroyForm' do %>
+                               <input type="hidden" name="id" value=<%=product.id%>>
+                               <input type="hidden" name="path" value=<%=root_path%>>
+                               <%= button_tag(type: "submit", class: "btn btn-default") do %>
+                               <i class="fa fa-heart fa-lg" style="color:#e7ab3c;cursor:pointer;font-size: 1.25rem"></i>
+                               <% end %>
+                               <%end%>
+                           </div>
 
                            <%end%>
                            <%@wish_found_flag=false%>
                            <%if product.quantity >0%>
-                           <%= link_to '',addToCart_path(product.id), class: "bi bi-cart-plus-fill", style:"color:#e7ab3c;cursor:pointer;font-size: 1.25rem;"%>
+                           <div style="display:inline-block">
+                               <%= form_tag :controller=>'shopping_card_items', :action => 'addToCartForm' do %>
+                               <input type="hidden" name="id" value=<%=product.id%>>
+                               <input type="hidden" name="path" value=<%=root_path%>>
+                               <%= button_tag(type: "submit", class: "btn btn-default") do %>
+                               <i class="bi bi-cart-plus-fill" style="color:#e7ab3c;cursor:pointer;font-size: 1.25rem;"></i>
+                               <% end %>
+
+                               <%end%>
+                           </div>
                            <%end%>
                        </span>
                    </div>
+                   <%
+=begin%>
                    <%@wishlist.each do |wishlistitem| %>
                    <%if product ==wishlistitem.product %>
                    <div class="alert alert-warning d-flex justify-content-center mb-0" role="alert">added to wishing list</div>
                    <%end%>
                    <%end%>
+                   <%
+=end%>
                    <%if product.quantity == 0%>
                    <div class="alert alert-danger d-flex justify-content-center mt-0" role="alert">out of stock</div>
                    <%end%>

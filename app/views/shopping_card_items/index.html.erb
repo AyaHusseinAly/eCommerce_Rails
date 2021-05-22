@@ -41,8 +41,12 @@
             <h5 style="display:inline-block"> <%=@total%> $</h5>
         </span>
         <span>
+            <%
+=begin%>
 
             <%= link_to 'Checkout',checkout_path(), style:"color:#e7ab3c;cursor:pointer;font-size: 1.25rem;"%>
+            <%
+=end%>
 
             <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#CouponModal">
                 Apply Coupon

@@ -65,65 +65,108 @@
             <div class="card-body">
                 <h2 class="card-title d-inline text-danger" id="prodprice">$<%=@product.price%> </h2><span class="text-secondary"> only</span>
                 <div class=" m-2 line text-secondary">
-                <strong class="ml-1">Average Rating:</strong>
-                <%if @avg_rate==1%>
-                  <div class="star_container">
-                    <div class="active-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                  </div>
-                <%elsif @avg_rate==2%>
-                   <div class="star_container ">
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                  </div>
-                <%elsif @avg_rate==3%>
-                     <div class="star_container ">
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                  </div>
-                <%elsif @avg_rate==4%>
-                     <div class="star_container ">
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="clip-star"></div>
-                  </div>
-                <%elsif @avg_rate==5%>
-                     <div class="star_container ">
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                  </div>
-                 <%else%>
-                  <div class="star_container">
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                  </div>
-                <%end%>
+                    <strong class="ml-1">Average Rating:</strong>
+                    <%if @avg_rate==1%>
+                    <div class="star_container">
+                        <div class="active-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                    </div>
+                    <%elsif @avg_rate==2%>
+                    <div class="star_container ">
+                        <div class="active-star"></div>
+                        <div class="active-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                    </div>
+                    <%elsif @avg_rate==3%>
+                    <div class="star_container ">
+                        <div class="active-star"></div>
+                        <div class="active-star"></div>
+                        <div class="active-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                    </div>
+                    <%elsif @avg_rate==4%>
+                    <div class="star_container ">
+                        <div class="active-star"></div>
+                        <div class="active-star"></div>
+                        <div class="active-star"></div>
+                        <div class="active-star"></div>
+                        <div class="clip-star"></div>
+                    </div>
+                    <%elsif @avg_rate==5%>
+                    <div class="star_container ">
+                        <div class="active-star"></div>
+                        <div class="active-star"></div>
+                        <div class="active-star"></div>
+                        <div class="active-star"></div>
+                        <div class="active-star"></div>
+                    </div>
+                    <%else%>
+                    <div class="star_container">
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                    </div>
+                    <%end%>
 
                 </div>
                 <div class="m-2 p-2 line text-secondary">
                     <strong>Date Posted:</strong><span> <%=@product.created_at%></span>
                     <strong>Quantity:</strong><span id="prodquantity"> <%=@product.quantity%></span>
                 </div>
+                <div style="width:100%">
+                    <%if @product.quantity > 0%>
+                    <%= form_tag :controller=>'shopping_card_items', :action => 'addToCartForm' do %>
+                    <input type="hidden" name="id" value=<%=@product.id%>>
+                    <input type="hidden" name="path" value=<%=root_path%>>
+                    <%= button_tag(type: "submit", class: "btn d-block m-1 shadow",style:"background-color:#e7ab3c;color:white;width:100%") do %>
+                    <i class="fas fa-shopping-cart fa-xs mr-2" style="color: white;"></i>Add to Cart
+                    <% end %>
+                    <%end%>
+                    <%else%>
+                    <div class="alert alert-danger d-flex justify-content-center mt-0" role="alert">out of stock</div>
+                    <%end%>
+                </div>
+                <div style="width:100%">
+                    <%@wishlist.each do |wishlistitem| %>
+                    <%if @product ==wishlistitem.product %>
+                    <%@wish_found_flag=true%>
+                    <%end%>
+                    <%end%>
+                    <%if @wish_found_flag==false%>
+                    <%= form_tag :controller=>'wishing_list_items', :action => 'addToWishingListForm' do %>
+                    <input type="hidden" name="id" value=<%=@product.id%>>
+                    <input type="hidden" name="path" value=<%=root_path%>>
+                    <%= button_tag(type: "submit", class: "btn d-block m-1",style:"background-color:rgb(33, 37, 41,0.9);color:white;width:100%") do %>
+                    <i class="fas fa-heart fa-xs mr-2" style="color: white;"></i>Add to wishinglist
+                    <% end %>
+                    <%end%>
+                    <!--end of form-->
+                    <%else%>
+                    <%= form_tag :controller=>'wishing_list_items', :action => 'destroyForm' do %>
+                    <input type="hidden" name="id" value=<%=@product.id%>>
+                    <input type="hidden" name="path" value=<%=root_path%>>
+                    <%= button_tag(type: "submit", class: "btn d-block m-1",style:"background-color:rgb(33, 37, 41,0.9);color:white;width:100%") do %>
+                    <i class="fa fa-heart fa-lg" style="color:#e7ab3c;cursor:pointer;font-size: 1.25rem"></i>Added to wishing list
+                    <% end %>
+                    <%end%>
+                    <%end%>
+                    <!--end -->
+                </div>
 
+                <%
+=begin%>
                 <a href="#" class="btn d-block m-1 shadow" style="background-color:#e7ab3c;color:white"><i class="fas fa-shopping-cart fa-xs mr-2" style="color: white;"></i>Add to Cart</a>
                 <a href="#" class="btn d-block m-1" style="background-color:rgb(33, 37, 41,0.9);color:white"><i class="fas fa-heart fa-xs mr-2" style="color: white;"></i>Add to wishinglist</a>
+                <%
+=end%>
             </div>
         </div>
 
@@ -138,48 +181,48 @@
 
             <div class="card-body">
                 <% @product.rate_reviews.each do |rate_review| %>
-                <div class="pt-2"style="border-bottom:1px solid rgb(128,128,128,0.5)">
-                <%if rate_review.rating=='1'%>
-                  <div class="star_container">
-                    <div class="active-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                  </div>
-                <%elsif rate_review.rating=='2'%>
-                   <div class="star_container ">
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                  </div>
-                <%elsif rate_review.rating=='3'%>
-                     <div class="star_container ">
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                  </div>
-                <%elsif rate_review.rating=='4'%>
-                     <div class="star_container ">
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="clip-star"></div>
-                  </div>
-                <%else rate_review.rating=='5'%>
-                     <div class="star_container ">
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                    <div class="active-star"></div>
-                  </div>
-                <%end%>
+                <div class="pt-2" style="border-bottom:1px solid rgb(128,128,128,0.5)">
+                    <%if rate_review.rating=='1'%>
+                    <div class="star_container">
+                        <div class="active-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                    </div>
+                    <%elsif rate_review.rating=='2'%>
+                    <div class="star_container ">
+                        <div class="active-star"></div>
+                        <div class="active-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                    </div>
+                    <%elsif rate_review.rating=='3'%>
+                    <div class="star_container ">
+                        <div class="active-star"></div>
+                        <div class="active-star"></div>
+                        <div class="active-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                    </div>
+                    <%elsif rate_review.rating=='4'%>
+                    <div class="star_container ">
+                        <div class="active-star"></div>
+                        <div class="active-star"></div>
+                        <div class="active-star"></div>
+                        <div class="active-star"></div>
+                        <div class="clip-star"></div>
+                    </div>
+                    <%else rate_review.rating=='5'%>
+                    <div class="star_container ">
+                        <div class="active-star"></div>
+                        <div class="active-star"></div>
+                        <div class="active-star"></div>
+                        <div class="active-star"></div>
+                        <div class="active-star"></div>
+                    </div>
+                    <%end%>
 
                     <p><strong style="opacity:0.95"> <br /><%=rate_review.user.name%>: </strong><%=rate_review.content%></p>
                 </div>
@@ -223,26 +266,26 @@
                         <% end %>
                         <%elsif !@no_prev_review%>
                         <div class="d-flex">
-                            <i class="fas fa-check-circle fa-5x "style="color:#e7ab3c"></i>
+                            <i class="fas fa-check-circle fa-5x " style="color:#e7ab3c"></i>
                             <h4 style="color:#696969; margin-left:1rem">You already reviewed this product before, thank you!</h4>
                         </div>
                         <p>
                         <div class="modal-footer">
 
-                            <button type="button"  class="close">OK</button>
+                            <button type="button" class="close">OK</button>
                         </div>
 
                         </p>
                         <%else%>
                         <div class="d-flex">
-                            <i class="fas fa-info-circle fa-5x mt-3"style="color:#e7ab3c"></i>
-                            <h4 style="color:#696969; margin-left:1rem">Sorry you can't review, Since you don't have a verified 
-                            purchase for this product from our store</h4>
+                            <i class="fas fa-info-circle fa-5x mt-3" style="color:#e7ab3c"></i>
+                            <h4 style="color:#696969; margin-left:1rem">Sorry you can't review, Since you don't have a verified
+                                purchase for this product from our store</h4>
                         </div>
                         <p>
                         <div class="modal-footer">
 
-                            <button type="button"  class="close">OK</button>
+                            <button type="button" class="close">OK</button>
                         </div>
 
                         </p>
@@ -266,7 +309,7 @@
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
-    var span1= document.getElementsByClassName("close")[1];
+    var span1 = document.getElementsByClassName("close")[1];
 
     // When the user clicks the button, open the modal 
     btn.onclick = function() {
