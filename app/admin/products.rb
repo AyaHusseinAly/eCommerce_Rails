@@ -1,4 +1,4 @@
-ActiveAdmin.register Product do
+ActiveAdmin.register Product, as: "All Products" do
   
   controller do
     def scoped_collection

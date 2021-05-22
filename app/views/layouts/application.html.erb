@@ -91,8 +91,8 @@
                     <div style="margin-left:10px;">
                         <select class="custom-select" style="width:90px;" name="seller" id="seller">
                             <option value="All">sellers</option>
-                            <%@categories.each do |category|%>
-                            <option value=<%=category.name%>><%=category.name%></option>
+                            <%@seller.each do |seller|%>
+                            <option value=<%=seller.id%>><%=seller.name%></option>
                             <%end%>
                         </select>
                     </div>
