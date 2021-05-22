@@ -4,7 +4,7 @@
 <head>
     <title>eCommerce</title>
     <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="fI+iMmbIRCgXI2Fq9Dl30bGHuKSig41M04dYBLyinSR5nfbevoGf78LxWrhPKxHzqe6UNNnzMdq4eFr921bDhw==" />
+<meta name="csrf-token" content="2rlRVDzsDLWXIbj1RoAmGW2bIP1k6TKE5TDV5KlZ333QQg8S9v6IFWs0a58QX/HAVquRdsZTs5OUPCjJWkZsuA==" />
     
 
     <link rel="stylesheet" media="all" href="/assets/api.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" data-turbolinks-track="reload" />
@@ -91,6 +91,9 @@
                         <select class="custom-select" style="width:140px;" name="brand" id="brand">
                             <option value="All">brands</option>
                             <option value=1>Sample Brand</option>
+                            <option value=2>adidas</option>
+                            <option value=3>nic</option>
+                            <option value=4>zara</option>
                         </select>
                     </div>
                     <div style="margin-left:10px;">
@@ -166,7 +169,8 @@
             <a class="nav-link text-white text-center" href="#">STORES</a>
         </div>
         <div class="nav-item ">
-            <a class="nav-link text-white text-center" href="/orders/">MY ORDERS</a>
+            <a class="nav-link text-white text-center" href="/orders/6">MY ORDERS</a>
+
         </div>
 
         </div>
@@ -188,7 +192,7 @@
     <div class="row mr-5 ml-5 d-flex">
     <div class="col-md-12 col-lg-8">
         <div class="card border rounded m-3 ">
-            <div class="card-header " id="prodid">Product #9 - Pencil</div>
+            <div class="card-header " id="prodid">Product #13 - Camera</div>
 
 
             <div class="card-body">
@@ -202,7 +206,7 @@
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active ">
-                            <img src="../img/products/11.jpg" id="prodimg1" class="d-block w-100 imgContainer" alt="...">
+                            <img src="../img/products/7.jpg" id="prodimg1" class="d-block w-100 imgContainer" alt="...">
                             <div class="carousel-caption d-none d-md-block text-center align-middle">
                                 <h6 class="text-center m-2">1/3</h6>
 
@@ -237,7 +241,7 @@
 
             <div class="card-footer bg-transparent">
                 <h4>Product Description</h4>
-                <p id="proddesc">You need me to write</p>
+                <p id="proddesc">This is a camera.</p>
 
             </div>
         </div>
@@ -250,21 +254,21 @@
                 Product Details
             </div>
             <div class="card-body">
-                <h2 class="card-title d-inline text-danger" id="prodprice">$5 </h2><span class="text-secondary"> only</span>
+                <h2 class="card-title d-inline text-danger" id="prodprice">$1200 </h2><span class="text-secondary"> only</span>
                 <div class=" m-2 line text-secondary">
                 <strong class="ml-1">Average Rating:</strong>
-                  <div class="star_container">
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
+                     <div class="star_container ">
+                    <div class="active-star"></div>
+                    <div class="active-star"></div>
+                    <div class="active-star"></div>
                     <div class="clip-star"></div>
                     <div class="clip-star"></div>
                   </div>
 
                 </div>
                 <div class="m-2 p-2 line text-secondary">
-                    <strong>Date Posted:</strong><span> 2021-05-21 01:56:24 UTC</span>
-                    <strong>Quantity:</strong><span id="prodquantity"> 100</span>
+                    <strong>Date Posted:</strong><span> 2021-05-21 02:11:13 UTC</span>
+                    <strong>Quantity:</strong><span id="prodquantity"> 21</span>
                 </div>
 
                 <a href="#" class="btn d-block m-1 shadow" style="background-color:#e7ab3c;color:white"><i class="fas fa-shopping-cart fa-xs mr-2" style="color: white;"></i>Add to Cart</a>
@@ -282,6 +286,17 @@
             </div>
 
             <div class="card-body">
+                <div class="pt-2"style="border-bottom:1px solid rgb(128,128,128,0.5)">
+                     <div class="star_container ">
+                    <div class="active-star"></div>
+                    <div class="active-star"></div>
+                    <div class="active-star"></div>
+                    <div class="clip-star"></div>
+                    <div class="clip-star"></div>
+                  </div>
+
+                    <p><strong style="opacity:0.95"> <br />ayahussein: </strong>nice cam</p>
+                </div>
             </div>
         </div>
     </div>
@@ -302,9 +317,8 @@
                     </div>
                     <div class="modal-body">
                         <div class="d-flex">
-                            <i class="fas fa-info-circle fa-5x mt-3"style="color:#e7ab3c"></i>
-                            <h4 style="color:#696969; margin-left:1rem">Sorry you can't review, Since you don't have a verified 
-                            purchase for this product from our store</h4>
+                            <i class="fas fa-check-circle fa-5x "style="color:#e7ab3c"></i>
+                            <h4 style="color:#696969; margin-left:1rem">You already reviewed this product before, thank you!</h4>
                         </div>
                         <p>
                         <div class="modal-footer">
@@ -313,7 +327,6 @@
                         </div>
 
                         </p>
-
                     </div>
 
                 </div>
