@@ -10,6 +10,8 @@ class HomeController < ApplicationController
 
     def index
         @products=Product.all.order("created_at desc").limit(12)
+        @wishlist=WishingListItem.all
+        @wish_found_flag=false
 
     end
 

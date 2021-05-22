@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
-
+ 
  body{
      background-color: #d5e7ec;
      overflow-x: hidden; 
@@ -60,7 +60,7 @@
   
 .dropdown:hover .dropbtn {
     background-color: transparent;
-    border:2px solid #e7ab3c;
+    border:2px solid #e7ab3c !important;
     border-radius:10px 10px;
 }
 .nav-item{

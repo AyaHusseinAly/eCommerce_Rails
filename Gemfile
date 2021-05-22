@@ -6,15 +6,24 @@ ruby '2.7.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.6'
 # Use postgres as the database for Active Record
-gem 'pg'
+# gem 'pg'
+gem 'sqlite3'
 #add devise
 gem 'devise'
 #add cancancan
 gem 'cancancan'
+#activeadmin for admin dashboard
+gem 'activeadmin'
 #will_paginate for pagination
 gem 'will_paginate', '~> 3.3.0'
 #use serializer for API
 gem "active_model_serializers", "~> 0.8.0"
+#page caching
+gem "actionpack-page_caching"
+#for devise
+gem 'devise-bootstrapped'
+# #for img resize
+# gem 'image_processing'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -63,4 +72,6 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', '~> 1.2019', '>= 1.2019.2'
+

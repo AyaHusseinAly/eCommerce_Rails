@@ -203,7 +203,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <% if @can_review%>
+                        <% if @can_review && @no_prev_review%>
                         <%= form_with(model: [ @product, @product.rate_reviews.build ], local: true) do |form| %>
                         <p>
                             <%= form.collection_radio_buttons :rating, [[1], [2], [3], [4], [5]], :first, :last, item_wrapper_tag: false, boolean_style: :inline do |b| %>
@@ -221,10 +221,22 @@
 
                         </p>
                         <% end %>
+                        <%elsif !@no_prev_review%>
+                        <div class="d-flex">
+                            <i class="fas fa-check-circle fa-5x "style="color:#e7ab3c"></i>
+                            <h4 style="color:#696969; margin-left:1rem">You already reviewed this product before, thank you!</h4>
+                        </div>
+                        <p>
+                        <div class="modal-footer">
+
+                            <button type="button"  class="close">OK</button>
+                        </div>
+
+                        </p>
                         <%else%>
                         <div class="d-flex">
                             <i class="fas fa-info-circle fa-5x mt-3"style="color:#e7ab3c"></i>
-                            <h4 style="color:#696969; margin-left:1rem">Sorry you can't review this product, you don't have a verified 
+                            <h4 style="color:#696969; margin-left:1rem">Sorry you can't review, Since you don't have a verified 
                             purchase for this product from our store</h4>
                         </div>
                         <p>

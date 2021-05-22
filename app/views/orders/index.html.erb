@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container"style="min-height:500px">
     <div class="d-flex justify-content-around py-5">
 
         <div class="col-md-5 ">
@@ -6,7 +6,7 @@
             <div class="d-flex justify-content-start align-items-center my-3  bg-light py-3 shadow-sm "style="width: 17.5rem;">
                 <i class=" fas fa-user fa-3x col-3 "style="color:#e7ab3c"></i>
                 <div class=" col-3 "style="font-size: 0.70rem;">
-                    <h6 class="m-0 p-0" id="user"><%=current_user.name%></h6> 
+                    <h6 class="m-0 p-0" id="user"style="width: 17.5rem;"><%=current_user.name%></h6> 
                     <span id="email"><%=current_user.email%></span>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                      
                         <div class="d-inline " style="color:#212529;">
                             <i class="fas fa-pencil-alt fa-xs ml-3" ></i>
-                            <strong style="font-size: 0.7rem"> Write a Review</strong>
+                            <strong style="font-size: 0.7rem"><a href="<%=product_path(o_d.product)%>" style="color:#212529;"> Write a Review</a></strong>
                         </div>
                     
 
@@ -68,7 +68,7 @@
 
 <%end%>
 <%else%>
-<h1 style="color:grey;margin-top:5rem;margin-bottom:5rem"> you don't have any orders yet :(</h1>
+<h1 style="color:grey;margin-top:5rem;margin-bottom:5rem;"> you don't have any orders yet :(</h1>
 <%end%>
 
 </div>

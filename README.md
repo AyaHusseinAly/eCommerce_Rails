@@ -4,10 +4,10 @@
 ![](preview/WhatsApp%20Image%202021-05-13%20at%204.06.55%20AM.jpeg)
 
 ## Home Page
-![](preview/homePage.png)
+![](preview/1-homePage.png)
 
 ## Product Page
-![](preview/productShow.png)
+![](preview/2-productShow.png)
 
 ### only buyer who purchased the product can review it
 ![](preview/no_purchase_no_review.PNG)
