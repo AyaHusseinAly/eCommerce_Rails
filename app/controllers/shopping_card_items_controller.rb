@@ -1,4 +1,10 @@
 class ShoppingCardItemsController < ApplicationController
+      before_action do
+        @categories=Category.all 
+        @products=Product.all
+        @brands=Brand.all
+        @seller = AdminUser.where(role: "seller")      
+    end
     def index
         @buyerProducts=ShoppingCardItem.where(user:current_user)
         @categories=Category.all
@@ -24,6 +30,7 @@ class ShoppingCardItemsController < ApplicationController
             end  
               
             redirect_to root_path
+            # redirect_back
       end
       def addToCartFromWishingList
         @product = Product.find(params[:id])
@@ -51,19 +58,53 @@ class ShoppingCardItemsController < ApplicationController
         redirect_to shopping_card_item_index_path  
         # redirect_to :back
       end
-      def checkout
-        #  render :json=>params[:shopping_card_items]
+      # def checkout
+      #   #  render :json=>params[:shopping_card_items]
 
-        @products=ShoppingCardItem.where(user:current_user)
-        @order=Order.create(status:"Pending",user:current_user)
-        @products.each do |product|
+      #   @products=ShoppingCardItem.where(user:current_user)
+      #   @order=Order.create(status:"Pending",user:current_user)
+      #   @products.each do |product|
+      #       @orderDetail=OrderDetail.create(paid_price:product.product.price,product:product.product,order:@order,amount:product.quantity)
+      #       @orderDetail.save
+      #       @orderDetail.product.quantity=@orderDetail.product.quantity-@orderDetail.amount
+      #       @orderDetail.product.save
+
+      #   end
+      #   @products.delete_all
+      #   redirect_to shopping_card_item_index_path  
+
+      # end
+      def checkoutForm
+        # render :json=>params['CARD NUMBER']
+        while ShoppingCardItem.where(user:current_user).length > 0 do
+          @first_store=ShoppingCardItem.find_by(user:current_user).product.store
+          @store_products=Product.where(store:@first_store)
+          @products=ShoppingCardItem.where(user:current_user,product:@store_products)
+          @order=Order.create!(status:"Pending",user:current_user,store:@first_store)
+          @products.each do |product|
             @orderDetail=OrderDetail.create(paid_price:product.product.price,product:product.product,order:@order,amount:product.quantity)
             @orderDetail.save
             @orderDetail.product.quantity=@orderDetail.product.quantity-@orderDetail.amount
             @orderDetail.product.save
-
+          end
+          @products.delete_all
         end
-        @products.delete_all
+        redirect_to shopping_card_item_index_path  
+      end
+      def checkout
+        while ShoppingCardItem.where(user:current_user).length > 0 do
+          @first_store=ShoppingCardItem.find_by(user:current_user).product.store
+          @store_products=Product.where(store:@first_store)
+          @products=ShoppingCardItem.where(user:current_user,product:@store_products)
+          @order=Order.create!(status:"Pending",user:current_user,store:@first_store)
+          @products.each do |product|
+            @orderDetail=OrderDetail.create(paid_price:product.product.price,product:product.product,order:@order,amount:product.quantity)
+            @orderDetail.save
+            @orderDetail.product.quantity=@orderDetail.product.quantity-@orderDetail.amount
+            @orderDetail.product.save
+          end
+          @products.delete_all
+        end
         redirect_to shopping_card_item_index_path  
 
       end

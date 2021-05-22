@@ -1,4 +1,10 @@
 class WishingListItemsController < ApplicationController
+      before_action do
+        @categories=Category.all 
+        @products=Product.all
+        @brands=Brand.all
+        @seller = AdminUser.where(role: "seller")      
+    end
     def addToWishingList
       @product = Product.find(params[:id])
       if WishingListItem.find_by(product: @product,user:current_user) == nil

@@ -1,4 +1,10 @@
 class ProductsController < ApplicationController
+    before_action do
+      @categories=Category.all 
+      @products=Product.all
+      @brands=Brand.all
+      @seller = AdminUser.where(role: "seller")      
+    end
     caches_page :show
     
     def index
@@ -15,7 +21,7 @@ class ProductsController < ApplicationController
           @no_prev_review=true
         end  
 
-        current_user.orders.where(status:"delivered").each { |o|  
+        current_user.orders.where(status:"Delivered").each { |o|  
           if o.order_details.where(product_id:params[:id]) != []
               @can_review=true
           end

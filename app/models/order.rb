@@ -9,7 +9,7 @@ class Order < ApplicationRecord
     scope :confirmed, ->{where(status:"Confirmed")}
 
     validates :status,
-    inclusion: { in: %w(pending confirmed delivered)}
+    inclusion: { in: %w(Pending Confirmed Delivered)}
 
 end
 
