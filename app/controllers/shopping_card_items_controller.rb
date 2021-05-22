@@ -1,4 +1,10 @@
 class ShoppingCardItemsController < ApplicationController
+      before_action do
+        @categories=Category.all 
+        @products=Product.all
+        @brands=Brand.all
+        @seller = AdminUser.where(role: "seller")      
+    end
     def index
         @buyerProducts=ShoppingCardItem.where(user:current_user)
         @categories=Category.all
