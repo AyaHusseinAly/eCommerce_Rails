@@ -43,7 +43,13 @@ ActiveAdmin.register User do
     end
     actions  
   end
-  
+  after_create do
+    @seller=User.all.last
+    if @seller.role=="seller"
+      AdminUser.create!(name:@seller.name,email:@seller.email,password:@seller.password,password_confirmation:@seller.password_confirmation,role:"seller")
+    end
+  end
+
   # or
   #
   # permit_params do

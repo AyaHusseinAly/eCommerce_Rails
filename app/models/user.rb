@@ -8,6 +8,9 @@ class User < ApplicationRecord
     has_many :wishing_list_items
     has_many :rate_reviews
     has_many :shopping_card_items
+    has_many :stores    
+    has_one_attached :avatar
+
 
     ##### stores has been moved to AdminUser model 
     # AdminUser.where(role:'seller')

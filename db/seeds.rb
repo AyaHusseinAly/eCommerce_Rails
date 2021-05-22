@@ -7,18 +7,23 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 #delete all previous records and reset pk
+WishingListItem.destroy_all
+ShoppingCardItem.destroy_all
+RateReview.destroy_all
+OrderDetail.destroy_all
 Product.destroy_all
+Order.destroy_all
 Store.destroy_all
 User.destroy_all
 Brand.destroy_all
 Category.destroy_all
 AdminUser.destroy_all
-ActiveRecord::Base.connection.reset_pk_sequence!(Product.table_name)
-ActiveRecord::Base.connection.reset_pk_sequence!(Store.table_name)
-ActiveRecord::Base.connection.reset_pk_sequence!(Brand.table_name)
-ActiveRecord::Base.connection.reset_pk_sequence!(Category.table_name)
-ActiveRecord::Base.connection.reset_pk_sequence!(User.table_name)
-ActiveRecord::Base.connection.reset_pk_sequence!(AdminUser.table_name)
+# ActiveRecord::Base.connection.reset_pk_sequence!(Product.table_name)
+# ActiveRecord::Base.connection.reset_pk_sequence!(Store.table_name)
+# ActiveRecord::Base.connection.reset_pk_sequence!(Brand.table_name)
+# ActiveRecord::Base.connection.reset_pk_sequence!(Category.table_name)
+# ActiveRecord::Base.connection.reset_pk_sequence!(User.table_name)
+# ActiveRecord::Base.connection.reset_pk_sequence!(AdminUser.table_name)
 
 
 
@@ -45,12 +50,12 @@ Category.create!([{
     name:"Others"
 }
 ])
-User.create!(
-    name:"User",
-    email:"user@example.com",
-    password:"password",
-    password_confirmation: 'password'
-)
+# User.create!(
+#     name:"User",
+#     email:"user@example.com",
+#     password:"password",
+#     password_confirmation: 'password'
+# )
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 AdminUser.create!(email: 'seller@example.com', password: 'password', password_confirmation: 'password',role: 'seller') if Rails.env.development?
 User.create!(email: 'seller@example.com', password: 'password', password_confirmation: 'password',role: 'seller') 
@@ -61,8 +66,6 @@ Store.create!([{
     admin_user: AdminUser.find_by(role:"seller")
 }
 ])
-
-    
 Product.create!([{
     title:'Hoodie',
     description: 'This is a hoodie.',
