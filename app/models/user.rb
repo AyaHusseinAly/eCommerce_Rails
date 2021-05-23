@@ -14,7 +14,25 @@ class User < ApplicationRecord
     has_many :wishing_list_items
     has_many :rate_reviews
     has_many :shopping_card_items
-    has_many :stores 
+    has_many :stores    
+    has_one_attached :avatar
+
+    after_create :send_confirmation_email
+    private
+    def send_confirmation_email
+        @user = User.last
+        UserMaileMailer.welcome_email(@user).deliver_now
+
+    end
+
+    ##### stores has been moved to AdminUser model 
+    # AdminUser.where(role:'seller')
+    # has_many :stores 
+
+  scope :seller, ->{where(role:"seller")}
+  scope :buyer, ->{where(role:"buyer")}      
+
+    # has_many :stores 
     has_one_attached :avatar  
 
   after_commit :add_default_avatar, on: %i[create update]

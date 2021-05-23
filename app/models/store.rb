@@ -1,5 +1,7 @@
 class Store < ApplicationRecord
     has_many :products
-    belongs_to :user
+    has_many :orders
+    belongs_to :admin_user
+
 
 end

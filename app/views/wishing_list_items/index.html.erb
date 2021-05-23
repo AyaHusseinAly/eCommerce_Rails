@@ -1,0 +1,58 @@
+<div class="container my-2">
+    <h4 class="mt-3" style="width:15rem">Wishing List</h4>
+    <hr>
+    <div class="row">
+
+
+        <% @products.each do |product| %>
+
+        <div class="col-lg-3 col-md-6 col-xs-12 mt-3">
+            <div class="transCard">
+                <img class=" w-100 h-80 transImg" src="img/products/<%=product.img%>">
+            </div>
+            <div class="product__item__text">
+                <h6><%= link_to product.title, product_path(product)%></h6>
+                <div class="rating">
+                    <i class="fa fa-star" style="color:#e7ab3c"></i>
+                    <i class="fa fa-star" style="color:#e7ab3c"></i>
+                    <i class="fa fa-star" style="color:#e7ab3c"></i>
+                    <i class="fa fa-star" style="color:#e7ab3c"></i>
+                    <i class="fa fa-star" style="color:#e7ab3c"></i>
+                </div>
+
+                <div class="product__price d-flex justify-content-between">
+                    <span>$<%=product.price%></span>
+                    <span>
+                        <%
+=begin%>
+                        <%= link_to '',destroy_wishinglistitem_path(product.id), class: "bi bi-x-circle-fill", style:"color:#e7ab3c;cursor:pointer"%>
+                        <%if product.quantity >0%>
+                        <%
+=end%>
+                        <div style="display:inline-block">
+                            <%= form_tag :controller=>'wishing_list_items', :action => 'destroyForm' do %>
+                            <input type="hidden" name="id" value=<%=product.id%>>
+                            <input type="hidden" name="path" value=<%=wishing_list_items_path%>>
+                            <%= button_tag(type: "submit", class: "btn btn-default") do %>
+                            <i class="fa fa-heart fa-lg" style="color:#e7ab3c;cursor:pointer;font-size: 1.25rem"></i>
+                            <%end%>
+                            <%end%>
+                        </div>
+                        <%= link_to '',addToCartFromWishingList_path(product.id), class: "bi bi-cart-plus-fill", style:"color:#e7ab3c;cursor:pointer;font-size: 1.25rem;"%>
+                        <%
+=begin%>
+                        <%end%>
+                        <%
+=end%>
+                    </span>
+
+                </div>
+                <%if product.quantity == 0%>
+                <div class="alert alert-danger d-flex justify-content-center" role="alert">out of stock</div>
+                <%end%>
+            </div>
+        </div>
+
+        <%end%>
+    </div>
+</div>

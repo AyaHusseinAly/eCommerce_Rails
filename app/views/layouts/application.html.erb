@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>eCommerce</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -9,125 +10,139 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" >
-  </head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+</head>
 
-  <body>
+<body>
 
-<div class="d-flex justify-content-between border px-2"width="100%">
-    <div class="my-2 mx-4 ">
-    <div style="width:80px;display:inline-block;margin-right:20px;border:2px solid #e7ab3c;"><%=  image_tag(current_user.avatar_thumbnail)  %></div>
-            <i class=" fa fa-envelope"></i>
-           <span style="font-size:20px;"> <%= current_user.email %> </span>
-    
-            <%# <i class=" fa fa-phone ml-4"></i> %>
+    <div class="d-flex justify-content-between border px-2" width="100%">
+        <div class="my-2 mx-4 ">
             
-    </div>
 
-    <div ></div>
-    <div class="d-flex px-5 align-items-center">
-    <div class="border-right">
-        <a href="#"><i class="fab fa-facebook-f mx-2"style="color: #212529;font-size:20px"></i></a>
-        <a href="#"><i class="fab fa-twitter mx-2"style="color: #212529;font-size:20px"></i></a>
-        <a href="#"><i class="fab fa-linkedin mx-2"style="color: #212529;font-size:20px"></i></a>
-        <a href="#"><i class="fab fa-pinterest mx-2"style="color: #212529;font-size:20px"></i></a>
-    </div>
-    <%if user_signed_in?%>
-        <%= link_to 'Edit Profile', edit_user_registration_path, class: "login-panel ml-5", style: "color: #212529;font-size:20px" %>
-        <%= link_to 'logout', destroy_user_session_path,method: :delete, class: "login-panel ml-5 ", style: "color: #212529;font-size:20px"%>
+            <div style="width:80px;display:inline-block;margin-right:20px;border:2px solid #e7ab3c;"><%=  image_tag(current_user.avatar_thumbnail)  %></div>
+            
+
+            <i class=" fa fa-envelope"></i>
+            <span style="font-size:20px;"> <%= current_user.email %> </span>
+
+            <%# <i class=" fa fa-phone ml-4"></i> %>
+
+        </div>
+
 
     <%else%>    
         <a href="#" class="login-panel mx-5"style="color: #212529"><i class="fa fa-user"></i>Login</a>
          <%# <%= link_to 'login', new_user_session_path,method: :get, class: "login-panel ml-5 ", style: "color: #212529;font-size:20px"%> %>
     <%end%>
 
-    </div>
-</div>
-
-<div class="row" style="height:150px ;margin-right:50px;">
-    <div class="col-lg-3"></div>
-
-    <div class="col-lg-6 advanced-search d-flex align-items-center ">
-        <form class="form-inline my-2 my-lg-0 d-flex" action="/search" method="get" accept-charset="UTF-8" >
-            <div>
-            <input class="form-control mr-sm-2" id="q" style="width:550px;" name="q" placeholder="Search" aria-label="Search" type="text"/>
-            <button class="btn my-2 my-sm-0" type="submit" style="border:1px solid #e7ab3c"><i class="fa fa-search"style="color: #e7ab3c"></i></button>
+        <div></div>
+        <div class="d-flex px-5 align-items-center">
+            <div class="border-right">
+                <a href="#"><i class="fab fa-facebook-f mx-2" style="color: #212529;font-size:20px"></i></a>
+                <a href="#"><i class="fab fa-twitter mx-2" style="color: #212529;font-size:20px"></i></a>
+                <a href="#"><i class="fab fa-linkedin mx-2" style="color: #212529;font-size:20px"></i></a>
+                <a href="#"><i class="fab fa-pinterest mx-2" style="color: #212529;font-size:20px"></i></a>
             </div>
-            <br><br>
-            <div>
-                <select class="custom-select" style="width:140px;" name="cat" id="cat">
-                <option value="All">All categories</option>
-                <%@categories.each do |category|%>
-                    <option value=<%=category.id%>><%=category.name%></option>
-                <%end%>
-                </select>
-            </div>
-            <div style="margin-left:10px;">
-                <select class="custom-select" style="width:140px;" name="brand" id="brand">
-                <option value="All">brands</option>
-                <%@brands.each do |brand|%>
-                    <option value=<%=brand.id%>><%=brand.name%></option>
-                <%end%>
-                </select> 
-            </div>
-            <div style="margin-left:10px;">
-                <select class="custom-select" style="width:150px;" name="price" id="price">
-                <option value="All">Price</option>
-                    <option value="0..499">less than 500</option>
-                    <option value="500..1000">500 to 1000</option>
-                    <option value="1000..5000">1000 to 5000</option>
-                    <option value="5000">more than 5000</option>
-                </select>
-            </div>
-            <div style="margin-left:10px;">
-                <select class="custom-select" style="width:90px;" name="seller" id="seller">
-                <option value="All">sellers</option>
-                <%@categories.each do |category|%>
-                    <option value=<%=category.name%>><%=category.name%></option>
-                <%end%>
-                </select>
-            </div>
-            
+            <%if user_signed_in?%>
+            <%= link_to 'Edit Profile', edit_user_registration_path, class: "login-panel ml-5", style: "color: #212529;font-size:20px" %>
+            <%= link_to 'logout', destroy_user_session_path,method: :delete, class: "login-panel ml-5 ", style: "color: #212529;font-size:20px"%>
 
+            <%else%>
+            <%= link_to 'login', new_user_session_path,method: :get, class: "login-panel ml-5 ", style: "color: #212529"%>
 
-            
-        </form>
-           
+            <%end%>
+>>>>>>> ed4d096a21e8f61de9920e12f95af551d0054f78
 
-    </div>
-    
-    <div class="col-lg-1 d-flex align-items-center justify-content-around">
-        <div class="heart-icon">
-            <a href="#">
-            <i class="fa fa-heart fa-lg"style="color: #e7ab3c"></i>
-            </a>
         </div>
-        <div class="cart-icon">
-            <a href="#">
-            <i class="fas fa-shopping-cart fa-lg"style="color: #e7ab3c"></i>
-            </a>
-        </div>
-        
     </div>
 
 
-</div>
-  
-  
+    <div class="row mb-4" style="height:150px ;margin-right:50px;">
+        <div class="col-lg-3 mr-5"></div>
+
+
+        <div class="col-lg-6 advanced-search mt-5 ">
+            <form class="form-inline my-2 my-lg-0 d-flex" action="/search" method="get" accept-charset="UTF-8">
+
+                <div class="d-flex align-items-center ">
+                    <input class="form-control mr-sm-2" id="q" style="width:500px;" name="q" placeholder="Search" aria-label="Search" type="text" />
+                    <button class="btn my-2 my-sm-0" type="submit" style="border:1px solid #e7ab3c"><i class="fa fa-search" style="color: #e7ab3c"></i></button>
+                </div>
+                <div class="d-flex align-items-center mt-2">
+                    <div>
+                        <select class="custom-select" style="width:140px;" name="cat" id="cat">
+                            <option value="All">All categories</option>
+                            <%@categories.each do |category|%>
+                            <option value=<%=category.id%>><%=category.name%></option>
+                            <%end%>
+                        </select>
+                    </div>
+                    <div style="margin-left:10px;">
+                        <select class="custom-select" style="width:140px;" name="brand" id="brand">
+                            <option value="All">brands</option>
+                            <%@brands.each do |brand|%>
+                            <option value=<%=brand.id%>><%=brand.name%></option>
+                            <%end%>
+                        </select>
+                    </div>
+                    <div style="margin-left:10px;">
+                        <select class="custom-select" style="width:150px;" name="price" id="price">
+                            <option value="All">Price</option>
+                            <option value="0..499">less than 500</option>
+                            <option value="500..1000">500 to 1000</option>
+                            <option value="1000..5000">1000 to 5000</option>
+                            <option value="5000">more than 5000</option>
+                        </select>
+                    </div>
+                    <div style="margin-left:10px;">
+                        <select class="custom-select" style="width:90px;" name="seller" id="seller">
+                            <option value="All">sellers</option>
+                            <%@seller.each do |seller|%>
+                            <option value=<%=seller.id%>><%=seller.name%></option>
+                            <%end%>
+                        </select>
+                    </div>
+                </div>
+
+
+
+            </form>
+
+
+        </div>
+        <div class="col-1"></div>
+        <div class="col-lg-1 d-flex align-items-center justify-content-around">
+            <div class="heart-icon">
+                <%= link_to '',wishing_list_items_path(), class: "fa fa-heart fa-lg", style:"color:#e7ab3c;cursor:pointer"%>
+            </div>
+
+            <div class="cart-icon">
+
+                <%= link_to '',shopping_card_item_index_path(), class: "fas fa-shopping-cart fa-lg", style:"color:#e7ab3c;cursor:pointer"%>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
     <nav class="d-flex justify-content-around align-items-center sticky" style="background-color: #212529">
-        <button class="navbar-toggler"type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"><i class="fas fa-align-justify"style="color:white"></i></span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"><i class="fas fa-align-justify" style="color:white"></i></span>
         </button>
 
 
         <div class="dropdown">
             <button class="dropbtn">All Categories</button>
             <div class="dropdown-content">
-            <%@categories.each do |category|%>
+                <%@categories.each do |category|%>
                 <a href="<%=category_path(category)%>"><%=category.name%></a>
                 <%# <a href="#">Sports</a>
                 <a href="#">Toys</a> %>
-            <%end%>
+                <%end%>
             </div>
         </div>
 
@@ -139,72 +154,84 @@
             <a class="nav-link text-white text-center" href="/products">SHOP</a>
         </div>
         <div class="nav-item ">
-            <a class="nav-link text-white text-center" href="#">COLLECTION</a>
+            <a class="nav-link text-white text-center" href="#">STORES</a>
         </div>
         <div class="nav-item ">
-        <%if current_user.orders == []%>
+            <%if current_user.orders == []%>
             <a class="nav-link text-white text-center" href="/orders/">MY ORDERS</a>
-        <%else%>
+            <%else%>
             <a class="nav-link text-white text-center" href="/orders/<%=current_user.orders.last.id%>">MY ORDERS</a>
 
-        <%end%>    
-        </div>        
+            <%end%>
+        </div>
 
-      </div>
+        </div>
     </nav>
     <div class="pos-f-t">
-    <div class="collapse" id="navbarToggleExternalContent">
-        <div class="bg-dark p-4">
-        <h4 class="text-white">Collapsed content</h4>
-        <span class="text-muted">Toggleable via the navbar brand.</span>
+        <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-dark p-4">
+                <% if user_signed_in? %>
+                <% if current_user.avatar.attached? %>
+                <img src='<%= url_for(current_user.avatar)%>' class="ml-5  ml-2rounded-circle " style="width:5rem;height:5rem" />
+                <%end%>
+                <strong style="color:#FFF"> <%= current_user.name %></strong>
+
+                <%
+=begin%>
+                <a href="<%=user_path(current_user)%>">Visit Profile</a>
+                <%
+=end%>
+
+                <%end%>
+            </div>
         </div>
-    </div>
 
     </div>
 
-  <!------------------------------------------------------------------------------------------------------------------>
-  <!------------------------------------------------------------------------------------------------------------------>
+    <!------------------------------------------------------------------------------------------------------------------>
+    <!------------------------------------------------------------------------------------------------------------------>
     <%= yield %>
-  <!------------------------------------------------------------------------------------------------------------------>
-  <!------------------------------------------------------------------------------------------------------------------>
+    <!------------------------------------------------------------------------------------------------------------------>
+    <!------------------------------------------------------------------------------------------------------------------>
 
-       <!-------------------------- Footer ------------------------>
-        <div class="footer">
-            <div class="footer_content1">
-                <h2>Our Mission</h2>
-                <p>So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved us lan Gathering thing us land years living.
+    <!-------------------------- Footer ------------------------>
+    <div class="footer">
+        <div class="footer_content1">
+            <h2>Our Mission</h2>
+            <p>So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved us lan Gathering thing us land years living.
 
-                    So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved</p>
-            </div>
-            <div class="footer_content2">
-                <h3>About Us</h3>
-                <p>So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved us lan Gathering thing us land years living.
-
-                    So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved</p>
-            </div>
-            <div class="footer_content3">
-                <h3>Contact Us</h3>
-                <b>Head Office</b>
-
-                <p>123, Main Street, Your City</p>
-                
-                <b>Phone Number</b> 
-                
-                <p>+123 456 7890 <br> +123 456 7890</p>
-                
-                
-                <b>Email</b> 
-                
-               <p>free@infoexample.com <br>
-                www.infoexample.com</p> 
-            </div>
-
+                So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved</p>
         </div>
+        <div class="footer_content2">
+            <h3>About Us</h3>
+            <p>So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved us lan Gathering thing us land years living.
+
+                So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved</p>
+        </div>
+        <div class="footer_content3">
+            <h3>Contact Us</h3>
+            <b>Head Office</b>
+
+            <p>123, Main Street, Your City</p>
+
+            <b>Phone Number</b>
+
+            <p>+123 456 7890 <br> +123 456 7890</p>
+
+
+            <b>Email</b>
+
+            <p>free@infoexample.com <br>
+                www.infoexample.com</p>
+        </div>
+
+    </div>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
- 
-  </body>
+
+</body>
+
 </html>

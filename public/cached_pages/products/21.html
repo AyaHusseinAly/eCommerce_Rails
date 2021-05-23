@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>eCommerce</title>
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="WTITK4R7YUxuLsa5zkbcrmEIm7uV+L3fQBMqAq7BkR5VXlRQ6hraejDAV8Zme4d6ivkXMCoKXGHVOivPdmIzVA==" />
+    
+
+    <link rel="stylesheet" media="all" href="/assets/api.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" data-turbolinks-track="reload" />
+<link rel="stylesheet" media="all" href="/assets/categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" data-turbolinks-track="reload" />
+<link rel="stylesheet" media="all" href="/assets/coupon.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" data-turbolinks-track="reload" />
+<link rel="stylesheet" media="all" href="/assets/home.self-fadfb26aa5e1a28f37d69e7892d8afe90d2443465099d82578e14bd8b6052b79.css?body=1" data-turbolinks-track="reload" />
+<link rel="stylesheet" media="all" href="/assets/orders.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" data-turbolinks-track="reload" />
+<link rel="stylesheet" media="all" href="/assets/products.self-17085225fb5ac065d5c28b99e427d32d3a366c6efe498d9d81b8e24f6c18a3fb.css?body=1" data-turbolinks-track="reload" />
+<link rel="stylesheet" media="all" href="/assets/rate_reviews.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" data-turbolinks-track="reload" />
+<link rel="stylesheet" media="all" href="/assets/shopping_card_items.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" data-turbolinks-track="reload" />
+<link rel="stylesheet" media="all" href="/assets/users.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" data-turbolinks-track="reload" />
+<link rel="stylesheet" media="all" href="/assets/wishing_list_items.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" data-turbolinks-track="reload" />
+<link rel="stylesheet" media="all" href="/assets/application.self-b69c422841b86c89caf127bc2dbe0e3fdabef3ef945abc0a477e1344e3059eaf.css?body=1" data-turbolinks-track="reload" />
+    <script src="/assets/rails-ujs.self-81c572f39b69ead02e3f97fe43b76954a434591bc2837e3a35af212315e67569.js?body=1" data-turbolinks-track="reload"></script>
+<script src="/assets/activestorage.self-1ed4604ac2170045f1ffca4edb81a75246661555e4f9cf682bb8a21825e32e1c.js?body=1" data-turbolinks-track="reload"></script>
+<script src="/assets/turbolinks.self-569ee74eaa15c1e2019317ff770b8769b1ec033a0f572a485f64c82ddc8f989e.js?body=1" data-turbolinks-track="reload"></script>
+<script src="/assets/active_admin.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.js?body=1" data-turbolinks-track="reload"></script>
+<script src="/assets/api.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="reload"></script>
+<script src="/assets/action_cable.self-69fddfcddf4fdef9828648f9330d6ce108b93b82b0b8d3affffc59a114853451.js?body=1" data-turbolinks-track="reload"></script>
+<script src="/assets/cable.self-8484513823f404ed0c0f039f75243bfdede7af7919dda65f2e66391252443ce9.js?body=1" data-turbolinks-track="reload"></script>
+<script src="/assets/categories.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="reload"></script>
+<script src="/assets/coupon.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="reload"></script>
+<script src="/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="reload"></script>
+<script src="/assets/orders.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="reload"></script>
+<script src="/assets/products.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="reload"></script>
+<script src="/assets/rate_reviews.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="reload"></script>
+<script src="/assets/shopping_card_items.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="reload"></script>
+<script src="/assets/users.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="reload"></script>
+<script src="/assets/wishing_list_items.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="reload"></script>
+<script src="/assets/application.self-66347cf0a4cb1f26f76868b4697a9eee457c8c3a6da80c6fdd76ff77e911715e.js?body=1" data-turbolinks-track="reload"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+</head>
+
+<body>
+
+    <div class="d-flex justify-content-between border px-2" width="100%">
+        <div class="my-2 mx-4 ">
+            <i class=" fa fa-envelope"></i>
+            <span style="font-size:20px;"> shrooktageldin@gmail.com </span>
+
+
+        </div>
+
+        <div></div>
+        <div class="d-flex px-5 align-items-center">
+            <div class="border-right">
+                <a href="#"><i class="fab fa-facebook-f mx-2" style="color: #212529;font-size:20px"></i></a>
+                <a href="#"><i class="fab fa-twitter mx-2" style="color: #212529;font-size:20px"></i></a>
+                <a href="#"><i class="fab fa-linkedin mx-2" style="color: #212529;font-size:20px"></i></a>
+                <a href="#"><i class="fab fa-pinterest mx-2" style="color: #212529;font-size:20px"></i></a>
+            </div>
+            <a class="login-panel ml-5" style="color: #212529;font-size:20px" href="/users/edit">Edit Profile</a>
+            <a class="login-panel ml-5 " style="color: #212529;font-size:20px" rel="nofollow" data-method="delete" href="/users/sign_out">logout</a>
+
+
+        </div>
+    </div>
+
+
+    <div class="row mb-4" style="height:150px ;margin-right:50px;">
+        <div class="col-lg-3 mr-5"></div>
+
+
+        <div class="col-lg-6 advanced-search mt-5 ">
+            <form class="form-inline my-2 my-lg-0 d-flex" action="/search" method="get" accept-charset="UTF-8">
+
+                <div class="d-flex align-items-center ">
+                    <input class="form-control mr-sm-2" id="q" style="width:500px;" name="q" placeholder="Search" aria-label="Search" type="text" />
+                    <button class="btn my-2 my-sm-0" type="submit" style="border:1px solid #e7ab3c"><i class="fa fa-search" style="color: #e7ab3c"></i></button>
+                </div>
+                <div class="d-flex align-items-center mt-2">
+                    <div>
+                        <select class="custom-select" style="width:140px;" name="cat" id="cat">
+                            <option value="All">All categories</option>
+                            <option value=11>Herbs</option>
+                            <option value=12>Electronics</option>
+                            <option value=13>Sports</option>
+                            <option value=14>Backpacks</option>
+                            <option value=15>Women&#39;s Clothes</option>
+                        </select>
+                    </div>
+                    <div style="margin-left:10px;">
+                        <select class="custom-select" style="width:140px;" name="brand" id="brand">
+                            <option value="All">brands</option>
+                            <option value=3>Sample Brand</option>
+                        </select>
+                    </div>
+                    <div style="margin-left:10px;">
+                        <select class="custom-select" style="width:150px;" name="price" id="price">
+                            <option value="All">Price</option>
+                            <option value="0..499">less than 500</option>
+                            <option value="500..1000">500 to 1000</option>
+                            <option value="1000..5000">1000 to 5000</option>
+                            <option value="5000">more than 5000</option>
+                        </select>
+                    </div>
+                    <div style="margin-left:10px;">
+                        <select class="custom-select" style="width:90px;" name="seller" id="seller">
+                            <option value="All">sellers</option>
+                            <option value=4></option>
+                        </select>
+                    </div>
+                </div>
+
+
+
+            </form>
+
+
+        </div>
+        <div class="col-1"></div>
+        <div class="col-lg-1 d-flex align-items-center justify-content-around">
+            <div class="heart-icon">
+                <a class="fa fa-heart fa-lg" style="color:#e7ab3c;cursor:pointer" href="/wishing_list_items"></a>
+            </div>
+
+            <div class="cart-icon">
+
+                <a class="fas fa-shopping-cart fa-lg" style="color:#e7ab3c;cursor:pointer" href="/addToCart/index"></a>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <nav class="d-flex justify-content-around align-items-center sticky" style="background-color: #212529">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"><i class="fas fa-align-justify" style="color:white"></i></span>
+        </button>
+
+
+        <div class="dropdown">
+            <button class="dropbtn">All Categories</button>
+            <div class="dropdown-content">
+                <a href="/categories/11">Herbs</a>
+                <a href="/categories/12">Electronics</a>
+                <a href="/categories/13">Sports</a>
+                <a href="/categories/14">Backpacks</a>
+                <a href="/categories/15">Women&#39;s Clothes</a>
+            </div>
+        </div>
+
+
+        <div class="nav-item active">
+            <a class="nav-link text-white text-center" href="/">HOME <span class="sr-only">(current)</span></a>
+        </div>
+        <div class="nav-item ">
+            <a class="nav-link text-white text-center" href="/products">SHOP</a>
+        </div>
+        <div class="nav-item ">
+            <a class="nav-link text-white text-center" href="#">STORES</a>
+        </div>
+        <div class="nav-item ">
+            <a class="nav-link text-white text-center" href="/orders/2">MY ORDERS</a>
+
+        </div>
+
+        </div>
+    </nav>
+    <div class="pos-f-t">
+        <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-dark p-4">
+                <img src='/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f350dcb19da5b63bdae1e4f27982f9e6f3ffca1b/20191226_004334.jpg' class="ml-5  ml-2rounded-circle " style="width:5rem;height:5rem" />
+                <strong style="color:#FFF"> shrook</strong>
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <!------------------------------------------------------------------------------------------------------------------>
+    <!------------------------------------------------------------------------------------------------------------------>
+    <div class="row mr-5 ml-5 d-flex">
+    <div class="col-md-12 col-lg-8">
+        <div class="card border rounded m-3 ">
+            <div class="card-header " id="prodid">Product #21 - Building</div>
+
+
+            <div class="card-body">
+                <!--<img  src="img/item102.jpeg" >
+                    -->
+                <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active ">
+                            <img src="../img/products/12.jpg" id="prodimg1" class="d-block w-100 imgContainer" alt="...">
+                            <div class="carousel-caption d-none d-md-block text-center align-middle">
+                                <h6 class="text-center m-2">1/3</h6>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item ">
+                            <img src="../img/products/download.png" id="prodimg2" class="d-block w-100 imgContainer" alt="...">
+                            <div class="carousel-caption d-none d-md-block align-middle">
+                                <h6 class="text-center m-2">2/3</h6>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../img/products/download.png" id="prodimg3" class="d-block w-100 imgContainer" alt="...">
+                            <div class="carousel-caption d-none d-md-block align-middle">
+                                <h6 class="text-center m-2">3/3</h6>
+
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" style="background-color:rgb(51, 50, 50)" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" style="background-color:rgb(99, 96, 96)" href="#carouselExampleCaptions" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="card-footer bg-transparent">
+                <h4>Product Description</h4>
+                <p id="proddesc">It&#39;s cheap for a building.. but it might fall on you ¯_(ツ)_/¯ </p>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-6 col-lg-4">
+        <div class="card border rounded m-3">
+            <div class="card-header">
+                Product Details
+            </div>
+            <div class="card-body">
+                <h2 class="card-title d-inline text-danger" id="prodprice">$10000 </h2><span class="text-secondary"> only</span>
+                <div class=" m-2 line text-secondary">
+                    <strong class="ml-1">Average Rating:</strong>
+                    <div class="star_container">
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                    </div>
+
+                </div>
+                <div class="m-2 p-2 line text-secondary">
+                    <strong>Date Posted:</strong><span> 2021-05-22 13:23:16 UTC</span>
+                    <strong>Quantity:</strong><span id="prodquantity"> 0</span>
+                </div>
+                <div style="width:100%">
+                    <div class="alert alert-danger d-flex justify-content-center mt-0" role="alert">out of stock</div>
+                </div>
+                <div style="width:100%">
+                    <form action="/addToWishingListForm" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="Px/mX5isg1lTbFMEOV01fjwvHFDe4lgM3w6dfdA+3MJbn+ZU8OFKn9ozWF1qdOQNtQ4XPuX4nvipidgMC2CNgQ==" />
+                    <input type="hidden" name="id" value=21>
+                    <input type="hidden" name="path" value=/>
+                    <button name="button" type="submit" class="btn d-block m-1" style="background-color:rgb(33, 37, 41,0.9);color:white;width:100%">
+                    <i class="fas fa-heart fa-xs mr-2" style="color: white;"></i>Add to wishinglist
+</button></form>                    <!--end of form-->
+                    <!--end -->
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card border rounded m-3">
+            <div class="card-header">
+                Reviews
+                <div class="d-inline " style="color:#e7ab3c;float:right">
+                    <i class="fas fa-pencil-alt fa-xs"></i>
+                    <strong style="font-size: 13px"><button id="myBtn" style="color:#e7ab3c;border:none"> Write a Review</button></strong>
+                </div>
+            </div>
+
+            <div class="card-body">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!------------------------------------------------------------------------------------------------------------>
+<div class="row">
+    <div class="col-6">
+        <div class="modal" tabindex="-1" role="dialog" id="myModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Adding Review</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex">
+                            <i class="fas fa-info-circle fa-5x mt-3" style="color:#e7ab3c"></i>
+                            <h4 style="color:#696969; margin-left:1rem">Sorry you can't review, Since you don't have a verified
+                                purchase for this product from our store</h4>
+                        </div>
+                        <p>
+                        <div class="modal-footer">
+
+                            <button type="button" class="close">OK</button>
+                        </div>
+
+                        </p>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    var span1 = document.getElementsByClassName("close")[1];
+
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    span1.onclick = function() {
+        modal.style.display = "none";
+    }
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+    <!------------------------------------------------------------------------------------------------------------------>
+    <!------------------------------------------------------------------------------------------------------------------>
+
+    <!-------------------------- Footer ------------------------>
+    <div class="footer">
+        <div class="footer_content1">
+            <h2>Our Mission</h2>
+            <p>So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved us lan Gathering thing us land years living.
+
+                So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved</p>
+        </div>
+        <div class="footer_content2">
+            <h3>About Us</h3>
+            <p>So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved us lan Gathering thing us land years living.
+
+                So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved</p>
+        </div>
+        <div class="footer_content3">
+            <h3>Contact Us</h3>
+            <b>Head Office</b>
+
+            <p>123, Main Street, Your City</p>
+
+            <b>Phone Number</b>
+
+            <p>+123 456 7890 <br> +123 456 7890</p>
+
+
+            <b>Email</b>
+
+            <p>free@infoexample.com <br>
+                www.infoexample.com</p>
+        </div>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
