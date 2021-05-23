@@ -7,7 +7,6 @@ class Ability
     # user ||= AdminUser.new
     if user.kind_of? User
 
-
     else
       alias_action :create,:read, :update, :destroy, :to=> :crud
       alias_action :read, :update, :destroy, :to=> :rud

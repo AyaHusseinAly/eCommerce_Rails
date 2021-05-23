@@ -26,11 +26,25 @@
 
         </div>
 
-<div class="col-md-7 border d-flex flex-column">
+<div class="col-md-7 border d-flex flex-column pt-4">
 <%if @order != nil %>
 <h4>Order Status: <span style="color:#e7ab3c"><%=@order.status%><span> </h4>
+<h6>From Store: <span style="color:#e7ab3c"><%=@order.store.name%><span> </h6>
 
-<% @order.order_details.each do |o_d| %>
+
+
+<% @order.order_details.each do |o_d| 
+        number = o_d.product.rate_reviews.count
+        if number!=0
+          rating=0
+          o_d.product.rate_reviews.each { |r| rating+=r.rating.to_i }
+          avg=(rating/number)
+          avg_rate=avg.round
+          
+        else
+          avg_rate=0          
+        end  
+%>
         
             <div class="d-flex justify-content-start align-items-center my-3  bg-light py-3 shadow-sm">
                 <div class="d-flex flex-column col-4 mr-2">
@@ -41,17 +55,61 @@
                 </div>
                 <div class=" col-6 ">
                 
-                 <div class="star_container ">
-                                <div class="active-star"></div>
-                                <div class="active-star"></div>
-                                <div class="active-star"></div>
-                                <div class="active-star"></div>
-                                <div class="clip-star"></div>
-                            </div>
+                              <%if avg_rate==1%>
+                   <div class="rating">
+                       <div class="active-star"></div>
+                       <div class="clip-star"></div>
+                       <div class="clip-star"></div>
+                       <div class="clip-star"></div>
+                       <div class="clip-star"></div>
+                   </div>
+                   <%elsif avg_rate==2%>
+                   <div class="rating">
+                       <div class="active-star"></div>
+                       <div class="active-star"></div>
+                       <div class="clip-star"></div>
+                       <div class="clip-star"></div>
+                       <div class="clip-star"></div>
+                   </div>
+                   <%elsif avg_rate==3%>
+                   <div class="rating ">
+                       <div class="active-star"></div>
+                       <div class="active-star"></div>
+                       <div class="active-star"></div>
+                       <div class="clip-star"></div>
+                       <div class="clip-star"></div>
+                   </div>
+                   <%elsif avg_rate==4%>
+                   <div class="rating ">
+                       <div class="active-star"></div>
+                       <div class="active-star"></div>
+                       <div class="active-star"></div>
+                       <div class="active-star"></div>
+                       <div class="clip-star"></div>
+                   </div>
+                   <%elsif avg_rate==5%>
+                   <div class="rating ">
+                       <div class="active-star"></div>
+                       <div class="active-star"></div>
+                       <div class="active-star"></div>
+                       <div class="active-star"></div>
+                       <div class="active-star"></div>
+                   </div>
+                   <%else%>
+                   <div class="rating">
+                       <div class="clip-star"></div>
+                       <div class="clip-star"></div>
+                       <div class="clip-star"></div>
+                       <div class="clip-star"></div>
+                       <div class="clip-star"></div>
+                   </div>
+                   <%end%>
+
                     <div class="m-2 p-2 line text-secondary"style="font-size: 0.9rem;">
                         <ins>Order Date</ins><span>: <%=@order.created_at%> </span> <br>
                       <ins>Paid Price</ins><span>:  $<%=o_d.paid_price%></span><br>
                     <ins>Quantity</ins><span>:  <%=o_d.amount%></span>
+
 
                     </div>
 

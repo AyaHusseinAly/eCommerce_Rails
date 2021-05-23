@@ -4,7 +4,7 @@
 <head>
     <title>eCommerce</title>
     <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="BTOOLwDRGs8tPa+MkOQF5OQYiJXumAOkWL0QNV+9BlEQRWsGiAU7/zLfzE1xcvNGiCF3Sb660fDS0oH56fg6dA==" />
+<meta name="csrf-token" content="0LwDWMGp8G/7dHvg7pObbYoIZ077I31ZHlfyQ3iqZb83Foa6HeO4sGvrM+p4D9QzFfOwlDploF9+kPoiFzuLjA==" />
     
 
     <link rel="stylesheet" media="all" href="/assets/api.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" data-turbolinks-track="reload" />
@@ -63,7 +63,8 @@
                 <a href="#"><i class="fab fa-linkedin mx-2" style="color: #212529;font-size:20px"></i></a>
                 <a href="#"><i class="fab fa-pinterest mx-2" style="color: #212529;font-size:20px"></i></a>
             </div>
-            <a class="login-panel ml-5 " style="color: #212529" data-method="get" href="/users/sign_in">login</a>
+            <a class="login-panel ml-5" style="color: #212529;font-size:20px" href="/users/edit">Edit Profile</a>
+            <a class="login-panel ml-5 " style="color: #212529;font-size:20px" rel="nofollow" data-method="delete" href="/users/sign_out">logout</a>
 
 
         </div>
@@ -128,13 +129,11 @@
         <div class="col-1"></div>
         <div class="col-lg-1 d-flex align-items-center justify-content-around">
             <div class="heart-icon">
-                <a class="fa fa-heart fa-lg" style="color:#e7ab3c;cursor:pointer" href="/users/sign_in"></a>
-
+                <a class="fa fa-heart fa-lg" style="color:#e7ab3c;cursor:pointer" href="/wishing_list_items"></a>
             </div>
 
             <div class="cart-icon">
-                <a class="fas fa-shopping-cart fa-lg" style="color:#e7ab3c;cursor:pointer" href="/users/sign_in"></a>
-
+                <a class="fas fa-shopping-cart fa-lg" style="color:#e7ab3c;cursor:pointer" href="/addToCart/index"></a>
             </div>
 
         </div>
@@ -169,11 +168,12 @@
         </div>
     
         <div class="nav-item ">
-            <a class="nav-link text-white text-center" href="/users/sign_in">MY ORDERS</a>
+            <a class="nav-link text-white text-center" href="/orders/6">MY ORDERS</a>
+
         </div>
 
             <div class="nav-item ">
-                <a class="nav-link text-white text-center" href="/users/sign_in">MY PROFILE</a>
+            <a class="nav-link text-white text-center" href="/profile/2">MY PROFILE</a>
         </div>
 
         </div>
@@ -181,6 +181,10 @@
     <div class="pos-f-t">
         <div class="collapse" id="navbarToggleExternalContent">
             <div class="bg-dark p-4">
+                <img src='/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBMQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--065a3e2fd9adc0048b50beb924044f6de029cf03/exPP.png' class="ml-5  ml-2rounded-circle " style="width:5rem;height:5rem" />
+                <strong style="color:#FFF"> Aya Hussein</strong>
+
+
             </div>
         </div>
 
@@ -267,7 +271,9 @@
                 </div>
                 <div class="m-2 p-2 line text-secondary">
                     <strong>Date Posted:</strong><span> 2021-05-21 02:13:40 UTC</span>
-                    <strong>Quantity:</strong><span id="prodquantity"> 2</span>
+                    <br/>
+                    <strong>From Store:</strong><span id="prodstore"> Sample Store</span>
+
                 </div>
 
                 <a href="#" class="btn d-block m-1 shadow" style="background-color:#e7ab3c;color:white"><i class="fas fa-shopping-cart fa-xs mr-2" style="color: white;"></i>Add to Cart</a>
@@ -280,7 +286,7 @@
                 Reviews
                 <div class="d-inline " style="color:#e7ab3c;float:right">
                     <i class="fas fa-pencil-alt fa-xs"></i>
-                        <strong style="font-size: 13px"><a href="/users/sign_in" style="color:#e7ab3c;border:none"> Write a Review</button></a>
+                    <strong style="font-size: 13px"><button id="myBtn" style="color:#e7ab3c;border:none"> Write a Review</button></strong>
                 </div>
             </div>
 

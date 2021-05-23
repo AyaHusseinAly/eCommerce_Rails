@@ -119,7 +119,14 @@
                 </div>
                 <div class="m-2 p-2 line text-secondary">
                     <strong>Date Posted:</strong><span> <%=@product.created_at%></span>
-                    <strong>Quantity:</strong><span id="prodquantity"> <%=@product.quantity%></span>
+                    <br/>
+                    <strong>From Store:</strong><span id="prodstore"> <%=@product.store.name%></span>
+
+                    <%
+=begin%>
+ <strong>Quantity:</strong><span id="prodquantity"> <%=@product.quantity%></span> 
+<%
+=end%>
                 </div>
 
                 <a href="#" class="btn d-block m-1 shadow" style="background-color:#e7ab3c;color:white"><i class="fas fa-shopping-cart fa-xs mr-2" style="color: white;"></i>Add to Cart</a>
