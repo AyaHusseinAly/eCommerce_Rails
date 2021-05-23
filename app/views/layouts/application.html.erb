@@ -18,21 +18,18 @@
 
     <div class="d-flex justify-content-between border px-2" width="100%">
         <div class="my-2 mx-4 ">
-   
- <%
-=begin%>
- <%if user_signed_in?%>
-            <div style="width:80px;display:inline-block;margin-right:20px;border:2px solid #e7ab3c;"><%=  image_tag(current_user.avatar_thumbnail)  %></div>
- <%end%>   
-<%
-=end%>
+            <%if user_signed_in?%>
+            <div style="width:50px;display:inline-block;margin-right:20px;border:2px solid #e7ab3c;"><%=  image_tag(current_user.avatar_blob)  %></div>
+            <%end%>
+
             <i class=" fa fa-envelope"></i>
-            
+        
             <span style="font-size:20px;"> rails_v520@ecommerce.com </span>
 
             <%# <i class=" fa fa-phone ml-4"></i> %>
 
         </div>
+
 
         <div></div>
         <div class="d-flex px-5 align-items-center">
@@ -189,7 +186,10 @@
                 <% if current_user.avatar.attached? %>
                 <img src='<%= url_for(current_user.avatar)%>' class="ml-5  ml-2rounded-circle " style="width:5rem;height:5rem" />
                 <%end%>
-                <strong style="color:#FFF"> <%= current_user.name %></strong>
+                <strong style="color:#FFF" class="mx-2"><span style="color:#e7ab3c">Name: </span><%= current_user.name %></strong>
+                <strong style="color:#FFF" class="mx-2"><span style="color:#e7ab3c">Email: </span> <%= current_user.email %></strong>
+                <strong style="color:#FFF" class="mx-2"><span style="color:#e7ab3c">Shipping Address: </span> <%= current_user.address %></strong>
+
 
                 <%
 =begin%>

@@ -14,26 +14,39 @@ class ShoppingCardItemsController < ApplicationController
         @total=0
         # render :json =>@buyerProducts
       end
-      def addToCart
-            @product = Product.find(params[:id])
-            # @product.quantity=@product.quantity-1
-            # @product.save
-            # render :json =>@user
-            @shop=ShoppingCardItem.find_by(product: @product,user:current_user)
+      # def addToCart
+      #       @product = Product.find(params[:id])
+      #       # @product.quantity=@product.quantity-1
+      #       # @product.save
+      #       # render :json =>@user
+      #       @shop=ShoppingCardItem.find_by(product: @product,user:current_user)
             
-            if @shop &&  @shop.quantity <  @product.quantity
-                # @shop=ShoppingCardItem.find_by(product: @product,user:current_user)
-                # check quantity
+      #       if @shop &&  @shop.quantity <  @product.quantity
+      #           # @shop=ShoppingCardItem.find_by(product: @product,user:current_user)
+      #           # check quantity
               
-                @shop.quantity=@shop.quantity+1
-                @shop.save
+      #           @shop.quantity=@shop.quantity+1
+      #           @shop.save
               
-            elsif  not  @shop
-                ShoppingCardItem.create(product: @product,user:current_user,quantity:1)
-            end  
+      #       elsif  not  @shop
+      #           ShoppingCardItem.create(product: @product,user:current_user,quantity:1)
+      #       end  
               
-            redirect_to root_path
-            # redirect_back
+      #       redirect_to root_path
+      #       # redirect_back
+      # end
+      def addToCartForm
+        @product = Product.find(params['id'])
+        @shop=ShoppingCardItem.find_by(product: @product,user:current_user)
+        if @shop &&  @shop.quantity <  @product.quantity
+            @shop.quantity=@shop.quantity+1
+            @shop.save
+        elsif  not  @shop
+            ShoppingCardItem.create(product: @product,user:current_user,quantity:1)
+        end  
+          
+        redirect_to params['path']
+
       end
       def addToCartFromWishingList
         @product = Product.find(params[:id])

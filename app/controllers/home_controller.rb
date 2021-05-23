@@ -374,4 +374,6 @@ class HomeController < ApplicationController
         @categories=Category.all 
         @brands=Brand.all   
     end
+    # @wishlist=WishingListItem.all
+    # @wish_found_flag=false
 end 

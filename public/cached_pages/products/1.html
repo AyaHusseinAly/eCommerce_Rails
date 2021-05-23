@@ -4,7 +4,7 @@
 <head>
     <title>eCommerce</title>
     <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="xP6dpqkgKauQK7gBR4lYhkeVidKkBIvnBeYjHywcZowjVBhEdWphdAC08AvRFRfY2G5eCGVCVuFlISt+Q42Ivw==" />
+<meta name="csrf-token" content="OnGc49U92OfLWxItY1ipEfWfQ7mLQfkrdCJF0nZwC9uQ+pso48Ar2HRtbLaONv6kM4ftFq9fqa7VL0IIsezRMQ==" />
     
 
     <link rel="stylesheet" media="all" href="/assets/api.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" data-turbolinks-track="reload" />
@@ -47,13 +47,15 @@
 
     <div class="d-flex justify-content-between border px-2" width="100%">
         <div class="my-2 mx-4 ">
-   
+            <div style="width:50px;display:inline-block;margin-right:20px;border:2px solid #e7ab3c;"><img src="http://localhost:3000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBMQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--065a3e2fd9adc0048b50beb924044f6de029cf03/exPP.png" /></div>
+
             <i class=" fa fa-envelope"></i>
-            
+        
             <span style="font-size:20px;"> rails_v520@ecommerce.com </span>
 
 
         </div>
+
 
         <div></div>
         <div class="d-flex px-5 align-items-center">
@@ -182,7 +184,10 @@
         <div class="collapse" id="navbarToggleExternalContent">
             <div class="bg-dark p-4">
                 <img src='/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBMQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--065a3e2fd9adc0048b50beb924044f6de029cf03/exPP.png' class="ml-5  ml-2rounded-circle " style="width:5rem;height:5rem" />
-                <strong style="color:#FFF"> Aya Hussein</strong>
+                <strong style="color:#FFF" class="mx-2"><span style="color:#e7ab3c">Name: </span>Aya Hussein</strong>
+                <strong style="color:#FFF" class="mx-2"><span style="color:#e7ab3c">Email: </span> aya.hussein3107@gmail.com</strong>
+                <strong style="color:#FFF" class="mx-2"><span style="color:#e7ab3c">Shipping Address: </span> 45th street</strong>
+
 
 
             </div>
@@ -259,14 +264,14 @@
             <div class="card-body">
                 <h2 class="card-title d-inline text-danger" id="prodprice">$500 </h2><span class="text-secondary"> only</span>
                 <div class=" m-2 line text-secondary">
-                <strong class="ml-1">Average Rating:</strong>
-                  <div class="star_container">
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                    <div class="clip-star"></div>
-                  </div>
+                    <strong class="ml-1">Average Rating:</strong>
+                    <div class="star_container">
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                    </div>
 
                 </div>
                 <div class="m-2 p-2 line text-secondary">
@@ -275,9 +280,23 @@
                     <strong>From Store:</strong><span id="prodstore"> Sample Store</span>
 
                 </div>
+                <div style="width:100%">
+                    <form action="/addToCartForm" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="OUDRmMUDk/osc1UnfpWZFN1bXN/XbtHToIp/hqBIQNGNywwvrcREB4yPXTo50ODPAoPCZsZfGD8NwBvanJFAzg==" />
+                    <input type="hidden" name="id" value=1>
+                    <input type="hidden" name="path" value=/>
+                    <button name="button" type="submit" class="btn d-block m-1 shadow" style="background-color:#e7ab3c;color:white;width:100%">
+                    <i class="fas fa-shopping-cart fa-xs mr-2" style="color: white;"></i>Add to Cart
+</button></form>                </div>
+                <div style="width:100%">
+                    <form action="/addToWishingListForm" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="4VriVkgltVlaN1fPVVAMuQ7v7LILkHvYaG2JACV+cVeYPXghqpElQO4XC7cyj5a96hBS7bh4FBOE9k7HhX3oNg==" />
+                    <input type="hidden" name="id" value=1>
+                    <input type="hidden" name="path" value=/>
+                    <button name="button" type="submit" class="btn d-block m-1" style="background-color:rgb(33, 37, 41,0.9);color:white;width:100%">
+                    <i class="fas fa-heart fa-xs mr-2" style="color: white;"></i>Add to wishinglist
+</button></form>                    <!--end of form-->
+                    <!--end -->
+                </div>
 
-                <a href="#" class="btn d-block m-1 shadow" style="background-color:#e7ab3c;color:white"><i class="fas fa-shopping-cart fa-xs mr-2" style="color: white;"></i>Add to Cart</a>
-                <a href="#" class="btn d-block m-1" style="background-color:rgb(33, 37, 41,0.9);color:white"><i class="fas fa-heart fa-xs mr-2" style="color: white;"></i>Add to wishinglist</a>
             </div>
         </div>
 
@@ -311,14 +330,14 @@
                     </div>
                     <div class="modal-body">
                         <div class="d-flex">
-                            <i class="fas fa-info-circle fa-5x mt-3"style="color:#e7ab3c"></i>
-                            <h4 style="color:#696969; margin-left:1rem">Sorry you can't review, Since you don't have a verified 
-                            purchase for this product from our store</h4>
+                            <i class="fas fa-info-circle fa-5x mt-3" style="color:#e7ab3c"></i>
+                            <h4 style="color:#696969; margin-left:1rem">Sorry you can't review, Since you don't have a verified
+                                purchase for this product from our store</h4>
                         </div>
                         <p>
                         <div class="modal-footer">
 
-                            <button type="button"  class="close">OK</button>
+                            <button type="button" class="close">OK</button>
                         </div>
 
                         </p>
@@ -341,7 +360,7 @@
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
-    var span1= document.getElementsByClassName("close")[1];
+    var span1 = document.getElementsByClassName("close")[1];
 
     // When the user clicks the button, open the modal 
     btn.onclick = function() {

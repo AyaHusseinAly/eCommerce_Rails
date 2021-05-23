@@ -7,13 +7,22 @@ class WishingListItemsController < ApplicationController
         @brands=Brand.all
         @seller = AdminUser.where(role: "seller")      
     end
-    def addToWishingList
-      @product = Product.find(params[:id])
+    # def addToWishingList
+    #   @product = Product.find(params[:id])
+    #   if WishingListItem.find_by(product: @product,user:current_user) == nil
+    #     WishingListItem.create(product: @product,user:current_user)
+        
+    #   end 
+    #   redirect_to root_path
+      
+    # end
+    def addToWishingListForm
+      # render :json =>params['id']
+      @product = Product.find(params['id'])
       if WishingListItem.find_by(product: @product,user:current_user) == nil
         WishingListItem.create(product: @product,user:current_user)
-        
       end 
-      redirect_to root_path
+      redirect_to params['path']
       
     end
     def index
@@ -25,13 +34,19 @@ class WishingListItemsController < ApplicationController
       # render :json =>@products
       @categories=Category.all
     end
-    def destroy
-      @product = Product.find(params[:id])
+    # def destroy
+    #   @product = Product.find(params[:id])
+    #   @wishListItem=WishingListItem.find_by(product:@product)
+    #   @wishListItem.destroy
+    #   redirect_to wishing_list_items_path
+    #   # render :json =>@wishListItem
+  
+    # end
+    def destroyForm
+      @product = Product.find(params['id'])
       @wishListItem=WishingListItem.find_by(product:@product)
       @wishListItem.destroy
-      redirect_to wishing_list_items_path
-      # render :json =>@wishListItem
-  
+      redirect_to params['path']
     end
   end
   
