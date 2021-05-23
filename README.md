@@ -38,8 +38,7 @@
 ![](preview/wishingList.png)
 
 ### in case of no wishing list items items
-![](preview/noWishItem.png)
-
+![](preview/noWishItems.png)
 
 ## profile
 ![](preview/profile.png)
