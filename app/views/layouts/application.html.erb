@@ -18,13 +18,17 @@
 
     <div class="d-flex justify-content-between border px-2" width="100%">
         <div class="my-2 mx-4 ">
-            <%
+   
+ <%
 =begin%>
+ <%if user_signed_in?%>
             <div style="width:80px;display:inline-block;margin-right:20px;border:2px solid #e7ab3c;"><%=  image_tag(current_user.avatar_thumbnail)  %></div>
-            <%
+ <%end%>   
+<%
 =end%>
             <i class=" fa fa-envelope"></i>
-            <span style="font-size:20px;"> <%= current_user.email %> </span>
+            
+            <span style="font-size:20px;"> rails_v520@ecommerce.com </span>
 
             <%# <i class=" fa fa-phone ml-4"></i> %>
 
@@ -107,13 +111,21 @@
         <div class="col-1"></div>
         <div class="col-lg-1 d-flex align-items-center justify-content-around">
             <div class="heart-icon">
+            <%if user_signed_in?%>
                 <%= link_to '',wishing_list_items_path(), class: "fa fa-heart fa-lg", style:"color:#e7ab3c;cursor:pointer"%>
+            <%else%>
+                <%= link_to '',new_user_session_path() , class: "fa fa-heart fa-lg", style:"color:#e7ab3c;cursor:pointer"%>
+
+            <%end%>
             </div>
 
             <div class="cart-icon">
-
+            <%if user_signed_in?%>
                 <%= link_to '',shopping_card_item_index_path(), class: "fas fa-shopping-cart fa-lg", style:"color:#e7ab3c;cursor:pointer"%>
+            <%else%>
+                <%= link_to '',new_user_session_path() , class: "fas fa-shopping-cart fa-lg", style:"color:#e7ab3c;cursor:pointer"%>
 
+            <%end%>
             </div>
 
         </div>
@@ -148,16 +160,24 @@
         </div>
     
         <div class="nav-item ">
+         <%if user_signed_in?%>
             <%if current_user.orders == []%>
             <a class="nav-link text-white text-center" href="/orders/">MY ORDERS</a>
             <%else%>
             <a class="nav-link text-white text-center" href="/orders/<%=current_user.orders.last.id%>">MY ORDERS</a>
 
             <%end%>
+         <%else%>   
+            <a class="nav-link text-white text-center" href="<%=new_user_session_path%>">MY ORDERS</a>
+         <%end%>   
         </div>
 
             <div class="nav-item ">
-            <a class="nav-link text-white text-center" href="/profile/<%=current_user.id%>">PROFILE</a>
+             <%if user_signed_in?%>
+            <a class="nav-link text-white text-center" href="/profile/<%=current_user.id%>">MY PROFILE</a>
+            <%else%>
+                <a class="nav-link text-white text-center" href="<%= new_user_session_path%>">MY PROFILE</a>
+            <%end%>
         </div>
 
         </div>

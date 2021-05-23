@@ -2,12 +2,12 @@ class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception, prepend: true
 
     before_action :configure_permitted_parameters, if: :devise_controller?
-    before_action do
-      @categories=Category.all 
-      @products=Product.all
-      @brands=Brand.all
+  #   before_action do
+  #     @categories=Category.all 
+  #     @products=Product.all
+  #     @brands=Brand.all
       
-  end
+  # end
 
     
     protected

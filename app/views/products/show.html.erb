@@ -132,7 +132,11 @@
                 Reviews
                 <div class="d-inline " style="color:#e7ab3c;float:right">
                     <i class="fas fa-pencil-alt fa-xs"></i>
+                    <% if user_signed_in?%>
                     <strong style="font-size: 13px"><button id="myBtn" style="color:#e7ab3c;border:none"> Write a Review</button></strong>
+                    <%else%>
+                        <strong style="font-size: 13px"><a href="<%=new_user_session_path%>" style="color:#e7ab3c;border:none"> Write a Review</button></a>
+                    <%end%>
                 </div>
             </div>
 

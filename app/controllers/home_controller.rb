@@ -6,7 +6,6 @@ class HomeController < ApplicationController
         @seller = AdminUser.where(role: "seller")      
     end
     
-    before_action :authenticate_user!
 
     def index
         @products=Product.all.order("created_at desc").limit(12)

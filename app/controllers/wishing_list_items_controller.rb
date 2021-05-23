@@ -1,4 +1,6 @@
 class WishingListItemsController < ApplicationController
+  before_action :authenticate_user!  # handle Guest access
+
       before_action do
         @categories=Category.all 
         @products=Product.all
