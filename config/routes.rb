@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   patch 'cancleShoppingCard',to:'shopping_card_items#cancleShoppingCartItem',as:'cancleShoppingCartItem'
 
 
->>>>>>> ed4d096a21e8f61de9920e12f95af551d0054f78
+
 
   resources :categories
 
