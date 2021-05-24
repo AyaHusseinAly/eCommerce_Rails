@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thank you for trusting us, <%= @order.user.name %></h1>
+    <%if @order.status=='Confirmed'%>
+    <p>
+      your order number: #<%=@order.id%> has been confirmed 
+      <br>
+      wai for our delivery agent soon ..
+    </p>
+    <img src="https://image.freepik.com/free-vector/pizza-delivery-staff-are-driving-motorcycles-quickly_68708-338.jpg" />
+    <p>
+    <%elsif @order.status=='Delivered'%>
+        <p>
+      your order number: #<%=@order.id%> has been delivered 
+      <br>
+      we hope everything is ok and you liked the order.
+    </p>
+    <img style="height:25rem"src="https://thumbs.dreamstime.com/b/courier-delivered-your-order-package-courier-delivered-your-order-package-fast-quality-home-delivery-flat-187396699.jpg" />
+    <p>
+    <%end%>
+      continue shopping --> <%= @url %>.
+    </p>
+  </body>
+</html>

@@ -1,9 +1,15 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  validates :email, presence: true, uniqueness: true
+  validates :name, presence: true , format: { with: /\A[a-zA-Z]+\z/,
+  message: "only allows letters" }, uniqueness: true
+  validates :password, :password_confirmation, presence: true , length: { minimum:6 }
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
+    # validates :email, presence: true
+    # validates :password, presence: true , length: { minimum:6 }
     has_many :orders
     has_many :wishing_list_items
     has_many :rate_reviews
@@ -11,6 +17,13 @@ class User < ApplicationRecord
     has_many :stores    
     has_one_attached :avatar
 
+    after_create :send_confirmation_email
+    private
+    def send_confirmation_email
+        @user = User.last
+        UserMaileMailer.welcome_email(@user).deliver_now
+
+    end
 
     ##### stores has been moved to AdminUser model 
     # AdminUser.where(role:'seller')

@@ -1,26 +1,38 @@
 class ProductsController < ApplicationController
+    before_action do
+      @categories=Category.all 
+      @products=Product.all
+      @brands=Brand.all
+      @seller = AdminUser.where(role: "seller") 
+      @wishlist=WishingListItem.all
+      @wish_found_flag=false     
+    end
     caches_page :show
     
     def index
         @products=Product.paginate(page: params[:page], per_page: 12)
+       
 
       end
 
       def show
-        ##user can review only purchased products and only once
-        @can_review= false
-        @no_prev_review
+        if user_signed_in?
+            ##user can review only purchased products and only once
+            @can_review= false
+            @no_prev_review=false
 
-        if current_user.rate_reviews.where(product_id:params[:id]) == [] #he didn't reviewed it before
-          @no_prev_review=true
-        end  
+            if current_user.rate_reviews.where(product_id:params[:id]) == [] #he didn't reviewed it before
+              @no_prev_review=true
+            end  
 
-        current_user.orders.where(status:"delivered").each { |o|  
-          if o.order_details.where(product_id:params[:id]) != []
-              @can_review=true
+            current_user.orders.where(status:"Delivered").each { |o|  
+              if o.order_details.where(product_id:params[:id]) != []
+                  @can_review=true
+              end
+            }
+         
+
           end
-        }
-
 
         @product = Product.find(params[:id])
         
