@@ -61,9 +61,8 @@ class ProductsController < ApplicationController
       end
       def create
         @product=Product.create(product_params)
-        @product.img.attach(params[:product][:img])
-        @product.img1.attach(params[:product][:img1])
-        @product.img2.attach(params[:product][:img2])
+        # @product.img.attach(params[:product][:img])
+        # @product.images.attach(params[:product][:images])
 
         if @product.save
           redirect_to @product
@@ -74,7 +73,7 @@ class ProductsController < ApplicationController
       end
 
       def product_params
-        params.require(:product).permit(:title, :description,:price, :quantity,:store_id,:brand_id,:category_id)
+        params.require(:product).permit(:title, :description,:price, :quantity,:store_id,:brand_id,:category_id,:img,images:[])
       end
 
       def destroy

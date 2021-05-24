@@ -51,7 +51,7 @@
   </p>
 
  <p>
-    <%= form.label :img %><br>
+    <%= form.label "Main Image" %><br>
     <%= form.file_field :img %>
   </p>
 <%
@@ -61,15 +61,12 @@
 =end%>
 
  <p>
-    <%= form.label :img1 %><br>
-    <%= form.file_field :img1  %>
+    <%= form.label :images %><br>
+    <%= form.file_field :images , :multiple => true %>
   </p>
 
 
- <p>
-    <%= form.label :img2 %><br>
-    <%= form.file_field :img2 %>
-  </p>
+ 
 
 
 
