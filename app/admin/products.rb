@@ -86,10 +86,20 @@ end
   end
   # or
   #
-  # permit_params do
-  #   permitted = [:title, :description, :img, :price, :quantity, :brand_id, :store_id, :category_id]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
+  after_update do
+    @product=Product.find(params[:id])
+    if params[:img]
+      @product.img.purge
+      @product.img.attach(params[:img])
+    end
+    if params[:images]
+      @images = ActiveStorage::Attachment.where(record_id:params[:id],name:"images")  
+      
+      @images.delete_all
+      @product.images.attach(params[:images])
+    end
+  end
+
+  
   
 end
