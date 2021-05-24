@@ -17,4 +17,11 @@ class OrdersController < ApplicationController
         @order=nil
         end
     end
+
+    def seller
+        @user=User.find(params[:id])
+        @admin_user=AdminUser.find_by(email:@user.email )
+        @seller_stores = Store.where(admin_user_id:@admin_user)
+        @orders =Order.where(store_id:@seller_stores).paginate(page: params[:page], per_page: 12)
+    end
 end

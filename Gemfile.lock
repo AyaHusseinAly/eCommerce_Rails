@@ -270,7 +270,6 @@ DEPENDENCIES
   cancancan
   capybara (>= 2.15)
   chartkick
-  chromedriver-helper
   chromedriver-helper (= 1.2.0)
   coffee-rails (~> 4.2)
   devise
