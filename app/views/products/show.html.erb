@@ -125,7 +125,7 @@
                     <%if @product.quantity > 0%>
                     <%= form_tag :controller=>'shopping_card_items', :action => 'addToCartForm' do %>
                     <input type="hidden" name="id" value=<%=@product.id%>>
-                    <input type="hidden" name="path" value=<%=root_path%>>
+                    <input type="hidden" name="path" value=<%=product_path(@product.id)%>>
                     <%= button_tag(type: "submit", class: "btn d-block m-1 shadow",style:"background-color:#e7ab3c;color:white;width:100%") do %>
                     <i class="fas fa-shopping-cart fa-xs mr-2" style="color: white;"></i>Add to Cart
                     <% end %>
@@ -143,18 +143,18 @@
                     <%if @wish_found_flag==false%>
                     <%= form_tag :controller=>'wishing_list_items', :action => 'addToWishingListForm' do %>
                     <input type="hidden" name="id" value=<%=@product.id%>>
-                    <input type="hidden" name="path" value=<%=root_path%>>
+                    <input type="hidden" name="path" value=<%=product_path(@product.id)%>>
                     <%= button_tag(type: "submit", class: "btn d-block m-1",style:"background-color:rgb(33, 37, 41,0.9);color:white;width:100%") do %>
-                    <i class="fas fa-heart fa-xs mr-2" style="color: white;"></i>Add to wishinglist
+                    <i class="bi bi-heart mr-2" style="color: white;"></i>Add to wishinglist
                     <% end %>
                     <%end%>
                     <!--end of form-->
                     <%else%>
                     <%= form_tag :controller=>'wishing_list_items', :action => 'destroyForm' do %>
                     <input type="hidden" name="id" value=<%=@product.id%>>
-                    <input type="hidden" name="path" value=<%=root_path%>>
-                    <%= button_tag(type: "submit", class: "btn d-block m-1",style:"background-color:rgb(33, 37, 41,0.9);color:white;width:100%") do %>
-                    <i class="fa fa-heart fa-lg" style="color:#e7ab3c;cursor:pointer;font-size: 1.25rem"></i>Added to wishing list
+                    <input type="hidden" name="path" value=<%=product_path(@product.id)%>>
+                    <%= button_tag(type: "submit", class: "btn d-block m-1",style:"background-color:white;color:black;width:100%") do %>
+                    <i class="fa fa-heart fa-lg mr-2" style="color:black;cursor:pointer;font-size: 1.25rem"></i>Added to wishing list
                     <% end %>
                     <%end%>
                     <%end%>

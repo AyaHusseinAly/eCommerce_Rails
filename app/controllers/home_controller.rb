@@ -3,15 +3,17 @@ class HomeController < ApplicationController
         @categories=Category.all 
         @products=Product.all
         @brands=Brand.all
-        @seller = AdminUser.where(role: "seller")      
+        @seller = AdminUser.where(role: "seller") 
+        @wishlist=WishingListItem.all
+        @wish_found_flag=false     
     end
     
     before_action :authenticate_user!
 
     def index
         @products=Product.all.order("created_at desc").limit(12)
-        @wishlist=WishingListItem.all
-        @wish_found_flag=false
+        # @wishlist=WishingListItem.all
+        # @wish_found_flag=false
 
     end
 
