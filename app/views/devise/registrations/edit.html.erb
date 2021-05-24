@@ -35,6 +35,12 @@
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
+
+
+    <div class="field">
+    <%= f.label :address %> <br />
+    <%= f.text_field :address %>
+  </div>
   
   
   <%# <div class="field">
@@ -47,7 +53,7 @@
  
 <div class="field" style="width:200px">
   
-    <%= image_tag(resource.avatar_thumbnail)  if resource.avatar.attached?  %><br />
+    <%= image_tag(resource.avatar_blob)  if resource.avatar.attached?  %><br />
  
   </div>
  <br />

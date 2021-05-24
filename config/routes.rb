@@ -4,9 +4,14 @@ Rails.application.routes.draw do
   get 'search', to:'home#searchInProduct'
   get 'api/products', to: "api#index"
   get 'api/products/:id', to: "api#show"
+  get 'profile/:id', to: "profile#show"
+
   get '/orders/:id', to:"orders#index"
   get '/orders',to: "orders#index"
   #get '/products/:id/:rating' => 'products#rate', as: :rate_product
+
+  
+
   # resources :users, only: [:show], param: :username, path: ""
   ################################add to cart , wishing list  routes ###############################
   resources :wishing_list_items
@@ -23,6 +28,7 @@ Rails.application.routes.draw do
   # get 'checkout', to: 'shopping_card_items#checkout', as: 'checkout'
   post 'checkoutForm' ,to: 'shopping_card_items#checkoutForm' , as:'checkoutForm'
   patch 'cancleShoppingCard',to:'shopping_card_items#cancleShoppingCartItem',as:'cancleShoppingCartItem'
+
 
 
 

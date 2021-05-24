@@ -119,7 +119,14 @@
                 </div>
                 <div class="m-2 p-2 line text-secondary">
                     <strong>Date Posted:</strong><span> <%=@product.created_at%></span>
-                    <strong>Quantity:</strong><span id="prodquantity"> <%=@product.quantity%></span>
+                    <br/>
+                    <strong>From Store:</strong><span id="prodstore"> <%=@product.store.name%></span>
+
+                    <%
+=begin%>
+ <strong>Quantity:</strong><span id="prodquantity"> <%=@product.quantity%></span> 
+<%
+=end%>
                 </div>
                 <div style="width:100%">
                     <%if @product.quantity > 0%>
@@ -175,7 +182,11 @@
                 Reviews
                 <div class="d-inline " style="color:#e7ab3c;float:right">
                     <i class="fas fa-pencil-alt fa-xs"></i>
+                    <% if user_signed_in?%>
                     <strong style="font-size: 13px"><button id="myBtn" style="color:#e7ab3c;border:none"> Write a Review</button></strong>
+                    <%else%>
+                        <strong style="font-size: 13px"><a href="<%=new_user_session_path%>" style="color:#e7ab3c;border:none"> Write a Review</button></a>
+                    <%end%>
                 </div>
             </div>
 
@@ -259,7 +270,7 @@
                         <p>
                         <div class="modal-footer">
 
-                            <%= form.submit "Save", :class => 'btn btn-primary' %>
+                            <%= form.submit "Save", :class => 'btn btn-primary'%>
                         </div>
 
                         </p>

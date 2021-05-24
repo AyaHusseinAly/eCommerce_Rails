@@ -8,7 +8,6 @@ class HomeController < ApplicationController
         @wish_found_flag=false     
     end
     
-    before_action :authenticate_user!
 
     def index
         @products=Product.all.order("created_at desc").limit(12)
