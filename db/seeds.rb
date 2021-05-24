@@ -18,12 +18,16 @@ User.destroy_all
 Brand.destroy_all
 Category.destroy_all
 AdminUser.destroy_all
-# ActiveRecord::Base.connection.reset_pk_sequence!(Product.table_name)
-# ActiveRecord::Base.connection.reset_pk_sequence!(Store.table_name)
-# ActiveRecord::Base.connection.reset_pk_sequence!(Brand.table_name)
-# ActiveRecord::Base.connection.reset_pk_sequence!(Category.table_name)
-# ActiveRecord::Base.connection.reset_pk_sequence!(User.table_name)
-# ActiveRecord::Base.connection.reset_pk_sequence!(AdminUser.table_name)
+ActiveRecord::Base.connection.reset_pk_sequence!(Product.table_name)
+ActiveRecord::Base.connection.reset_pk_sequence!(Store.table_name)
+ActiveRecord::Base.connection.reset_pk_sequence!(Brand.table_name)
+ActiveRecord::Base.connection.reset_pk_sequence!(Category.table_name)
+ActiveRecord::Base.connection.reset_pk_sequence!(User.table_name)
+ActiveRecord::Base.connection.reset_pk_sequence!(AdminUser.table_name)
+ActiveRecord::Base.connection.reset_pk_sequence!(OrderDetail.table_name)
+ActiveRecord::Base.connection.reset_pk_sequence!(RateReview.table_name)
+ActiveRecord::Base.connection.reset_pk_sequence!(ShoppingCardItem.table_name)
+ActiveRecord::Base.connection.reset_pk_sequence!(WishingListItem.table_name)
 
 
 
@@ -50,15 +54,17 @@ Category.create!([{
     name:"Others"
 }
 ])
-# User.create!(
-#     name:"User",
-#     email:"user@example.com",
-#     password:"password",
-#     password_confirmation: 'password'
-# )
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
-AdminUser.create!(email: 'seller@example.com', password: 'password', password_confirmation: 'password',role: 'seller') if Rails.env.development?
-User.create!(email: 'seller@example.com', password: 'password', password_confirmation: 'password',role: 'seller') 
+user=User.create!(
+    name:"User",
+    email:"user@example.com",
+    password:"Password123",
+    password_confirmation: 'Password123'
+)
+user.avatar.attach(io: File.open('app/assets/images/default_profile.jpg'), filename: 'default_profile.jpg', content_type: 'image/png')
+
+AdminUser.create!(name:"admin",email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+AdminUser.create!(name:"seller",email: 'seller@example.com', password: 'password', password_confirmation: 'password',role: 'seller') if Rails.env.development?
+User.create!(name:"seller",email: 'seller@example.com', password: 'Password123', password_confirmation: 'Password123',role: 'seller') 
 
 Store.create!([{
     name: "Sample Store",
@@ -69,7 +75,6 @@ Store.create!([{
 Product.create!([{
     title:'Hoodie',
     description: 'This is a hoodie.',
-    img: '1.jpg',
     price: 500,
     quantity: 5,
     brand: Brand.find_by(name:"Sample Brand"),
@@ -80,7 +85,6 @@ Product.create!([{
 {
     title:'Cactus',
     description: 'This is a Cactus.',
-    img: '2.jpg',
     price: 100,
     quantity: 3,
     brand: Brand.find_by(name:"Sample Brand"),
@@ -90,7 +94,6 @@ Product.create!([{
 {
     title:'Cactus 2',
     description: 'This is also a Cactus.',
-    img: '5.jpg',
     price: 200,
     quantity: 10,
     brand: Brand.find_by(name:"Sample Brand"),
@@ -100,7 +103,6 @@ Product.create!([{
 {
     title:'Clock',
     description: 'This is a clock.',
-    img: '6.jpg',
     price: 1000,
     quantity: 5,
     brand: Brand.find_by(name:"Sample Brand"),
@@ -110,7 +112,6 @@ Product.create!([{
 {
     title:'Camera',
     description: 'This is a camera.',
-    img: '7.jpg',
     price: 1200,
     quantity: 22,
     brand: Brand.find_by(name:"Sample Brand"),
@@ -120,7 +121,6 @@ Product.create!([{
 {
     title:'Robot',
     description: 'I will haunt your dreams',
-    img: '8.jpg',
     price: 1,
     quantity: 10000,
     brand: Brand.find_by(name:"Sample Brand"),
@@ -130,7 +130,6 @@ Product.create!([{
 {
     title:'Methylene',
     description: 'Wanna get poisoned? buy this',
-    img: '9.jpg',
     price: 1000,
     quantity: 5,
     brand: Brand.find_by(name:"Sample Brand"),
@@ -140,7 +139,6 @@ Product.create!([{
 {
     title:'Cubes!',
     description: 'Cubes! Cubes! Cubes!',
-    img: '10.jpg',
     price: 50,
     quantity: 3,
     brand: Brand.find_by(name:"Sample Brand"),
@@ -150,7 +148,6 @@ Product.create!([{
 {
     title:'Pencil',
     description: 'You need me to write',
-    img: '11.jpg',
     price: 5,
     quantity: 100,
     brand: Brand.find_by(name:"Sample Brand"),
@@ -160,23 +157,14 @@ Product.create!([{
 {
     title:'Building',
     description: "It's cheap for a building.. but it might fall on you ¯\_(ツ)_/¯ ",
-    img: '12.jpg',
     price: 10000,
     quantity: 1,
     brand: Brand.find_by(name:"Sample Brand"),
     category: Category.find_by(name:"Women's Clothes"),
     store: Store.find_by(name:'Sample Store')
 }])
-p "Created #{Category.count} categories and #{Product.count} products"
+count=0
+Product.all.each do |product|
+    product.img.attach(io: File.open("public/img/products/#{count+=1}.jpg"), filename: "#{count}.jpg", content_type: 'image/png')
+end
 
-
-
-# class AddInitialProducts < ActiveRecord::Migration[5.0]
-#     def up
-#       5.times do |i|
-#         Product.create(title: "Product ##{i}", description: "A product.",img:"#{i}.jpg",store_id:2,brand_id:2,category_id:4,price:140,quantity:15)
-#       end
-#     end
-   
-# end
-# AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
