@@ -36,10 +36,12 @@ ActiveAdmin.register User do
   form do |f|
     inputs "Details" do
       input :name
-      input :role, as: :select, collection: ['buyer','seller']
       input :email
       input :password
       input :password_confirmation
+      input :role, as: :select, collection: ['buyer','seller']
+      input :avatar, as: :file
+      
     end
     actions  
   end
