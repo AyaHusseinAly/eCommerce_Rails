@@ -5,5 +5,5 @@ class Product < ApplicationRecord
     has_many :rate_reviews
     has_many :order_details
     validates :title, :description, :price, presence: true
-    
+    has_many_attached :images
 end

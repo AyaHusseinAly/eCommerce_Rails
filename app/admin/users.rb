@@ -51,6 +51,21 @@ ActiveAdmin.register User do
       AdminUser.create!(name:@seller.name,email:@seller.email,password: :password,password_confirmation: :password,role:"seller")
     end
   end
+  show do
+    attributes_table do
+    row :name
+    row :email
+    row :role
+    row :created_at
+    row :avatar do
+      div do
+            image_tag url_for(user.avatar), size: "200x100"
+          end
+      end
+    end
+  end
+
+
   
 
   # or

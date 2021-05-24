@@ -37,7 +37,7 @@ ActiveAdmin.register Product, as: "All Products" do
       input :store, as: :select, collection: current_admin_user.stores
       input :brand
       input :category
-      input :img , label: "Product Image"
+      input :images, as: :file, input_html: { multiple: true }
       input :price
       input :quantity, label: "Quantity In Stock"
     end
@@ -64,6 +64,16 @@ end
         row :brand
         row :store
         row :category
+        row :images do
+          div do
+            all_products.images.each do |img|
+              div do
+                image_tag url_for(img), size: "200x200"
+              end
+            end
+          end
+        end
+        
     end
         render partial: 'chart', locals: { product: all_products }  
   end
