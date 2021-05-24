@@ -106,23 +106,25 @@
         </div>
         <div class="col-1"></div>
         <div class="col-lg-1 d-flex align-items-center justify-content-around">
+            <%if current_user.role !='seller'%>
             <div class="heart-icon">
-            <%if user_signed_in?%>
+                <%if user_signed_in?%>
                 <%= link_to '',wishing_list_items_path(), class: "fa fa-heart fa-lg", style:"color:#e7ab3c;cursor:pointer"%>
-            <%else%>
+                <%else%>
                 <%= link_to '',new_user_session_path() , class: "fa fa-heart fa-lg", style:"color:#e7ab3c;cursor:pointer"%>
 
-            <%end%>
+                <%end%>
             </div>
 
             <div class="cart-icon">
-            <%if user_signed_in?%>
+                <%if user_signed_in?%>
                 <%= link_to '',shopping_card_item_index_path(), class: "fas fa-shopping-cart fa-lg", style:"color:#e7ab3c;cursor:pointer"%>
-            <%else%>
+                <%else%>
                 <%= link_to '',new_user_session_path() , class: "fas fa-shopping-cart fa-lg", style:"color:#e7ab3c;cursor:pointer"%>
 
-            <%end%>
+                <%end%>
             </div>
+            <%end%>
 
         </div>
 
@@ -154,33 +156,33 @@
         <div class="nav-item ">
             <a class="nav-link text-white text-center" href="/products">SHOP</a>
         </div>
-    
-        <div class="nav-item ">
-         <%if user_signed_in?%>
-            <%if current_user.role=='buyer'%>
-                <%if current_user.orders == []%>
-                <a class="nav-link text-white text-center" href="/orders/">MY ORDERS</a>
-                <%else%>
-                <a class="nav-link text-white text-center" href="/orders/<%=current_user.orders.last.id%>">MY ORDERS</a>
 
-                <%end%>
+        <div class="nav-item ">
+            <%if user_signed_in?%>
+            <%if current_user.role=='buyer'%>
+            <%if current_user.orders == []%>
+            <a class="nav-link text-white text-center" href="/orders/">MY ORDERS</a>
+            <%else%>
+            <a class="nav-link text-white text-center" href="/orders/<%=current_user.orders.last.id%>">MY ORDERS</a>
+
+            <%end%>
             <%elsif current_user.role=='seller'%>
-                <a class="nav-link text-white text-center" href="/seller/products/<%=current_user.id%>">MY PRODUCTS</a>
-            <%end%> 
-         <%else%>   
+            <a class="nav-link text-white text-center" href="/seller/products/<%=current_user.id%>">MY PRODUCTS</a>
+            <%end%>
+            <%else%>
             <a class="nav-link text-white text-center" href="<%=new_user_session_path%>">MY ORDERS</a>
-         <%end%>   
+            <%end%>
         </div>
 
-            <div class="nav-item ">
-             <%if user_signed_in?%>
-                <%if current_user.role=='buyer'%>             
-                    <a class="nav-link text-white text-center" href="/profile/<%=current_user.id%>">MY PROFILE</a>
-                <%elsif current_user.role=='seller'%>
-                    <a class="nav-link text-white text-center" href="/seller/orders/<%=current_user.id%>">PENDING ORDERS</a>
-                <%end%> 
+        <div class="nav-item ">
+            <%if user_signed_in?%>
+            <%if current_user.role=='buyer'%>
+            <a class="nav-link text-white text-center" href="/profile/<%=current_user.id%>">MY PROFILE</a>
+            <%elsif current_user.role=='seller'%>
+            <a class="nav-link text-white text-center" href="/seller/orders/<%=current_user.id%>">PENDING ORDERS</a>
+            <%end%>
             <%else%>
-                <a class="nav-link text-white text-center" href="<%= new_user_session_path%>">MY PROFILE</a>
+            <a class="nav-link text-white text-center" href="<%= new_user_session_path%>">MY PROFILE</a>
             <%end%>
         </div>
 
