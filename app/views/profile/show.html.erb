@@ -1,0 +1,30 @@
+        <div class="profilecontainer ">
+                <div class="row">
+	                <div class="col-md-6 ml-auto mr-auto">
+        	           <div class="profile">
+	                        <div class="avatar">
+                                <% if current_user.avatar.attached? %>
+                                    <img class="img-raised rounded-circle img-fluid" src='<%= url_for(current_user.avatar)%>' class="ml-5  ml-2rounded-circle" />
+                                <%end%>	                        </div>
+	                        <div class="name">
+	                            <h3 class="title"><span>Name: </span><%= current_user.name%></h3>
+								<h3 class="title"><span>Email: </span><%= current_user.email%></h3>
+                                <h3 class="title"><span>Role: </span><%= current_user.role%></h3>
+								<h3 class="title"><span>Shipping Address: </span><%= current_user.address%></h3>
+
+
+                                <a type="button" href="<%=edit_user_registration_path%>" class="btn btn-dark mb-5">Edit your information</a>
+
+
+						  </div>
+	                    </div>
+    	            </div>
+                </div>
+			
+            </div>
+        
+    
+
+        
+            </div>
+     

@@ -1,9 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  email: MyString
+# one:
+#   name: MyString
+#   email: MyString
 
-two:
-  name: MyString
-  email: MyString
+# two:
+#   name: MyString  user1@mysite.com 
+#   email: MyString
+
+one:
+  email: user_one@mysite.com
+  created_at: <%= Time.zone.now %>
+  name: user
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %> 
+  role: buyer
+  

@@ -1,52 +1,109 @@
     <% if @products1.count > 0 %>
-        <div class="container" >
-            <% if params[:q] != "" %>
-                <h3 class="mt-3"style="width:20rem"><%=@products1.count%> results for “<%=params[:q]%>”</h3>
-            <% else %>
-                <h3 class="mt-3"style="width:20rem"><%=@products1.count%> results for search</h3>
-            <% end %>
+    <div class="container">
+        <% if params[:q] != "" %>
+        <h3 class="mt-3" style="width:20rem"><%=@products1.count%> results for “<%=params[:q]%>”</h3>
+        <% else %>
+        <h3 class="mt-3" style="width:20rem"><%=@products1.count%> results for search</h3>
+        <% end %>
 
-            <hr>
-            <div class="row">
+        <hr>
+        <div class="row">
 
-                <% @products1.each do |product| %>
-                    <div class="col-lg-3 col-md-6 col-xs-12 mt-3">
-                            <div class="transCard">
-                                    <img class=" w-100 h-80 transImg"src="img/products/<%=product.img%>">
-                            </div> 
+            <% @products1.each do |product| %>
+            <div class="col-lg-3 col-md-6 col-xs-12 mt-3">
+                <div class="transCard">
+                    <img class=" w-100 h-80 transImg" src="img/products/<%=product.img%>">
+                </div>
 
-                            <div class="product__item__text">
-                                <h6><%= link_to product.title, product_path(product)%></h6>                 
-                                <div class="rating">
-                                    <i class="fa fa-star" style="color:#e7ab3c"></i>
-                                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                                    <i class="fa fa-star"style="color:#e7ab3c"></i>
-                                </div>
-                                <div class="product__price"><span>$<%=product.price%></span></div>
-                            </div>
+                <div class="product__item__text">
+                    <h6><%= link_to product.title, product_path(product)%></h6>
+                    <div class="rating">
+                        <i class="fa fa-star" style="color:#e7ab3c"></i>
+                        <i class="fa fa-star" style="color:#e7ab3c"></i>
+                        <i class="fa fa-star" style="color:#e7ab3c"></i>
+                        <i class="fa fa-star" style="color:#e7ab3c"></i>
+                        <i class="fa fa-star" style="color:#e7ab3c"></i>
                     </div>
-                <%end%>
+                    <div class="product__price d-flex justify-content-between">
+                        <span>$<%=product.price%></span>
+                        <span>
+                            <%@wishlist.each do |wishlistitem| %>
+                            <%if product ==wishlistitem.product %>
+                            <%@wish_found_flag=true%>
+                            <%end%>
+                            <%end%>
+                            <%if @wish_found_flag==false%>
+                            <div style="display:inline-block">
+                                <%= form_tag :controller=>'wishing_list_items', :action => 'addToWishingListForm' do %>
+                                <input type="hidden" name="id" value=<%=product.id%>>
+                                <input type="hidden" name="path" value=<%=root_path%>>
+                                <%= button_tag(type: "submit", class: "btn btn-default") do %>
+                                <i class="bi bi-heart" style="color:#e7ab3c;cursor:pointer"></i>
+                                <% end %>
+                                <%end%>
+                            </div>
+                            <%elsif @wish_found_flag==true%>
+                            <div style="display:inline-block">
+                                <%= form_tag :controller=>'wishing_list_items', :action => 'destroyForm' do %>
+                                <input type="hidden" name="id" value=<%=product.id%>>
+                                <input type="hidden" name="path" value=<%=root_path%>>
+                                <%= button_tag(type: "submit", class: "btn btn-default") do %>
+                                <i class="fa fa-heart fa-lg" style="color:#e7ab3c;cursor:pointer;font-size: 1.25rem"></i>
+                                <% end %>
+                                <%end%>
+                            </div>
+
+                            <%end%>
+                            <%@wish_found_flag=false%>
+                            <%if product.quantity >0%>
+                            <div style="display:inline-block">
+                                <%= form_tag :controller=>'shopping_card_items', :action => 'addToCartForm' do %>
+                                <input type="hidden" name="id" value=<%=product.id%>>
+                                <input type="hidden" name="path" value=<%=root_path%>>
+                                <%= button_tag(type: "submit", class: "btn btn-default") do %>
+                                <i class="bi bi-cart-plus-fill" style="color:#e7ab3c;cursor:pointer;font-size: 1.25rem;"></i>
+                                <% end %>
+
+                                <%end%>
+                            </div>
+                            <%end%>
+                        </span>
+                    </div>
+                    <%
+=begin%>
+                    <%@wishlist.each do |wishlistitem| %>
+                    <%if product ==wishlistitem.product %>
+                    <div class="alert alert-warning d-flex justify-content-center mb-0" role="alert">added to wishing list</div>
+                    <%end%>
+                    <%end%>
+                    <%
+=end%>
+                    <%if product.quantity == 0%>
+                    <div class="alert alert-danger d-flex justify-content-center mt-0" role="alert">out of stock</div>
+                    <%end%>
+
+
+                </div>
             </div>
+            <%end%>
         </div>
-        <br><br>
+    </div>
+    <br><br>
 
     <% else %>
     <br><br>
     <div style="height:350px">
-    <span class="border border-light mh-700 d-inline-block">
-    <div style="padding-left: 100px;padding-right: 250px;">
-        <h3 class="mt-3"style="width:220rem">Sorry, we couldn't find any results for your search</h3>
-        <h4>Try adjusting your search. Here are some ideas:</h4>
-        <ul>
-            <li>Make sure all words are spelled correctly</li>
-            <li>Try different search terms</li>
-            <li>Try more general search terms</li>
-        </ul>
-    </div>
-    </span>
+        <span class="border border-light mh-700 d-inline-block">
+            <div style="padding-left: 100px;padding-right: 250px;">
+                <h3 class="mt-3" style="width:220rem">Sorry, we couldn't find any results for your search</h3>
+                <h4>Try adjusting your search. Here are some ideas:</h4>
+                <ul>
+                    <li>Make sure all words are spelled correctly</li>
+                    <li>Try different search terms</li>
+                    <li>Try more general search terms</li>
+                </ul>
+            </div>
+        </span>
     </div>
     <br><br>
     <% end %>
-

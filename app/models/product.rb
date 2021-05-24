@@ -4,5 +4,6 @@ class Product < ApplicationRecord
     belongs_to :store
     has_many :rate_reviews
     has_many :order_details
+    validates :title, :description, :price, presence: true
     
 end

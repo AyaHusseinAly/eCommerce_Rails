@@ -8,5 +8,18 @@ class Order < ApplicationRecord
     scope :pending, ->{where(status:"Pending")}
     scope :confirmed, ->{where(status:"Confirmed")}
 
+    validates :status,
+    inclusion: { in: %w(Pending Confirmed Delivered)}
+
+
+    after_update :order_status_update_email
+    private
+    def order_status_update_email
+        @order = Order.order("updated_at").last
+        OrderMailer.order_status_change(@order).deliver_later
+
+    end
+
+
 end
 

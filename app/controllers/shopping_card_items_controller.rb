@@ -1,36 +1,61 @@
 class ShoppingCardItemsController < ApplicationController
+
+
+  @@discount =0
+  @@coupon_used_id = 0
+ 
+  before_action :authenticate_user!  # handle Guest access
+
       before_action do
         @categories=Category.all 
         @products=Product.all
         @brands=Brand.all
         @seller = AdminUser.where(role: "seller")      
     end
+
     def index
         @buyerProducts=ShoppingCardItem.where(user:current_user)
         @categories=Category.all
         @total=0
+        @discount=@@discount
+
+      
+
         # render :json =>@buyerProducts
       end
-      def addToCart
-            @product = Product.find(params[:id])
-            # @product.quantity=@product.quantity-1
-            # @product.save
-            # render :json =>@user
-            @shop=ShoppingCardItem.find_by(product: @product,user:current_user)
+      # def addToCart
+      #       @product = Product.find(params[:id])
+      #       # @product.quantity=@product.quantity-1
+      #       # @product.save
+      #       # render :json =>@user
+      #       @shop=ShoppingCardItem.find_by(product: @product,user:current_user)
             
-            if @shop &&  @shop.quantity <  @product.quantity
-                # @shop=ShoppingCardItem.find_by(product: @product,user:current_user)
-                # check quantity
+      #       if @shop &&  @shop.quantity <  @product.quantity
+      #           # @shop=ShoppingCardItem.find_by(product: @product,user:current_user)
+      #           # check quantity
               
-                @shop.quantity=@shop.quantity+1
-                @shop.save
+      #           @shop.quantity=@shop.quantity+1
+      #           @shop.save
               
-            elsif  not  @shop
-                ShoppingCardItem.create(product: @product,user:current_user,quantity:1)
-            end  
+      #       elsif  not  @shop
+      #           ShoppingCardItem.create(product: @product,user:current_user,quantity:1)
+      #       end  
               
-            redirect_to root_path
-            # redirect_back
+      #       redirect_to root_path
+      #       # redirect_back
+      # end
+      def addToCartForm
+        @product = Product.find(params['id'])
+        @shop=ShoppingCardItem.find_by(product: @product,user:current_user)
+        if @shop &&  @shop.quantity <  @product.quantity
+            @shop.quantity=@shop.quantity+1
+            @shop.save
+        elsif  not  @shop
+            ShoppingCardItem.create(product: @product,user:current_user,quantity:1)
+        end  
+          
+        redirect_to params['path']
+
       end
       def addToCartFromWishingList
         @product = Product.find(params[:id])
@@ -117,5 +142,62 @@ class ShoppingCardItemsController < ApplicationController
         redirect_to shopping_card_item_index_path 
         # render :json=>@shoppingcarditem
       end
+
+      def applyCoupon
+        #@coupon=params[:q]
+        @coupon = Coupon.find(params[:id])
+        @@coupon_used_id=params[:id]
+
+
+
+        puts"*********************************"
+        puts @@discount
+        puts @coupon.usage_amount
+
+        if @coupon.usage_amount <= 0
+          puts "used finished"
+          flash.alert = "  coupon reached to limit of used"
+        #elsif @coupon.exp_date < Date.today
+
+        # flash.alert = " This Coupon expired"
+
+          
+        else
+          @coupon.usage_amount = @coupon.usage_amount - 1
+          @coupon.save
+          puts @coupon.usage_amount 
+          if @coupon.kind =="t"
+            puts "t"
+            @@discount = @coupon.value *  0.01
+
+          else 
+            puts "fixed"
+            @@discount =@coupon.value
+
+          end
+        end
+        
+        redirect_to shopping_card_item_index_path 
+        
+
+
+
+      end
+
+      def cancelCoupon
+        puts "cancelCoupon"
+        @canceledCoupon =Coupon.find(@@coupon_used_id)
+        puts @canceledCoupon
+        @canceledCoupon.usage_amount =  @canceledCoupon.usage_amount + 1
+        @canceledCoupon.save
+        @@discount = 0
+
+
+        redirect_to shopping_card_item_index_path 
+      end
+
+
+
+
 end
 
