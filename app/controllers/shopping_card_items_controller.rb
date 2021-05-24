@@ -100,12 +100,18 @@ class ShoppingCardItemsController < ApplicationController
 
       # end
       def checkoutForm
-        # render :json=>params['CARD NUMBER']
+        #render :json=>params['couponCode']
+        @coupon_id= @@coupon_used_id
         while ShoppingCardItem.where(user:current_user).length > 0 do
           @first_store=ShoppingCardItem.find_by(user:current_user).product.store
           @store_products=Product.where(store:@first_store)
           @products=ShoppingCardItem.where(user:current_user,product:@store_products)
-          @order=Order.create!(status:"Pending",user:current_user,store:@first_store)
+          if @coupon_id == 0
+            @order=Order.create!(status:"Pending",user:current_user,store:@first_store)
+          else
+            # @coupon=Coupon.find(@coupon_id)
+            @order=Order.create!(status:"Pending",user:current_user,store:@first_store,coupon_id:@coupon_id)
+          end  
           @products.each do |product|
             @orderDetail=OrderDetail.create(paid_price:product.product.price,product:product.product,order:@order,amount:product.quantity)
             @orderDetail.save
@@ -145,8 +151,8 @@ class ShoppingCardItemsController < ApplicationController
 
       def applyCoupon
         #@coupon=params[:q]
-        @coupon = Coupon.find(params[:id])
-        @@coupon_used_id=params[:id]
+        @coupon = Coupon.find_by(name:params[:code])
+        @@coupon_used_id=@coupon.id
 
 
 
@@ -160,6 +166,7 @@ class ShoppingCardItemsController < ApplicationController
         #elsif @coupon.exp_date < Date.today
 
         # flash.alert = " This Coupon expired"
+
 
           
         else
