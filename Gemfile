@@ -7,7 +7,7 @@ ruby '2.7.3'
 gem 'rails', '~> 5.2.6'
 # Use postgres as the database for Active Record
 gem 'pg'
-# gem 'sqlite3'
+#gem 'sqlite3'
 
 #add devise
 gem 'devise'
@@ -74,6 +74,8 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
- #gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'tzinfo-data', '~> 1.2019', '>= 1.2019.2'
+ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+#gem 'tzinfo-data', '~> 1.2019', '>= 1.2019.2'
 
+gem "chartkick"
+gem 'groupdate'

@@ -21,13 +21,12 @@
             <%if user_signed_in?%>
             <div style="width:50px;display:inline-block;margin-right:20px;border:2px solid #e7ab3c;"><%=  image_tag(current_user.avatar_blob)  %></div>
             <%end%>
-
+            <%if user_signed_in?%>
             <i class=" fa fa-envelope"></i>
-        
-            <span style="font-size:20px;"> rails_v520@ecommerce.com </span>
-
-            <%# <i class=" fa fa-phone ml-4"></i> %>
-
+            <span style="font-size:20px;"> <%= current_user.email %></span>
+            <%else%>
+            <br>
+            <% end %>
         </div>
 
 
@@ -44,7 +43,7 @@
             <%= link_to 'logout', destroy_user_session_path,method: :delete, class: "login-panel ml-5 ", style: "color: #212529;font-size:20px"%>
 
             <%else%>
-            <%= link_to 'login', new_user_session_path,method: :get, class: "login-panel ml-5 ", style: "color: #212529"%>
+            <%= link_to 'login', new_user_session_path,method: :get, class: "login-panel ml-5 ", style: "color: #212529;font-size:20px"%>
 
             <%end%>
 
