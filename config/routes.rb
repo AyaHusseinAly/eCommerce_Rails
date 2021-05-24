@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get 'profile/:id', to: "profile#show"
 
   get 'seller/products/:id', to: "products#seller"
+  get 'seller/orders/:id', to: "orders#seller"
+
 
 
   get '/orders/:id', to:"orders#index"

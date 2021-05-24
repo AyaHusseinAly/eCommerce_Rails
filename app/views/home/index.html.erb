@@ -106,6 +106,7 @@
                        <div class="clip-star"></div>
                    </div>
                    <%end%>
+        <%if current_user.role=='buyer'%>
 
                    <div class="product__price d-flex justify-content-between">
                        <span>$<%=product.price%></span>
@@ -165,7 +166,7 @@
                    <div class="alert alert-danger d-flex justify-content-center mt-0" role="alert">out of stock</div>
                    <%end%>
 
-
+<%end%>
                </div>
            </div>
            <%end%>

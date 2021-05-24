@@ -178,7 +178,7 @@
                 <%if current_user.role=='buyer'%>             
                     <a class="nav-link text-white text-center" href="/profile/<%=current_user.id%>">MY PROFILE</a>
                 <%elsif current_user.role=='seller'%>
-                    <a class="nav-link text-white text-center" href="/seller/orders">PENDING ORDERS</a>
+                    <a class="nav-link text-white text-center" href="/seller/orders/<%=current_user.id%>">PENDING ORDERS</a>
                 <%end%> 
             <%else%>
                 <a class="nav-link text-white text-center" href="<%= new_user_session_path%>">MY PROFILE</a>

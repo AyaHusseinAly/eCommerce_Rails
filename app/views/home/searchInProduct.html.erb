@@ -38,6 +38,7 @@
                     </div>
                     <div class="product__price d-flex justify-content-between">
                         <span>$<%=product.price%></span>
+                        
                         <span>
                             <%@wishlist.each do |wishlistitem| %>
                             <%if product ==wishlistitem.product %>
@@ -67,7 +68,7 @@
 
                             <%end%>
                             <%@wish_found_flag=false%>
-                            <%if product.quantity >0%>
+                            <%if product.quantity > 0%>
                             <div style="display:inline-block">
                                 <%= form_tag :controller=>'shopping_card_items', :action => 'addToCartForm' do %>
                                 <input type="hidden" name="id" value=<%=product.id%>>

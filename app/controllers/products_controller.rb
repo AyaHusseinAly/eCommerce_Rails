@@ -72,17 +72,7 @@ class ProductsController < ApplicationController
         end
 
       end
-      # def edit
-      #   @article = Article.find(params[:id])
-      # end 
-      # def update
-      #   @article = Article.find(params[:id])
-      #   if @article.update(article_params)
-      #     redirect_to @article
-      #   else
-      #     render 'edit'
-      #   end
-      # end
+
       def product_params
         params.require(:product).permit(:title, :description,:price, :quantity,:store_id,:brand_id,:category_id)
       end
