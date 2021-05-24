@@ -5,6 +5,7 @@ class Ability
 
   def initialize(user)
     user ||= AdminUser.new
+
     alias_action :create,:read, :update, :destroy, :to=> :crud
     alias_action :read, :update, :destroy, :to=> :rud
 
@@ -17,7 +18,7 @@ class Ability
         product.store.in?(user.stores)
       end
       can :create, Product
-      can :rud, Order, Order.all do |order|
+      can [:read,:delete], Order, Order.all do |order|
         order.store.in?(user.stores)
       end
       can :rud, [Store], :admin_user_id=>user.id
