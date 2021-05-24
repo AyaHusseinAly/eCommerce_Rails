@@ -1,0 +1,80 @@
+<%= form_with model: @product, local: true do |form| %>
+ 
+  <% if  @product.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize( @product.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <%  @product.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+ 
+  <p>
+    <%= form.label :description %><br>
+    <%= form.text_area :description , style: "width:35rem; height:10rem"%>
+  </p>
+ 
+  <p>
+    <%= form.label :price %><br>
+    <%= form.number_field :price %>
+  </p>
+ 
+   <p>
+    <%= form.label :quantity %><br>
+    <%= form.number_field :quantity %>
+  </p>
+
+ 
+   <p>
+    <%= form.label :brand_id %><br>
+    <%= form.collection_select :brand_id, Brand.all, :id, :name %>
+  </p>
+
+   <p>
+    <%= form.label :category_id %><br>
+    <%= form.collection_select :category_id, Category.all, :id, :name %>
+  </p>
+
+    <p>
+    <%= form.label :store_id %><br>
+    <%= form.collection_select :store_id, Store.where(admin_user: @current_admin_user), :id, :name %>
+  </p>
+
+ <p>
+    <%= form.label :img %><br>
+    <%= form.file_field :img %>
+  </p>
+<%
+=begin%>
+ , accept: 'image/jpeg,image/gif,image/png' 
+<%
+=end%>
+
+ <p>
+    <%= form.label :img1 %><br>
+    <%= form.file_field :img1  %>
+  </p>
+
+
+ <p>
+    <%= form.label :img2 %><br>
+    <%= form.file_field :img2 %>
+  </p>
+
+
+
+  <p>
+    <%= form.submit %>
+  </p>
+ 
+<% end %>

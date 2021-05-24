@@ -1,4 +1,4 @@
-ActiveAdmin.register Product do
+ActiveAdmin.register Product, as: "All Products" do
   
   controller do
     def scoped_collection
@@ -45,7 +45,7 @@ ActiveAdmin.register Product do
   end
 end
 action_item :view_product, only: :show do
-  link_to "See this product in website",view_product_admin_product_path(product),method: :get 
+  link_to "See this product in website",view_product_admin_all_product_path(all_products), method: :get 
 end
 
 member_action :view_product, method: :get do
@@ -54,6 +54,19 @@ member_action :view_product, method: :get do
   # user.update(role:"seller")
   redirect_to product_path(product)
 end
+  show do
+    h3 "Product #"+all_products.id.to_s
+      attributes_table do
+        row :title
+        row :description
+        row :price
+        row :quantity
+        row :brand
+        row :store
+        row :category
+    end
+        render partial: 'chart', locals: { product: all_products }  
+  end
   # or
   #
   # permit_params do

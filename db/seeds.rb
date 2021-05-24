@@ -29,7 +29,7 @@ AdminUser.destroy_all
 
 
 
-Brand.create([{
+Brand.create!([{
     name: "Sample Brand"
 }])
 Category.create!([{
@@ -46,6 +46,8 @@ Category.create!([{
 },
 {
     name: "Women's Clothes"
+},{
+    name:"Others"
 }
 ])
 # User.create!(
@@ -56,12 +58,14 @@ Category.create!([{
 # )
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 AdminUser.create!(email: 'seller@example.com', password: 'password', password_confirmation: 'password',role: 'seller') if Rails.env.development?
+User.create!(email: 'seller@example.com', password: 'password', password_confirmation: 'password',role: 'seller') 
 
 Store.create!([{
     name: "Sample Store",
     summary: "This is a sample summary for a store",
-    admin_user: AdminUser.find_by(role:"seller"),
-}])
+    admin_user: AdminUser.find_by(role:"seller")
+}
+])
 Product.create!([{
     title:'Hoodie',
     description: 'This is a hoodie.',

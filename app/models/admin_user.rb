@@ -5,4 +5,6 @@ class AdminUser < ApplicationRecord
   has_many:stores
   devise :database_authenticatable, 
          :recoverable, :rememberable, :validatable
+  scope :admin, ->{where(role:"admin")}
+  scope :seller, ->{where(role:"seller")}      
 end

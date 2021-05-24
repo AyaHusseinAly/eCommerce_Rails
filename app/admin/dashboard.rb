@@ -2,6 +2,23 @@ ActiveAdmin.register_page "Dashboard" do
   menu priority: 1, label: proc { I18n.t("active_admin.dashboard") }
    
   content title: proc { I18n.t("active_admin.dashboard") } do
+    # index do
+      # stores_orders = Order.group(:store_id).where("store_id IN (?)",current_admin_user.stores.ids).count
+      # json_data = []
+      # stores_orders.each do |key, value|
+      #   json_data << {
+      #     label: key,
+      #     data: value
+      #   }
+      # end
+      if current_admin_user.role=="seller"
+      @products= Product.where("store_id IN (?)",current_admin_user.stores.ids)
+      render partial: 'charts',locals:{
+        sellers_products: @products,
+        
+      }
+    end
+    # end
     # div class: "blank_slate_container", id: "dashboard_default_message" do
     #   span class: "blank_slate" do
     #     span I18n.t("active_admin.dashboard_welcome.welcome")

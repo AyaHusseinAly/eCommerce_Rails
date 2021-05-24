@@ -375,6 +375,11 @@ class HomeController < ApplicationController
         @products=Product.all
         @categories=Category.all 
         @brands=Brand.all   
+        @query_search="?q=#{params[:q]}&cat=#{params[:cat]}&brand=#{params[:brand]}&price=#{params[:price]}&seller=#{params[:seller]}"
+        
+
+
+
     end
     # @wishlist=WishingListItem.all
     # @wish_found_flag=false

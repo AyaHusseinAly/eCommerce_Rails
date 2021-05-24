@@ -79,3 +79,5 @@ end
 #  gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'tzinfo-data', '~> 1.2019', '>= 1.2019.2'
 
+gem "chartkick"
+gem 'groupdate'

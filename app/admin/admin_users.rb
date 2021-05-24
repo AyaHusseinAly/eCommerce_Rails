@@ -1,6 +1,10 @@
 ActiveAdmin.register AdminUser do
   menu if: proc{ current_admin_user.role=="admin" }  
 
+  scope :all
+  scope :admin
+  scope :seller
+
   permit_params :name, :email, :password, :password_confirmation, :role
 
   index do

@@ -12,7 +12,19 @@
             <% @products1.each do |product| %>
             <div class="col-lg-3 col-md-6 col-xs-12 mt-3">
                 <div class="transCard">
+                    <%
+=begin%>
                     <img class=" w-100 h-80 transImg" src="img/products/<%=product.img%>">
+                    <%
+=end%>
+                    <%if product.img.attached?%>
+                    <%= image_tag product.img %>
+                    <%else%>
+                    <img class=" w-100 h-80 transImg" src="img/products/download.png">
+
+                    <%end%>
+
+
                 </div>
 
                 <div class="product__item__text">
@@ -26,6 +38,7 @@
                     </div>
                     <div class="product__price d-flex justify-content-between">
                         <span>$<%=product.price%></span>
+
                         <span>
                             <%@wishlist.each do |wishlistitem| %>
                             <%if product ==wishlistitem.product %>
@@ -36,7 +49,7 @@
                             <div style="display:inline-block">
                                 <%= form_tag :controller=>'wishing_list_items', :action => 'addToWishingListForm' do %>
                                 <input type="hidden" name="id" value=<%=product.id%>>
-                                <input type="hidden" name="path" value=<%=root_path%>>
+                                <input type="hidden" name="path" value=<%=request.env['ORIGINAL_FULLPATH']%>>
                                 <%= button_tag(type: "submit", class: "btn btn-default") do %>
                                 <i class="bi bi-heart" style="color:#e7ab3c;cursor:pointer"></i>
                                 <% end %>
@@ -46,7 +59,7 @@
                             <div style="display:inline-block">
                                 <%= form_tag :controller=>'wishing_list_items', :action => 'destroyForm' do %>
                                 <input type="hidden" name="id" value=<%=product.id%>>
-                                <input type="hidden" name="path" value=<%=root_path%>>
+                                <input type="hidden" name="path" value=<%=request.env['ORIGINAL_FULLPATH']%>>
                                 <%= button_tag(type: "submit", class: "btn btn-default") do %>
                                 <i class="fa fa-heart fa-lg" style="color:#e7ab3c;cursor:pointer;font-size: 1.25rem"></i>
                                 <% end %>
@@ -55,11 +68,11 @@
 
                             <%end%>
                             <%@wish_found_flag=false%>
-                            <%if product.quantity >0%>
+                            <%if product.quantity > 0%>
                             <div style="display:inline-block">
                                 <%= form_tag :controller=>'shopping_card_items', :action => 'addToCartForm' do %>
                                 <input type="hidden" name="id" value=<%=product.id%>>
-                                <input type="hidden" name="path" value=<%=root_path%>>
+                                <input type="hidden" name="path" value=<%=request.env['ORIGINAL_FULLPATH']%>>
                                 <%= button_tag(type: "submit", class: "btn btn-default") do %>
                                 <i class="bi bi-cart-plus-fill" style="color:#e7ab3c;cursor:pointer;font-size: 1.25rem;"></i>
                                 <% end %>
