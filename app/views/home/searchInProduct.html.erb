@@ -12,7 +12,19 @@
             <% @products1.each do |product| %>
             <div class="col-lg-3 col-md-6 col-xs-12 mt-3">
                 <div class="transCard">
-                    <img class=" w-100 h-80 transImg" src="img/products/<%=product.img%>">
+                    <%
+=begin%>
+ <img class=" w-100 h-80 transImg" src="img/products/<%=product.img%>"> 
+<%
+=end%>
+                <%if product.img.attached?%>
+                    <%= image_tag product.img %>
+                <%else%>
+                     <img class=" w-100 h-80 transImg" src="img/products/download.png"> 
+
+                <%end%>
+
+                
                 </div>
 
                 <div class="product__item__text">

@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get 'api/products/:id', to: "api#show"
   get 'profile/:id', to: "profile#show"
 
+  get 'seller/products/:id', to: "products#seller"
+
+
   get '/orders/:id', to:"orders#index"
   get '/orders',to: "orders#index"
   #get '/products/:id/:rating' => 'products#rate', as: :rate_product

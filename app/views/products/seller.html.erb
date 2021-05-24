@@ -1,4 +1,5 @@
 <div class="container">
+    <a class="btn btn secondary mt-5" href="<%=new_product_path%>" style="background-color:rgb(33, 37, 41,0.9);color:white;width:20%;float:right">Create New Product</a>
     <div class="row">
 
         <% @products.each do |product| 
@@ -19,9 +20,9 @@
         <div class="col-lg-3 col-md-6 col-xs-12 mt-3">
             <div class="transCard">
                 <%if product.img.attached?%>
-                        <%= image_tag product.img, class:" w-100 h-80 transImg"%>
+                    <%= image_tag product.img %>
                 <%else%>
-                       <img src="img/products/download.png" class=" w-100 h-80 transImg" alt="...">
+                     <img class=" w-100 h-80 transImg" src="../../img/products/download.png"> 
 
                 <%end%>
             </div>
@@ -109,7 +110,7 @@
 
                         <%end%>
                         <%@wish_found_flag=false%>
-                        <%if product.quantity >0%>
+                        <%if product.quantity %>
                         <div style="display:inline-block">
                             <%= form_tag :controller=>'shopping_card_items', :action => 'addToCartForm' do %>
                             <input type="hidden" name="id" value=<%=product.id%>>
@@ -136,7 +137,9 @@
                 <div class="alert alert-danger d-flex justify-content-center mt-0" role="alert">out of stock</div>
                 <%end%>
 
-
+                <%= link_to 'delete this product', product_path(product),
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' },  class: "btn bg-light" %>
             </div>
         </div>
         <%end%>
