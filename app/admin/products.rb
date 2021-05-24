@@ -22,7 +22,7 @@ ActiveAdmin.register Product, as: "All Products" do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :title, :description, :img, :price, :quantity, :brand_id, :store_id, :category_id
+  permit_params :title, :description, :img, :price, :quantity, :brand_id, :store_id, :category_id,images:[]
   #
   form do |f|
     if current_admin_user.stores.length == 0
@@ -37,6 +37,7 @@ ActiveAdmin.register Product, as: "All Products" do
       input :store, as: :select, collection: current_admin_user.stores
       input :brand
       input :category
+      input :img, label: "Main Image", as: :file
       input :images, as: :file, input_html: { multiple: true }
       input :price
       input :quantity, label: "Quantity In Stock"
@@ -44,6 +45,7 @@ ActiveAdmin.register Product, as: "All Products" do
     actions  
   end
 end
+
 action_item :view_product, only: :show do
   link_to "See this product in website",view_product_admin_all_product_path(all_products), method: :get 
 end
@@ -64,6 +66,11 @@ end
         row :brand
         row :store
         row :category
+        row :img do
+          div do
+            image_tag url_for(all_products.img), size: "200x200"
+              end
+        end
         row :images do
           div do
             all_products.images.each do |img|
