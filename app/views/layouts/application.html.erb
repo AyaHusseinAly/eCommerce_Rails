@@ -106,10 +106,12 @@
         </div>
         <div class="col-1"></div>
         <div class="col-lg-1 d-flex align-items-center justify-content-around">
-            <%if current_user.role !='seller'%>
+
             <div class="heart-icon">
                 <%if user_signed_in?%>
+                <%if current_user.role !='seller'%>
                 <%= link_to '',wishing_list_items_path(), class: "fa fa-heart fa-lg", style:"color:#e7ab3c;cursor:pointer"%>
+                <%end%>
                 <%else%>
                 <%= link_to '',new_user_session_path() , class: "fa fa-heart fa-lg", style:"color:#e7ab3c;cursor:pointer"%>
 
@@ -118,13 +120,15 @@
 
             <div class="cart-icon">
                 <%if user_signed_in?%>
+                <%if current_user.role !='seller'%>
                 <%= link_to '',shopping_card_item_index_path(), class: "fas fa-shopping-cart fa-lg", style:"color:#e7ab3c;cursor:pointer"%>
+                <%end%>
                 <%else%>
                 <%= link_to '',new_user_session_path() , class: "fas fa-shopping-cart fa-lg", style:"color:#e7ab3c;cursor:pointer"%>
 
                 <%end%>
             </div>
-            <%end%>
+
 
         </div>
 

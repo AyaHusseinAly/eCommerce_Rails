@@ -26,6 +26,17 @@
 <div class="container">
     <h4 class="mt-3" style="width:15rem">Latest Products</h4>
     <hr>
+    <div class="row d-flex justify-content-center">
+        <div>
+            <% flash.each do |type, msg| %>
+            <%if type == "notice" and  msg=="can't delete this product" %>
+            <%= content_tag :div, msg, class: 'alert alert-warning d-flex justify-content-center' %>
+            <%end%>
+
+            <% end %>
+
+        </div>
+    </div>
     <div class="row">
 
         <% @products.each do |product| 
@@ -166,7 +177,7 @@
                 <div class="product__price d-flex justify-content-between">
                     <span>$<%=product.price%></span>
                     <span>
-                        <%= form_for(product) do |f| %>
+                        <%= form_for(product, url: cancleproduct_path(product.id)) do |f| %>
                         <%= f.hidden_field:id, { value:product.id, class: 'form-control' } %>
                         <%= button_tag(type: "submit", class: "btn btn-default") do %>
                         <i class="bi bi-x-circle-fill" style="color:#e7ab3c;cursor:pointer"></i>

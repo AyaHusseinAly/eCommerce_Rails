@@ -55,6 +55,17 @@ class ProductsController < ApplicationController
         @seller_stores = Store.where(admin_user_id:@admin_user)
         @products =Product.where(store_id:@seller_stores).paginate(page: params[:page], per_page: 12)
       end
+      def cancleproduct
+        
+        if @product=Product.find(params['id']) and not OrderDetail.where(product:@product).length > 0 and not WishingListItem.where(product:@product).length > 0 and not ShoppingCardItem.where(product:@product).length > 0
+          @product.destroy
+        else
+          # render :json =>"can't destroy orders"
+          flash.notice = "can't delete this product"
+        end 
+        redirect_to root_path 
+        
+      end
       def new
         @current_admin_user=AdminUser.find_by(email:current_user.email )
         @product=Product.new
