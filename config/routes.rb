@@ -30,6 +30,9 @@ Rails.application.routes.draw do
   patch 'cancleShoppingCard',to:'shopping_card_items#cancleShoppingCartItem',as:'cancleShoppingCartItem'
 
 
+get 'applyCoupon', to:'shopping_card_items#applyCoupon'
+get 'cancelCoupon', to:'shopping_card_items#cancelCoupon'
+
 
 
   resources :categories

@@ -31,11 +31,13 @@
 <div class="field">
     <%= f.label :avatar %>
     <% if resource.avatar.attached?  %>
+
     <%
 =begin%>
     <%= image_tag(resource.avatar_thumbnail) %>
     <%
 =end%>
+
     <% else %>
     <%# <%= image_tag("/default_profile.jpg") %>
     <%= f.file_field :avatar %>
