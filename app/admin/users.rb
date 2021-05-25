@@ -14,7 +14,7 @@ ActiveAdmin.register User do
 
   member_action :make_seller, method: :get do
     user=User.find(params[:id])
-    AdminUser.create!(name:user.name , email:user.email , password: "password" , password_confirmation:"password", role:"seller")
+    AdminUser.create!(name:user.name , email:user.email , password: "Password123" , password_confirmation:"Password123", role:"seller")
     user.update(role:"seller")
     redirect_to admin_user_path(user)
   end

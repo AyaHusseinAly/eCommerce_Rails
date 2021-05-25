@@ -34,5 +34,13 @@ ActiveAdmin.register AdminUser do
     end
     f.actions
   end
+  after_create do
+    new_user=AdminUser.all.last
+    if new_user.role=="seller"
+      user=User.create!(name: :name,email: new_user.email , password: "Password123", password_confirmation: "Password123", role:"seller")
+      user.avatar.attach(io: File.open('app/assets/images/default_profile.jpg'), filename: 'default_profile.jpg', content_type: 'image/png')
+    end
+  end
+
 
 end

@@ -10,11 +10,16 @@ class OrdersController < ApplicationController
 
     def index
         if params[:id]
-       @orders= Order.where(user:current_user).order("created_at asc")
-       @order= Order.find(params[:id])
+            @orders= Order.where(user:current_user).order("created_at asc")
+            @order= Order.find(params[:id])
         else
-        @orders=nil
-        @order=nil
+            @orders=Order.where(user:current_user).order("created_at asc")
+             if @orders.length >0
+                 @order=@orders.last
+            else
+                @orders=nil
+                @order=nil
+            end
         end
     end
 
@@ -22,6 +27,6 @@ class OrdersController < ApplicationController
         @user=User.find(params[:id])
         @admin_user=AdminUser.find_by(email:@user.email )
         @seller_stores = Store.where(admin_user_id:@admin_user)
-        @orders =Order.where(store_id:@seller_stores).paginate(page: params[:page], per_page: 12)
+        @orders =Order.where(store_id:@seller_stores,status:"Pending").paginate(page: params[:page], per_page: 12)
     end
 end

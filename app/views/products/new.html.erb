@@ -1,5 +1,11 @@
 <div class="container p-5 bg-light">
+    <%if @current_admin_user.stores.length >0%>
     <h1>New Product</h1>
     <%= render 'form' %>
     <%= link_to 'Back', products_path %>
+    <%else%>
+    <div class="container">
+        <p>You have no stores, wait till admin assigns you to a store</p>
+    </div>
+    <%end%>
 </div>

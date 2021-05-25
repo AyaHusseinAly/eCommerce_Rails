@@ -10,9 +10,14 @@ class ProductsController < ApplicationController
     caches_page :show
     
     def index
-        @products=Product.paginate(page: params[:page], per_page: 12)
-       
-
+      if user_signed_in? and current_user.role=="seller"
+        admin=AdminUser.find_by(email: current_user.email)
+        seller_stores=Store.where(admin_user: admin)
+        @products=Product.where(store: seller_stores).paginate(page: params[:page], per_page: 12)
+      else
+          @products=Product.paginate(page: params[:page], per_page: 12)
+      end
+        # @products=Product.paginate(page: params[:page], per_page: 12)
     end
 
       def show
@@ -34,8 +39,8 @@ class ProductsController < ApplicationController
 
           end
 
-        @product = Product.find(params[:id])
-        
+        @product = Product.find(params[:id]) rescue not_found
+       
         if @product.rate_reviews.count !=0
           number = @product.rate_reviews.count
           rating=0

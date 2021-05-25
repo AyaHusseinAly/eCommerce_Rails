@@ -1,7 +1,13 @@
 class HomeController < ApplicationController
     before_action do
-        @categories=Category.all 
-        @products=Product.all
+        @categories=Category.all
+        if user_signed_in? and current_user.role=="seller"
+            admin=AdminUser.find_by(email: current_user.email)
+            seller_stores=Store.where(admin_user: admin)
+            @products=Product.where(store: seller_stores)
+        else
+            @products=Product.all
+        end
         @brands=Brand.all
         @seller = AdminUser.where(role: "seller") 
         @wishlist=WishingListItem.all
@@ -10,7 +16,13 @@ class HomeController < ApplicationController
     
 
     def index
-        @products=Product.all.order("created_at desc").limit(12)
+        if user_signed_in? and current_user.role=="seller"
+            admin=AdminUser.find_by(email: current_user.email)
+            seller_stores=Store.where(admin_user: admin)
+            @products=Product.where(store: seller_stores).order("created_at desc").limit(12)
+        else
+            @products=Product.all.order("created_at desc").limit(12)
+        end
         # @wishlist=WishingListItem.all
         # @wish_found_flag=false
 
@@ -371,6 +383,7 @@ class HomeController < ApplicationController
                 end #end of brand exist or not and category is exit 
             end #end of if category not exit 
         end #end of if name not exit 
+        
 ##################################################################
         @products=Product.all
         @categories=Category.all 

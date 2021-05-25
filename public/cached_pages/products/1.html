@@ -4,7 +4,7 @@
 <head>
     <title>eCommerce</title>
     <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="GOMkAt5WyAIW93df2ayI5vRXue80oEEuG/bLn4+vLmYKJ9zqHqyc9Dewm4MzNp3P2bN/qVB5ypVP/bnWZtW/Yg==" />
+<meta name="csrf-token" content="SSr/WgCoUTGNi4HMsXpo+EFrkCrfFJdo96kaW/Dfjb25sT90FYHnkrYfJHmtR1xruLLrQP5XhTk8NTdn6klXTg==" />
     
 
     <link rel="stylesheet" media="all" href="/assets/api.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" data-turbolinks-track="reload" />
@@ -49,7 +49,9 @@
 
     <div class="d-flex justify-content-between border px-2" width="100%">
         <div class="my-2 mx-4 ">
-            <br>
+            <div style="width:50px;display:inline-block;margin-right:20px;border:2px solid #e7ab3c;"><img src="http://localhost:3000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBhQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--715dec4263d43ff3fdcc1499ac1a45ce1ad47ee5/default_profile.jpg" /></div>
+            <i class=" fa fa-envelope"></i>
+            <span style="font-size:20px;"> user@example.com</span>
         </div>
 
 
@@ -61,7 +63,8 @@
                 <a href="#"><i class="fab fa-linkedin mx-2" style="color: #212529;font-size:20px"></i></a>
                 <a href="#"><i class="fab fa-pinterest mx-2" style="color: #212529;font-size:20px"></i></a>
             </div>
-            <a class="login-panel ml-5 " style="color: #212529;font-size:20px" data-method="get" href="/users/sign_in">login</a>
+            <a class="login-panel ml-5" style="color: #212529;font-size:20px" href="/users/edit">Edit Profile</a>
+            <a class="login-panel ml-5 " style="color: #212529;font-size:20px" rel="nofollow" data-method="delete" href="/users/sign_out">logout</a>
 
 
         </div>
@@ -123,13 +126,11 @@
         <div class="col-1"></div>
         <div class="col-lg-1 d-flex align-items-center justify-content-around">
             <div class="heart-icon">
-                <a class="fa fa-heart fa-lg" style="color:#e7ab3c;cursor:pointer" href="/users/sign_in"></a>
-
+                <a class="fa fa-heart fa-lg" style="color:#e7ab3c;cursor:pointer" href="/wishing_list_items"></a>
             </div>
 
             <div class="cart-icon">
-                <a class="fas fa-shopping-cart fa-lg" style="color:#e7ab3c;cursor:pointer" href="/users/sign_in"></a>
-
+                <a class="fas fa-shopping-cart fa-lg" style="color:#e7ab3c;cursor:pointer" href="/addToCart/index"></a>
             </div>
 
         </div>
@@ -165,11 +166,12 @@
         </div>
     
         <div class="nav-item ">
-            <a class="nav-link text-white text-center" href="/users/sign_in">MY ORDERS</a>
+                <a class="nav-link text-white text-center" href="/orders/5">MY ORDERS</a>
+
         </div>
 
             <div class="nav-item ">
-                <a class="nav-link text-white text-center" href="/users/sign_in">MY PROFILE</a>
+                    <a class="nav-link text-white text-center" href="/profile/1">MY PROFILE</a>
         </div>
 
         </div>
@@ -177,6 +179,13 @@
     <div class="pos-f-t">
         <div class="collapse" id="navbarToggleExternalContent">
             <div class="bg-dark p-4">
+                <img src='/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBhQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--715dec4263d43ff3fdcc1499ac1a45ce1ad47ee5/default_profile.jpg' class="ml-5  ml-2rounded-circle " style="width:5rem;height:5rem" />
+                <strong style="color:#FFF" class="mx-2"><span style="color:#e7ab3c">Name: </span>User</strong>
+                <strong style="color:#FFF" class="mx-2"><span style="color:#e7ab3c">Email: </span> user@example.com</strong>
+                <strong style="color:#FFF" class="mx-2"><span style="color:#e7ab3c">Shipping Address: </span> </strong>
+
+
+
             </div>
         </div>
 
@@ -247,14 +256,14 @@
         <strong>From Store:</strong><span id="prodstore"> Sample Store</span>
       </div>
       <div style="width:100%">
-          <form action="/addToCartForm" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="orKSmoPIWaT1LLQD0wVDf9hk4GG9BY2pbD1kMxCrXiHt8iNPdkzFlRhBIgN0IPjJT49leMgsWCfil80X0pVG1g==" />
+          <form action="/addToCartForm" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="lBySfPlyL+QQO8ID2KNhyVCjv0jWPH9WkHIDSHAEcClK7w9mi1O6FCpe9ZMMbSfMoLN5L1bmrK5tDJmkfB+tPA==" />
             <input type="hidden" name="id" value=1>
             <input type="hidden" name="path" value=/products/1>
             <button name="button" type="submit" class="btn d-block m-1 shadow" style="background-color:#e7ab3c;color:white;width:100%">
               <i class="fas fa-shopping-cart fa-xs mr-2" style="color: white;"></i>Add to Cart
 </button></form>      </div>
       <div style="width:100%">
-          <form action="/addToWishingListForm" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="DKPA5cPy1vLEhjAVEdkh/8KI8RsCBY1Fu2usAX/6HSiSy9UM2XR3slG/vIKKK5VS++cBEMptBgVAaVrFTUQ6kQ==" />
+          <form action="/addToWishingListForm" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="GR83X/euKWy/454OYqbRsxILtcrsWPrLSsUYXdXMQbadVHgTymnZecyuoAKZGEwLu3Zxo44/mfqcf75Fxo6utw==" />
             <input type="hidden" name="id" value=1>
             <input type="hidden" name="path" value=/products/1>
             <button name="button" type="submit" class="btn d-block m-1" style="background-color:rgb(33, 37, 41,0.9);color:white;width:100%">
@@ -269,7 +278,7 @@
       Reviews
       <div class="d-inline " style="color:#e7ab3c;float:right">
         <i class="fas fa-pencil-alt fa-xs"></i>
-          <strong style="font-size: 13px"><a href="/users/sign_in" style="color:#e7ab3c;border:none"> Write a Review</button></a>
+          <strong style="font-size: 13px"><button id="myBtn" style="color:#e7ab3c;border:none"> Write a Review</button></strong>
       </div>
     </div>
     <div class="card-body">
@@ -291,8 +300,9 @@
           </div>
           <div class="modal-body">
               <div class="d-flex">
-                <i class="fas fa-check-circle fa-5x " style="color:#e7ab3c"></i>
-                <h4 style="color:#696969; margin-left:1rem">You already reviewed this product before, thank you!</h4>
+                <i class="fas fa-info-circle fa-5x mt-3" style="color:#e7ab3c"></i>
+                <h4 style="color:#696969; margin-left:1rem">Sorry you can't review, Since you don't have a verified
+                  purchase for this product from our store</h4>
               </div>
               <p>
                 <div class="modal-footer">
