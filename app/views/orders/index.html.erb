@@ -15,8 +15,11 @@
             <div class="card my-3 text-center" style="width: 17.5rem;">
                 <ul class="list-group list-group-flush">
                 <%if @orders != nil %>
+                <%@i=1%>
                   <% @orders.each do |order| %>
-                  <li class="list-group-item"><a href="/orders/<%=order.id%>"class="text-dark">Order #<%=order.id%></a></li>
+                    
+                  <li class="list-group-item"><a href="/orders/<%=order.id%>"class="text-dark">Order #<%=@i%></a></li>
+                  <%@i = @i +1 %>
 
                 <%end%>
                 <%end%>
@@ -30,6 +33,30 @@
 <%if @order != nil %>
 <h4>Order Status: <span style="color:#e7ab3c"><%=@order.status%><span> </h4>
 <h6>From Store: <span style="color:#e7ab3c"><%=@order.store.name%><span> </h6>
+<% @order.order_details.each do |o_d| %>
+    <%@total=@total +o_d.paid_price %>
+
+<%end%>
+
+
+<%  if  @discount >= 1 %>
+
+    <%if @discount >=@total %>
+        <% @discount = @total %>
+        <% @total = 0 %>
+    <%else%>
+        <%@total=@total-@discount%>
+    <%end%>
+<% else %>
+    <%@totalbyfordiscount = @total%>
+    <%@total=@total -(@total* @discount )%>
+    <%@discount = (@totalbyfordiscount* @discount ) %>
+<% end %>
+
+
+<h6>Total Price paid : <span style="color:#e7ab3c"><%=@total%> $<span> </h6>
+<h6>Total discount : <span style="color:#e7ab3c"><%=@discount%> $<span> </h6>
+
 
 
 
@@ -45,6 +72,7 @@
           avg_rate=0          
         end  
 %>
+           
         
             <div class="d-flex justify-content-start align-items-center my-3  bg-light py-3 shadow-sm">
                 <div class="d-flex flex-column col-4 mr-2">
@@ -107,7 +135,8 @@
 
                     <div class="m-2 p-2 line text-secondary"style="font-size: 0.9rem;">
                         <ins>Order Date</ins><span>: <%=@order.created_at%> </span> <br>
-                      <ins>Paid Price</ins><span>:  $<%=o_d.paid_price%></span><br>
+
+                      <ins> Price</ins><span>:  $<%=o_d.paid_price%></span><br>
                     <ins>Quantity</ins><span>:  <%=o_d.amount%></span>
 
 

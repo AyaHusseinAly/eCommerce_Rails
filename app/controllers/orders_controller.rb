@@ -9,12 +9,32 @@ class OrdersController < ApplicationController
     end
 
     def index
+        @total=0
+        @discount = 0
         if params[:id]
        @orders= Order.where(user:current_user).order("created_at asc")
        @order= Order.find(params[:id])
+       if @order.coupon_id == 0
+                @discount = 0
+        else
+                @coupon =Coupon.find(@order.coupon_id)
+                if @coupon.kind =="ratio"
+                    @discount = @coupon.value *  0.01
+
+                else 
+                    @discount =@coupon.value
+
+                end
+        end
+        
         else
         @orders=nil
         @order=nil
+        
+
+        
+            
+
         end
     end
 end

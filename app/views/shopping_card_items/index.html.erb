@@ -33,15 +33,27 @@
                     <% end %>
                 </td>
             </tr>
-            <% if @discount >= 1 %>
-            <%@total=@total+(buyerProduct.quantity*buyerProduct.product.price) -@discount%>
-            <% else %>
-            <%@total=(@total+(buyerProduct.quantity*buyerProduct.product.price) ) -((@total+(buyerProduct.quantity*buyerProduct.product.price) )* @discount )%>
-            <% end %>
-            <%end%>
+            <%@total=@total+(buyerProduct.quantity*buyerProduct.product.price)%>
+            
+          
+     
+          <%end%>
+
+         
 
         </tbody>
     </table>
+    <%  if  @discount >= 1 %>
+    <%if @discount >=@total %>
+      <% @discount = @total %>
+      <% @total = 0 %>
+    <%else%>
+      <%@total=@total-@discount%>
+    <%end%>
+    <% else %>
+        <%@total=@total -(@total* @discount )%>
+        <%@discount = (@total* @discount ) %>
+    <% end %>
     <hr>
     <div class="d-flex justify-content-between">
         <span>
@@ -49,9 +61,11 @@
             <h5 style="display:inline-block"> <%=@total%> $</h5>
         </span>
         <% flash.each do |type ,msg | %>
-            <div>
-                <%= msg %>
-            </div>
+            <%if type == "alert"  %>
+                <div class="alert alert-warning">
+                    <%= msg %>
+                </div>
+            <%end%>
         <%end%>
         
         <span>
@@ -65,8 +79,11 @@
             <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#CouponModal">
                 Apply Coupon
             </button>
-            <%= link_to 'cancelCoupon' ,'/cancelCoupon'%>
-            <button class="btn btn-success btn-xs" style="background-color:#e7ab3c;border-color:#e7ab3c" data-toggle="modal" data-target="#checkModal">
+            <button class="btn btn-success btn-xs" style="cursor:pointer;background-color:#e7ab3c;border-color:#e7ab3c;text-decoration:none;color: #fff;">
+            <%= link_to 'Cancel Coupon' ,'/cancelCoupon',style:'text-decoration: none;color: #fff;' %>
+            </button>
+
+            <button class="btn btn-success btn-xs" style="background-color:#e7ab3c;border-color:#e7ab3c" data-toggle="modal" data-target="#checkModal ">
                 Checkout
             </button>
         </span>
