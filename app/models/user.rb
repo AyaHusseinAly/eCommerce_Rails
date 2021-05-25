@@ -17,14 +17,14 @@ class User < ApplicationRecord
  validates :password, 
   presence: true, 
   length: { in: Devise.password_length }, 
-  format: { with: PASSWORD_FORMAT }, 
+  format: { with: PASSWORD_FORMAT, message: "should contain 6 or more characters and at least one digit and one lower case character and upper case character " }, 
   confirmation: true, 
   on: :create 
 
  validates :password, 
   allow_nil: true, 
   length: { in: Devise.password_length }, 
-  format: { with: PASSWORD_FORMAT }, 
+  format: { with: PASSWORD_FORMAT, message: "should contain 6 or more characters and at least one digit and one lower case character and upper case character " },  
   confirmation: true, 
   on: :update
  
