@@ -13,7 +13,7 @@ ActiveAdmin.register Coupon do
     inputs "Details" do
       input :name
       input :value
-      input :kind, as: :select, collection: ["fixed","percentage"], default: "fixed"
+      input :kind, as: :select, collection: ["fixed","ratio"], default: "fixed"
       input :exp_date
       input :usage_amount
 
