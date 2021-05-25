@@ -6,19 +6,19 @@ ActiveAdmin.register User do
   scope :buyer
 
   action_item :make_seller, only: :show do
-    link_to "Make This User A Seller",make_seller_admin_user_path(user),method: :put if user.role!="seller"
+    link_to "Make This User A Seller",make_seller_admin_user_path(user),method: :get if user.role!="seller"
   end
   action_item :remove_seller, only: :show do
-    link_to "Delete this Seller",make_buyer_admin_user_path(user),method: :put if user.role!="buyer"
+    link_to "Turn Seller to Buyer",remove_seller_admin_user_path(user),method: :get if user.role!="buyer"
   end
 
-  member_action :make_seller, method: :put do
+  member_action :make_seller, method: :get do
     user=User.find(params[:id])
-    AdminUser.create!(name:user.name , email:user.email , password:user.password , password_confirmation:user.password_confirmation, role:"seller")
+    AdminUser.create!(name:user.name , email:user.email , password: "password" , password_confirmation:"password", role:"seller")
     user.update(role:"seller")
     redirect_to admin_user_path(user)
   end
-  member_action :remove_seller, method: :put do
+  member_action :remove_seller, method: :get do
     user=User.find(params[:id])
     seller=AdminUser.find_by(email:user.email)
     seller.delete
@@ -36,14 +36,38 @@ ActiveAdmin.register User do
   form do |f|
     inputs "Details" do
       input :name
-      input :role, as: :select, collection: ['buyer','seller']
       input :email
       input :password
       input :password_confirmation
+      input :role, as: :select, collection: ['buyer','seller']
+      input :avatar, as: :file
+      
     end
     actions  
   end
+  after_create do
+    @seller=User.all.last
+    if @seller.role=="seller"
+      AdminUser.create!(name:@seller.name,email:@seller.email,password: :password,password_confirmation: :password,role:"seller")
+    end
+  end
+  show do
+    attributes_table do
+    row :name
+    row :email
+    row :role
+    row :created_at
+    row :avatar do
+      div do
+            image_tag url_for(user.avatar), size: "200x100"
+          end
+      end
+    end
+  end
+
+
   
+
   # or
   #
   # permit_params do

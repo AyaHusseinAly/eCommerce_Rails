@@ -76,7 +76,12 @@
         
             <div class="d-flex justify-content-start align-items-center my-3  bg-light py-3 shadow-sm">
                 <div class="d-flex flex-column col-4 mr-2">
-                    <img class=" " src="../img/products/<%=o_d.product.img%>">
+                    <%if o_d.product.img.attached?%>
+                            <%= image_tag o_d.product.img, class:" w-100 h-80 transImg"%>
+                    <%else%>
+                        <img src="../img/products/download.png" >
+
+                    <%end%>            
                     <div class=""style="width:200px;font-size: 0.9rem;">  
                         <a href="<%=product_path(o_d.product)%>" style=""><%=o_d.product.title%> - product #<%=o_d.product.id%></a>
                     </div>

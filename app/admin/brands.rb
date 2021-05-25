@@ -1,4 +1,4 @@
-ActiveAdmin.register Brand do
+ActiveAdmin.register Brand, as: "All Brands" do
   menu if: proc{ current_admin_user.role=="admin" }  
 
   # See permitted parameters documentation:

@@ -1,0 +1,107 @@
+<div class="container">
+    <a class="btn btn secondary mt-5" href="<%=new_product_path%>" style="background-color:rgb(33, 37, 41,0.9);color:white;width:20%;float:right">Create New Product</a>
+    <div class="row">
+
+        <% @products.each do |product| 
+        number = product.rate_reviews.count
+        if number!=0
+          rating=0
+          product.rate_reviews.each { |r| rating+=r.rating.to_i }
+          avg=(rating/number)
+          avg_rate=avg.round
+          
+        else
+          avg_rate=0          
+        end  
+      
+    %>
+
+        <div class="col-lg-3 col-md-6 col-xs-12 mt-3">
+            <div class="transCard">
+                <%if product.img.attached?%>
+                    <%= image_tag product.img %>
+                <%else%>
+                     <img class=" w-100 h-80 transImg" src="../../img/products/download.png"> 
+
+                <%end%>
+            </div>
+            <div class="product__item__text">
+                <h6><%= link_to product.title, product_path(product)%></h6>
+
+                <%if avg_rate==1%>
+                <div class="rating">
+                    <div class="active-star"></div>
+                    <div class="clip-star"></div>
+                    <div class="clip-star"></div>
+                    <div class="clip-star"></div>
+                    <div class="clip-star"></div>
+                </div>
+                <%elsif avg_rate==2%>
+                <div class="rating">
+                    <div class="active-star"></div>
+                    <div class="active-star"></div>
+                    <div class="clip-star"></div>
+                    <div class="clip-star"></div>
+                    <div class="clip-star"></div>
+                </div>
+                <%elsif avg_rate==3%>
+                <div class="rating ">
+                    <div class="active-star"></div>
+                    <div class="active-star"></div>
+                    <div class="active-star"></div>
+                    <div class="clip-star"></div>
+                    <div class="clip-star"></div>
+                </div>
+                <%elsif avg_rate==4%>
+                <div class="star_container ">
+                    <div class="active-star"></div>
+                    <div class="active-star"></div>
+                    <div class="active-star"></div>
+                    <div class="active-star"></div>
+                    <div class="clip-star"></div>
+                </div>
+                <%elsif avg_rate==5%>
+                <div class="rating ">
+                    <div class="active-star"></div>
+                    <div class="active-star"></div>
+                    <div class="active-star"></div>
+                    <div class="active-star"></div>
+                    <div class="active-star"></div>
+                </div>
+                <%else%>
+                <div class="rating">
+                    <div class="clip-star"></div>
+                    <div class="clip-star"></div>
+                    <div class="clip-star"></div>
+                    <div class="clip-star"></div>
+                    <div class="clip-star"></div>
+                </div>
+                <%end%>
+
+                <div class="product__price d-flex justify-content-between">
+                    <span>$<%=product.price%></span>
+                 
+                </div>
+
+
+     
+            </div>
+        </div>
+        <%end%>
+    </div>
+</div>
+
+<div class="row m-5">
+    <div class="col-4"></div>
+    <div class="digg_pagination">
+        <%
+=begin%>
+        <div class="page_info">
+            <%= page_entries_info @products %>
+        </div>
+        <%
+=end%>
+        <%= will_paginate @products%>
+    </div>
+</div>
+</div>

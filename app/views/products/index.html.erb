@@ -18,7 +18,12 @@
 
         <div class="col-lg-3 col-md-6 col-xs-12 mt-3">
             <div class="transCard">
-                <img class=" w-100 h-80 transImg" src="img/products/<%=product.img%>">
+                <%if product.img.attached?%>
+                        <%= image_tag product.img, class:" w-100 h-80 transImg"%>
+                <%else%>
+                       <img src="img/products/download.png" class=" w-100 h-80 transImg" alt="...">
+
+                <%end%>
             </div>
             <div class="product__item__text">
                 <h6><%= link_to product.title, product_path(product)%></h6>
@@ -75,6 +80,7 @@
 
                 <div class="product__price d-flex justify-content-between">
                     <span>$<%=product.price%></span>
+
                     <span>
                         <%@wishlist.each do |wishlistitem| %>
                         <%if product ==wishlistitem.product %>
@@ -104,7 +110,7 @@
 
                         <%end%>
                         <%@wish_found_flag=false%>
-                        <%if product.quantity >0%>
+                        <%if product.quantity > 0 %>
                         <div style="display:inline-block">
                             <%= form_tag :controller=>'shopping_card_items', :action => 'addToCartForm' do %>
                             <input type="hidden" name="id" value=<%=product.id%>>

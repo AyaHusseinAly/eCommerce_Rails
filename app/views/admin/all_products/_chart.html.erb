@@ -1,0 +1,7 @@
+<div class="col-6" >
+          <h2>Orders of this product in the last 7 days</h2>
+          <div id="stores_orders"
+               style='height: 400px; width: 400px'>
+                    <%= line_chart Order.group_by_day(:created_at).where("store_id IN (?) AND created_at > (?) ",current_admin_user.stores.ids,7.days.ago).where(order_details: product.order_details).count,empty: "This products hasn't been sold yet" %>   
+          <div>
+     </div>

@@ -1,5 +1,14 @@
 ActiveAdmin.register Store do
-  scope_to :current_admin_user
+
+  controller do
+    def scoped_collection
+      if current_admin_user.role=="seller"
+        Store.where(admin_user_id: current_admin_user.id)
+      elsif current_admin_user.role=="admin"
+        Store.all
+      end
+    end
+  end
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #

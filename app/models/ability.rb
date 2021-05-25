@@ -4,6 +4,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+
     # user ||= AdminUser.new
     if user.kind_of? User
 
@@ -13,7 +14,8 @@ class Ability
 
       if user.role == 'admin'
         can :read, :all
-        can :crud, [AdminUser,User,Brand,Category,Coupon,Store]
+        can :crud, [AdminUser,Brand,Category,Coupon,Store]
+        can [:create,:read,:destroy], User
       elsif user.role == 'seller'
         can :crud, Product, Product.all do |product|
           product.store.in?(user.stores)

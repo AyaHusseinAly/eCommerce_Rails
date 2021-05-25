@@ -1,0 +1,17 @@
+
+   <div >
+          <h2>Orders By Store</h2>
+          <div id="stores_orders"
+               style=' display:inline;'>
+               <%= pie_chart Brand.joins(products: :order_details).where(products:sellers_products).group(:name).count,empty: "No products sold" %>
+          <div>
+ 
+     </div>
+      <div>
+          <h2>Orders By Day in the last 30 days</h2>
+          <div id="stores_orders"
+               style='display:inline;'>
+                    <%= line_chart Order.group_by_day(:created_at).where("store_id IN (?) AND created_at > (?)",current_admin_user.stores.ids,30.days.ago).count,empty: "No products sold" %>   
+          <div>
+  
+      </div>

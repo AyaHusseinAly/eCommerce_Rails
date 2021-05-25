@@ -1,47 +1,58 @@
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
+<div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+</div>
 
 <div>
-     <%= f.label :name %><br />
-     <%= f.text_field :name, autofocus: true %>
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
 </div>
 
 
-  <div class="field">
+<div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+</div>
 
-  <div class="field">
+<div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+</div>
 
-  <br />
-  <div class="field">
-    <%= f.label :avatar %> 
+
+<div class="field">
+    <%= f.label :address %> <br />
+    <%= f.text_field :address %>
+</div>
+
+<br />
+<div class="field">
+    <%= f.label :avatar %>
     <% if resource.avatar.attached?  %>
-     <%=# image_tag(resource.avatar_thumbnail) 
-     %> 
+
+    <%
+=begin%>
+    <%= image_tag(resource.avatar_thumbnail) %>
+    <%
+=end%>
+
     <% else %>
-      <%# <%= image_tag("/default_profile.jpg") %> 
-       <%= f.file_field :avatar %> 
+    <%# <%= image_tag("/default_profile.jpg") %>
+    <%= f.file_field :avatar %>
     <% end %>
-  </div>
- <br />
-  <div class="actions">
+</div>
+<br />
+<div class="actions">
     <%= f.submit "Sign up" %>
-  </div>
+</div>
 <% end %>
 
 <%= render "devise/shared/links" %>

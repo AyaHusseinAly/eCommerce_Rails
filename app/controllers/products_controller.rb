@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
         @products=Product.paginate(page: params[:page], per_page: 12)
        
 
-      end
+    end
 
       def show
         if user_signed_in?
@@ -49,4 +49,36 @@ class ProductsController < ApplicationController
    
       end
 
+      def seller
+        @user=User.find(params[:id])
+        @admin_user=AdminUser.find_by(email:@user.email )
+        @seller_stores = Store.where(admin_user_id:@admin_user)
+        @products =Product.where(store_id:@seller_stores).paginate(page: params[:page], per_page: 12)
+      end
+      def new
+        @current_admin_user=AdminUser.find_by(email:current_user.email )
+        @product=Product.new
+      end
+      def create
+        @product=Product.create(product_params)
+        # @product.img.attach(params[:product][:img])
+        # @product.images.attach(params[:product][:images])
+
+        if @product.save
+          redirect_to @product
+        else
+          render 'new'
+        end
+
+      end
+
+      def product_params
+        params.require(:product).permit(:title, :description,:price, :quantity,:store_id,:brand_id,:category_id,:img,images:[])
+      end
+
+      def destroy
+        Product.find(params[:id]).destroy
+        redirect_to products_path
+      end
+   
 end
