@@ -108,7 +108,11 @@ class ShoppingCardItemsController < ApplicationController
           @products=ShoppingCardItem.where(user:current_user,product:@store_products)
           
             # @coupon=Coupon.find(@coupon_id)
-            @order=Order.create!(status:"Pending",user:current_user,store:@first_store,coupon_id: @coupon_id)
+            if@coupon_id==0
+              @order=Order.create!(status:"Pending",user:current_user,store:@first_store)
+            else
+              @order=Order.create!(status:"Pending",user:current_user,store:@first_store,coupon_id: @coupon_id)
+            end
           @products.each do |product|
             @orderDetail=OrderDetail.create(paid_price:product.product.price,product:product.product,order:@order,amount:product.quantity)
             @orderDetail.save
