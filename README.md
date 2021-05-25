@@ -22,6 +22,7 @@ Email: admin@example.com                      Password: password
 ##### Username and password for seller
 Email: seller@example.com                     Password: password
 
+to test user model : rails t test/models/user_test.rb
 
 ## Home Page
 ![](preview/1-homePage.png)
