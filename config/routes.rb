@@ -51,6 +51,8 @@ get 'cancelCoupon', to:'shopping_card_items#cancelCoupon'
   resources :products do
     resources :rate_reviews
   end
- 
-  
+  match "/(*url)", to: redirect('/404'), via: [ :get, :post, :patch, :delete ], constraints: lambda { |req|
+    req.path.exclude? 'rails/active_storage'}
+  match "/404" => "errors#error404", via: [ :get, :post, :patch, :delete ]
+
 end

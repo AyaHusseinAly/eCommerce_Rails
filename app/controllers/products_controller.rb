@@ -39,8 +39,10 @@ class ProductsController < ApplicationController
 
           end
 
-        @product = Product.find(params[:id]) rescue not_found
-       
+        @product = Product.find(params[:id]) rescue "not"
+          if @product == "not"
+            return redirect_to "/404"
+          end
         if @product.rate_reviews.count !=0
           number = @product.rate_reviews.count
           rating=0
