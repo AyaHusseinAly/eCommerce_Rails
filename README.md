@@ -3,6 +3,9 @@
 ## Database Structure (ERD)
 ![](preview/WhatsApp%20Image%202021-05-13%20at%204.06.55%20AM.jpeg)
 
+## Visit our website through the following link:
+https://guarded-oasis-53909.herokuapp.com/
+
 ## Steps to run project in development mode 
 #### </ins>First:</ins> install npm in your machine
 #### <ins> Second:</ins>install ruby on your machine
