@@ -6,12 +6,12 @@
 
 default: &default
   # adapter: postgresql
-   encoding: unicode
+   #encoding: unicode
    username: postgres
    password: 123
-   host: localhost
-
-  #host: 127.0.0.1
+   #host: localhost
+  encoding: unicode
+  host: 127.0.0.1
   #username: samar
   #password: 147258
   adapter: postgresql
