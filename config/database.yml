@@ -5,18 +5,15 @@
 #   gem 'sqlite3'
 
 default: &default
-  # adapter: postgresql
-   #encoding: unicode
-  #  username: postgres
-  #  password: 123
-   #host: localhost
-  encoding: unicode
-  host: 127.0.0.1
-  #username: samar
-  #password: 147258
   adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: 123
+  host: localhost
+
+
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+  
 
 development:
   <<: *default
@@ -32,3 +29,5 @@ test:
 production:
   <<: *default
   database: ecommerce_production
+  username: myapp
+  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
