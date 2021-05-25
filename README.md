@@ -1,5 +1,18 @@
 # eCommerce Ruby on Rails Project Preview
 
+# steps to run project on development mode
+        1- install npm in your machine
+        2- install ruby on your machine
+        3- install rails on your machine
+        4- install sqlite3 or postgres in your machine 
+             then run these commands:
+                  -   bundle install
+                  -   rails db:create
+                  -   rails db:migrate
+                  -   rails db:seed
+                  -   rails  s 
+
+
 ## Database Structure (ERD)
 ![](preview/WhatsApp%20Image%202021-05-13%20at%204.06.55%20AM.jpeg)
 
