@@ -154,45 +154,51 @@ class ShoppingCardItemsController < ApplicationController
         @coupon = Coupon.find_by(name:params[:code])
         @@discount = 0
         @coupon_used_before =0
-
-        @orders= Order.where(user:current_user).order("created_at asc")
-        @orders.each do |order|
-          if order.coupon_id == @coupon.id
-            flash.alert = " You have used this coupon befor"
-            @coupon_used_before =1
-          end
-        end  
-
-          if @coupon_used_before == 0
-
-            if @coupon.usage_amount <= 0
-              flash.alert = "  This Coupon reached to limit of used"
-              @coupon.usage_amount = @coupon.usage_amount + 1
-              @coupon.save
-            elsif @coupon.exp_date < Date.today
-              flash.alert = " This Coupon expired"
-              @coupon.usage_amount = @coupon.usage_amount + 1
-              @coupon.save
-              
-            else
-              @coupon.usage_amount = @coupon.usage_amount - 1
-              @coupon.save
-              puts @coupon.usage_amount 
-              if @coupon.kind =="ratio"
-                @@discount = @coupon.value *  0.01
-    
-              else 
-                @@discount =@coupon.value
-    
-              end
-              @@coupon_used_id=@coupon.id
-    
-            end
-
-
-
-          end
+        if @coupon == nil
+          flash.alert = " your entered coupon not found"
+        else
         
+        
+
+          @orders= Order.where(user:current_user).order("created_at asc")
+          @orders.each do |order|
+            if order.coupon_id == @coupon.id
+              flash.alert = " You have used this coupon befor"
+              @coupon_used_before =1
+            end
+          end  
+
+            if @coupon_used_before == 0
+
+              if @coupon.usage_amount <= 0
+                flash.alert = "  This Coupon reached to limit of used"
+                @coupon.usage_amount = @coupon.usage_amount + 1
+                @coupon.save
+              elsif @coupon.exp_date < Date.today
+                flash.alert = " This Coupon expired"
+                @coupon.usage_amount = @coupon.usage_amount + 1
+                @coupon.save
+                
+              else
+                @coupon.usage_amount = @coupon.usage_amount - 1
+                @coupon.save
+                puts @coupon.usage_amount 
+                if @coupon.kind =="ratio"
+                  @@discount = @coupon.value *  0.01
+      
+                else 
+                  @@discount =@coupon.value
+      
+                end
+                @@coupon_used_id=@coupon.id
+      
+              end
+
+
+
+            end
+          end
+          
       
         
         redirect_to shopping_card_item_index_path 
