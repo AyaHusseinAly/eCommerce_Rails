@@ -18,16 +18,16 @@ User.destroy_all
 Brand.destroy_all
 Category.destroy_all
 AdminUser.destroy_all
-ActiveRecord::Base.connection.reset_pk_sequence!(Product.table_name)
-ActiveRecord::Base.connection.reset_pk_sequence!(Store.table_name)
-ActiveRecord::Base.connection.reset_pk_sequence!(Brand.table_name)
-ActiveRecord::Base.connection.reset_pk_sequence!(Category.table_name)
-ActiveRecord::Base.connection.reset_pk_sequence!(User.table_name)
-ActiveRecord::Base.connection.reset_pk_sequence!(AdminUser.table_name)
-ActiveRecord::Base.connection.reset_pk_sequence!(OrderDetail.table_name)
-ActiveRecord::Base.connection.reset_pk_sequence!(RateReview.table_name)
-ActiveRecord::Base.connection.reset_pk_sequence!(ShoppingCardItem.table_name)
-ActiveRecord::Base.connection.reset_pk_sequence!(WishingListItem.table_name)
+# ActiveRecord::Base.connection.reset_pk_sequence!(Product.table_name)
+# ActiveRecord::Base.connection.reset_pk_sequence!(Store.table_name)
+# ActiveRecord::Base.connection.reset_pk_sequence!(Brand.table_name)
+# ActiveRecord::Base.connection.reset_pk_sequence!(Category.table_name)
+# ActiveRecord::Base.connection.reset_pk_sequence!(User.table_name)
+# ActiveRecord::Base.connection.reset_pk_sequence!(AdminUser.table_name)
+# ActiveRecord::Base.connection.reset_pk_sequence!(OrderDetail.table_name)
+# ActiveRecord::Base.connection.reset_pk_sequence!(RateReview.table_name)
+# ActiveRecord::Base.connection.reset_pk_sequence!(ShoppingCardItem.table_name)
+# ActiveRecord::Base.connection.reset_pk_sequence!(WishingListItem.table_name)
 
 
 
@@ -54,17 +54,17 @@ Category.create!([{
     name:"Others"
 }
 ])
-user=User.create!(
-    name:"User",
-    email:"user@example.com",
-    password:"Password123",
-    password_confirmation: 'Password123'
-)
-user.avatar.attach(io: File.open('app/assets/images/default_profile.jpg'), filename: 'default_profile.jpg', content_type: 'image/png')
+# user=User.create!(
+#     name:"User",
+#     email:"user@example.com",
+#     password:"Password123",
+#     password_confirmation: 'Password123'
+# )
+# user.avatar.attach(io: File.open('app/assets/images/default_profile.jpg'), filename: 'default_profile.jpg', content_type: 'image/png')
 
 AdminUser.create!(name:"admin",email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 AdminUser.create!(name:"seller",email: 'seller@example.com', password: 'password', password_confirmation: 'password',role: 'seller') if Rails.env.development?
-User.create!(name:"seller",email: 'seller@example.com', password: 'Password123', password_confirmation: 'Password123',role: 'seller') 
+# User.create!(name:"seller",email: 'seller@example.com', password: 'Password123', password_confirmation: 'Password123',role: 'seller') 
 
 Store.create!([{
     name: "Sample Store",
@@ -164,7 +164,7 @@ Product.create!([{
     store: Store.find_by(name:'Sample Store')
 }])
 count=0
-Product.all.each do |product|
-    product.img.attach(io: File.open("public/img/products/#{count+=1}.jpg"), filename: "#{count}.jpg", content_type: 'image/png')
-end
+# Product.all.each do |product|
+#     product.img.attach(io: File.open("public/img/products/#{count+=1}.jpg"), filename: "#{count}.jpg", content_type: 'image/png')
+# end
 

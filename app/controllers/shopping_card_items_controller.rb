@@ -122,24 +122,24 @@ class ShoppingCardItemsController < ApplicationController
       
         redirect_to shopping_card_item_index_path  
       end
-      def checkout
-        while ShoppingCardItem.where(user:current_user).length > 0 do
-          @first_store=ShoppingCardItem.find_by(user:current_user).product.store
-          @store_products=Product.where(store:@first_store)
-          @products=ShoppingCardItem.where(user:current_user,product:@store_products)
-          @order=Order.create!(status:"Pending",user:current_user,store:@first_store)
-          @products.each do |product|
-            @orderDetail=OrderDetail.create(paid_price:product.product.price,product:product.product,order:@order,amount:product.quantity)
-            @orderDetail.save
-            @orderDetail.product.quantity=@orderDetail.product.quantity-@orderDetail.amount
-            @orderDetail.product.save
-          end
-          @products.delete_all
 
-        end
-        redirect_to shopping_card_item_index_path  
+      # def checkout
+      #   while ShoppingCardItem.where(user:current_user).length > 0 do
+      #     @first_store=ShoppingCardItem.find_by(user:current_user).product.store
+      #     @store_products=Product.where(store:@first_store)
+      #     @products=ShoppingCardItem.where(user:current_user,product:@store_products)
+      #     @order=Order.create!(status:"Pending",user:current_user,store:@first_store)
+      #     @products.each do |product|
+      #       @orderDetail=OrderDetail.create(paid_price:product.product.price,product:product.product,order:@order,amount:product.quantity)
+      #       @orderDetail.save
+      #       @orderDetail.product.quantity=@orderDetail.product.quantity-@orderDetail.amount
+      #       @orderDetail.product.save
+      #     end
+      #     @products.delete_all
+      #   end
+      #   redirect_to shopping_card_item_index_path  
 
-      end
+      # end
       def cancleShoppingCartItem
         @contain=params[:shopping_card_item]
         @shoppingcarditem=ShoppingCardItem.find(@contain[:id])

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get 'seller/products/:id', to: "products#seller"
   get 'seller/orders/:id', to: "orders#seller"
+  patch 'seller/productCancel/:id', to:"products#cancleproduct",as:'cancleproduct'
 
 
 
