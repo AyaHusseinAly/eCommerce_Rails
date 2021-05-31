@@ -1,4 +1,6 @@
 ActiveAdmin.register Product, as: "All Products" do
+
+  actions :all, :except => [:destroy]
   
   controller do
     def scoped_collection
@@ -7,6 +9,24 @@ ActiveAdmin.register Product, as: "All Products" do
   end
   menu if: proc{ current_admin_user.role=="seller" }  
   config.sort_order = 'id_asc'
+  
+  index do
+    column :id
+    column "Title" , :title
+    column "Price" , :price
+    column "Quantity" , :quantity
+    column "Brand" , :brand
+    column "Store" , :store
+    column "Category" , :category
+    column "Image" do |product|
+      div do
+        image_tag url_for(product.img), size: "100x100"
+        end
+    end
+    actions
+
+  end
+
   # action_item :make_store do
   #   link_to 'Create a store', new_admin_store_path
   # end
@@ -49,13 +69,34 @@ end
 action_item :view_product, only: :show do
   link_to "See this product in website",view_product_admin_all_product_path(all_products), method: :get 
 end
+action_item :delete_product, only: :show do
+  link_to "Delete Porduct",delete_product_admin_all_product_path(all_products), method: :get
+end
 
 member_action :view_product, method: :get do
   product=Product.find(params[:id])
+  
   # AdminUser.create!(name:user.name , email:user.email , password:user.password , password_confirmation:user.password_confirmation, role:"seller")
   # user.update(role:"seller")
-  redirect_to product_path(product)
+  redirect_to products_path(product)
 end
+member_action :delete_product, method: :get do
+  product=Product.find(params[:id])
+  order_details=OrderDetail.where(product_id:params[:id])
+  orders=Order.where(order_details:order_details)
+  rates=RateReview.where(product_id:params[:id])
+  rates.destroy_all
+  order_details.destroy_all
+  orders.destroy_all
+  product.img.purge
+  product.images.purge
+  product.destroy
+  
+  # AdminUser.create!(name:user.name , email:user.email , password:user.password , password_confirmation:user.password_confirmation, role:"seller")
+  # user.update(role:"seller")
+  redirect_to admin_all_products_path
+end
+
   show do
     h3 "Product #"+all_products.id.to_s
       attributes_table do
