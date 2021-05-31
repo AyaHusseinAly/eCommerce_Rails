@@ -6,11 +6,11 @@ class UserTest < ActiveSupport::TestCase
   # end
 
   def setup
-    @user1 = User.new(email: "user_uni@mysite.com", name: "myuser", password: "password", password_confirmation: "password", role: "buyer")
-    @user2 = User.new(name: "usertwo", password: "password", password_confirmation: "password", role: "buyer")
+    @user1 = User.new(email: "user_uni@mysite.com", name: "myuser", password: "Password123", password_confirmation: "Password123", role: "buyer")
+    @user2 = User.new(name: "usertwo", password: "Password123", password_confirmation: "Password123", role: "buyer")
     @user3 = User.new(email: "user_unique3@mysite.com", name: "userth", password: "pass", password_confirmation: "pass", role: "buyer")
-    @user4 = User.new(email: "user_unique4@mysite.com", password: "password", password_confirmation: "password", role: "buyer")
-    @user5 = User.new(email: "user_unique5@mysite.com", name: "user1", password: "password", password_confirmation: "password", role: "buyer")
+    @user4 = User.new(email: "user_unique4@mysite.com", password: "Password123", password_confirmation: "Password123", role: "buyer")
+    @user5 = User.new(email: "user_unique5@mysite.com", name: "user1", password: "Password123", password_confirmation: "Password123", role: "buyer")
   end
 
   test "should be valid" do

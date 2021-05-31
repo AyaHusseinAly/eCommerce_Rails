@@ -91,9 +91,6 @@ member_action :delete_product, method: :get do
   product.img.purge
   product.images.purge
   product.destroy
-  
-  # AdminUser.create!(name:user.name , email:user.email , password:user.password , password_confirmation:user.password_confirmation, role:"seller")
-  # user.update(role:"seller")
   redirect_to admin_all_products_path
 end
 

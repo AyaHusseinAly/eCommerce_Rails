@@ -78,9 +78,12 @@ class ShoppingCardItemsController < ApplicationController
         # @diffChangeProductQuantity=@shoppingcarditem.quantity-@contain[:quantity]
         # @shoppingcarditem.product.quantity=@shoppingcarditem.product.quantity+(@shoppingcarditem.quantity-@contain[:quantity].to_i)
         # @shoppingcarditem.product.save
-        @shoppingcarditem.quantity=@contain[:quantity]
-        @shoppingcarditem.save
-        redirect_to shopping_card_item_index_path  
+        @quantity=@contain[:quantity]
+        if @shoppingcarditem.product.quantity>@quantity.to_i and @quantity.to_i>0
+          @shoppingcarditem.quantity=@contain[:quantity]
+          @shoppingcarditem.save
+        end
+        redirect_to shopping_card_item_index_path 
         # redirect_to :back
       end
       # def checkout
