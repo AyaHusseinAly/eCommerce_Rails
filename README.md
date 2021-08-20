@@ -1,10 +1,10 @@
 # eCommerce Ruby on Rails Project Preview
 
-## Database Structure (ERD)
-![](preview/WhatsApp%20Image%202021-05-13%20at%204.06.55%20AM.jpeg)
-
 ## Visit our website through the following link:
 https://guarded-oasis-53909.herokuapp.com/
+
+## Database Structure (ERD)
+![](preview/WhatsApp%20Image%202021-05-13%20at%204.06.55%20AM.jpeg)
 
 ## Steps to run project in development mode 
 #### </ins>First:</ins> install npm in your machine
@@ -66,12 +66,3 @@ to test user model : rails t test/models/user_test.rb
 
 ## profile
 ![](preview/profile.png)
-
-
-
-### Design patterns  
-#### Query Objects
-Query Object a type of design patterns in rails that lets us fetch query logic from Controllers and Models into reusable classes.
-#### Form Objects
-The form object is a design pattern that is used to encapsulate the code related to validation and persisting data into a single unit.
-
